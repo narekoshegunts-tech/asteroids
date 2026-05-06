@@ -1,5 +1,6 @@
 ﻿using Zenject;
-using CustomPhysics;
+using Game.Scripts.CustomPhysics;
+using Game.Scripts.CustomPhysics.Factories;
 using UnityEngine;
 
 namespace Infrastructure
@@ -11,18 +12,30 @@ namespace Infrastructure
             BindAcceleration2D();
             BindVelocity2DFactory();
             BindPosition2DFactory();
+            BindRotation2DFactory();
             BindCustomPhysicsFacade2DFactory();
+        }
+
+        private void BindRotation2DFactory()
+        {
+            Container.Bind<Rotation2DFactory>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindPosition2DFactory()
         {
             Container
-                .BindFactory<Transform, Velocity2D, Position2D, Position2D.Facory>();
+                .Bind<Position2DFactory>()
+                .AsSingle()
+                .NonLazy();
         }
         private void BindVelocity2DFactory()
         {
             Container
-                .BindFactory<Acceleration2D, Velocity2D, Velocity2D.Factory>();
+                .Bind<Velocity2DFactory>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindAcceleration2D()
@@ -35,7 +48,9 @@ namespace Infrastructure
         private void BindCustomPhysicsFacade2DFactory()
         {
             Container
-                .BindFactory<Transform, CustomPhysicsFacade2D, CustomPhysicsFacade2D.Factory>();
+                .Bind<CustomPhysicsFacade2DFactory>()
+                .AsSingle()
+                .NonLazy();
         }
         
     }

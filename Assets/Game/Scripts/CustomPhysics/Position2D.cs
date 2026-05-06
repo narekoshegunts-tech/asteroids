@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Zenject;
 
-namespace CustomPhysics
+namespace Game.Scripts.CustomPhysics
 {
     public class Position2D
     {
@@ -31,12 +30,6 @@ namespace CustomPhysics
             _y += _velocity2D.VelocityY * deltaTime;
             
             _transform.position = new Vector2(_x, _y);
-        }
-        
-        
-
-        public class Facory : PlaceholderFactory<Transform, Velocity2D, Position2D>
-        {
         }
     }
 }
