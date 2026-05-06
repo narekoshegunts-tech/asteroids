@@ -1,14 +1,34 @@
-﻿namespace CustomPhysics
+﻿using UnityEngine;
+using Zenject;
+
+namespace CustomPhysics
 {
-    internal class Velocity2D
+    public class Velocity2D
     {
-        private float _xVelocity;
-        private float _yVelocity;
+        private float _velocityX;
+        private float _velocityY;
         
-        public Velocity2D(float x, float y)
+        public float  VelocityX => _velocityX;
+        public float  VelocityY => _velocityY;
+        
+        private Acceleration2D _acceleration2D;
+
+        public Velocity2D(Acceleration2D acceleration2D)
         {
-            _xVelocity = x;
-            _yVelocity = y;
+            _acceleration2D = acceleration2D;
+
+            _velocityX = 0;
+            _velocityY = 0;
+        }
+
+        public void UpdateVelocity(float deltaTime)
+        {
+            _velocityX += _acceleration2D.XAcceleration2D * deltaTime;
+            _velocityY += _acceleration2D.YAcceleration2D * deltaTime;
+        }
+
+        public class Factory : PlaceholderFactory<Acceleration2D, Velocity2D>
+        {
         }
     }
 }

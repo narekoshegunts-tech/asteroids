@@ -1,17 +1,42 @@
+using UnityEngine;
+using UnityEngine.PlayerLoop;
+using Zenject;
+
 namespace CustomPhysics
 {
-    internal class Position2D
+    public class Position2D
     {
-        private int _x;
-        private int _y;
+        private float _x;
+        private float _y;
+        
+        private Transform _transform;
+        
+        private Velocity2D _velocity2D;
 
-        public int X => _x;
-        public int Y => _y;
+        public float X => _x;
+        public float Y => _y;
 
-        public Position2D(int x, int y)
+        public Position2D(Transform transform, Velocity2D velocity2D)
         {
-            _x = x;
-            _y = y;
+            _transform = transform;
+            _velocity2D = velocity2D;
+            
+            _x = _transform.position.x;
+            _y = _transform.position.y;
+        }
+
+        public void Update(float deltaTime)
+        {
+            _x += _velocity2D.VelocityX  * deltaTime;
+            _y += _velocity2D.VelocityY * deltaTime;
+            
+            _transform.position = new Vector2(_x, _y);
+        }
+        
+        
+
+        public class Facory : PlaceholderFactory<Transform, Velocity2D, Position2D>
+        {
         }
     }
 }
