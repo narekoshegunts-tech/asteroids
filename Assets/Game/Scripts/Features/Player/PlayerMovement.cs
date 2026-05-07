@@ -24,18 +24,28 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.SetTargetTransform(transform);
         }
 
+        private void OnEnable()
+        {
+            _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
+        }
+
+        private void OnDisable()
+        {
+            _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
+        }
+
         void Update()
         {
             Vector2 direction = _customInputSystem.GetDirection();
             
             _customPhysicsFacade.ApplyRotation(direction);
 
-            if (_customInputSystem.IsAccelerationKeyPressed())
-            {
-                _customPhysicsFacade.ApplyAcceleration(_acceleration);
-            }
-
             _customPhysicsFacade.Update();
+        }
+
+        private void OnAccelerationKeyPressed()
+        {
+            _customPhysicsFacade.ApplyAcceleration(_acceleration);
         }
     }
 }

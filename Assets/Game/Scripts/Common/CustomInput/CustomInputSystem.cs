@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Common.CustomInput
 {
-    public class CustomInputSystem
+    public class CustomInputSystem: IInitializable, IDisposable
     {
         [Inject] MouseKeyboardInputSystem _mouseKeyboardInputSystem;
 
-        private Transform _targetTransform; 
+        private Transform _targetTransform;
 
+        public event Action OnAccelerationKeyPressed;
         public void SetTargetTransform(Transform targetTransform)
         {
             _targetTransform = targetTransform;
@@ -19,9 +21,19 @@ namespace Game.Scripts.Common.CustomInput
             return _mouseKeyboardInputSystem.GetDirection();
         }
 
-        public bool IsAccelerationKeyPressed()
+        private void OnInputAccelerationKeyPressed()
         {
-            return _mouseKeyboardInputSystem.IsAccelerationKeyPressed;
+            OnAccelerationKeyPressed?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            _mouseKeyboardInputSystem.OnAccelerationKeyPressed -= OnInputAccelerationKeyPressed;
+        }
+
+        public void Initialize()
+        {
+            _mouseKeyboardInputSystem.OnAccelerationKeyPressed += OnInputAccelerationKeyPressed;
         }
     }
 }

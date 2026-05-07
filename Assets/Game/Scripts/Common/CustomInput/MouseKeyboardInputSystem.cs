@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Common.CustomInput
 {
-    public class MouseKeyboardInputSystem
+    public class MouseKeyboardInputSystem: ITickable
     {
         [Inject] private Camera _camera;
         private Transform _targetTransform;
@@ -11,6 +12,8 @@ namespace Game.Scripts.Common.CustomInput
         private KeyCode _accelerationKey = KeyCode.W;
 
         public bool IsAccelerationKeyPressed => Input.GetKey(_accelerationKey);
+
+        public event Action OnAccelerationKeyPressed;
 
         public void SetTargetTransform(Transform targetTransform)
         {
@@ -24,7 +27,14 @@ namespace Game.Scripts.Common.CustomInput
             
             return direction.normalized;
         }
-        
-        
+
+
+        public void Tick()
+        {
+            if (Input.GetKey(_accelerationKey))
+            {
+                OnAccelerationKeyPressed?.Invoke();
+            }
+        }
     }
 }
