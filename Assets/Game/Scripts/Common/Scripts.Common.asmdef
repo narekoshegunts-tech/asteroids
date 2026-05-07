@@ -1,11 +1,7 @@
 {
-    "name": "Scripts.Features",
+    "name": "Scripts.Common",
     "rootNamespace": "",
-    "references": [
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:57aa35ea68b3b324cb648a2389484b73",
-        "GUID:e5980577c3a5b4e488997c57a3412191"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

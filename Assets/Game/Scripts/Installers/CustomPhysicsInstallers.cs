@@ -1,9 +1,8 @@
-﻿using Zenject;
-using Game.Scripts.CustomPhysics;
+﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
-using UnityEngine;
+using Zenject;
 
-namespace Infrastructure
+namespace Game.Scripts.Installers
 {
     public class CustomPhysicsInstallers: MonoInstaller
     {

@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
+using Game.Scripts.Common.CustomInput;
 using UnityEngine;
 using Zenject;
 
@@ -10,39 +11,31 @@ namespace Game.Scripts.Features.Player
         CustomPhysicsFacade2D _customPhysicsFacade;
 
         [SerializeField] private float _acceleration;
-        private Camera _cam;
+        
+        CustomInputSystem _customInputSystem;
         
         [Inject]
-        private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory)
+        private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
+            CustomInputSystem customInputSystem)
         {
             _customPhysicsFacade = customPhysicsFacadeFactory.Create(transform);
-        }
-        
-        private void Start()
-        {
-            _cam = Camera.main; // убрать глобальный поиск
+            _customInputSystem = customInputSystem;
+            
+            _customInputSystem.SetTargetTransform(transform);
         }
 
         void Update()
         {
-            _customPhysicsFacade.ApplyRotation(GetDirection());
+            Vector2 direction = _customInputSystem.GetDirection();
+            
+            _customPhysicsFacade.ApplyRotation(direction);
 
-            if (Input.GetKey(KeyCode.W))
+            if (_customInputSystem.IsAccelerationKeyPressed())
             {
                 _customPhysicsFacade.ApplyAcceleration(_acceleration);
             }
 
             _customPhysicsFacade.Update();
         }
-
-        // убрать в самописный InputSystem
-        private Vector2 GetDirection()
-        {
-            Vector2 mousePosition = _cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction =  mousePosition - new Vector2(transform.position.x, transform.position.y);
-            
-            return direction.normalized;
-        }
-
     }
 }
