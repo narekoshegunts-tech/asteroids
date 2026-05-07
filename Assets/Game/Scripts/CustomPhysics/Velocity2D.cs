@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-namespace CustomPhysics
+namespace Game.Scripts.CustomPhysics
 {
     public class Velocity2D
     {
@@ -25,10 +24,8 @@ namespace CustomPhysics
         {
             _velocityX += _acceleration2D.XAcceleration2D * deltaTime;
             _velocityY += _acceleration2D.YAcceleration2D * deltaTime;
+            
         }
-
-        public class Factory : PlaceholderFactory<Acceleration2D, Velocity2D>
-        {
-        }
+        
     }
 }
