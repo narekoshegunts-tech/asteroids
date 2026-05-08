@@ -14,7 +14,7 @@ namespace Game.Scripts.Installers
         private void BindMouseKeyboardInputSystem()
         {
             Container
-                .Bind<MouseKeyboardInputSystem>()
+                .BindInterfacesAndSelfTo<MouseKeyboardInputSystem>()
                 .AsSingle()
                 .NonLazy();
         }

@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.CustomPhysics
 {
@@ -24,7 +25,12 @@ namespace Game.Scripts.CustomPhysics
         {
             _velocityX += _acceleration2D.XAcceleration2D * deltaTime;
             _velocityY += _acceleration2D.YAcceleration2D * deltaTime;
-            
+        }
+
+        public void ApplyVelocity(float velocity, Rotation2D rotation)
+        {
+            _velocityX = velocity * rotation.Direction.x;
+            _velocityY = velocity * rotation.Direction.y;
         }
         
     }

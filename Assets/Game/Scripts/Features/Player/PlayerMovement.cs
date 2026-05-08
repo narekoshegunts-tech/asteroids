@@ -8,11 +8,13 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour
     {
-        CustomPhysicsFacade2D _customPhysicsFacade;
+        private CustomPhysicsFacade2D _customPhysicsFacade;
 
         [SerializeField] private float _acceleration;
         
-        CustomInputSystem _customInputSystem;
+        private CustomInputSystem _customInputSystem;
+        
+        public Vector2 Direction => _customPhysicsFacade.Direction;
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
@@ -24,18 +26,28 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.SetTargetTransform(transform);
         }
 
+        private void OnEnable()
+        {
+            _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
+        }
+
+        private void OnDisable()
+        {
+            _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
+        }
+
         void Update()
         {
             Vector2 direction = _customInputSystem.GetDirection();
             
             _customPhysicsFacade.ApplyRotation(direction);
 
-            if (_customInputSystem.IsAccelerationKeyPressed())
-            {
-                _customPhysicsFacade.ApplyAcceleration(_acceleration);
-            }
-
             _customPhysicsFacade.Update();
+        }
+
+        private void OnAccelerationKeyPressed()
+        {
+            _customPhysicsFacade.ApplyAcceleration(_acceleration);
         }
     }
 }

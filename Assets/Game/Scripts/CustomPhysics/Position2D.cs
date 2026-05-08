@@ -24,6 +24,13 @@ namespace Game.Scripts.CustomPhysics
             _y = _transform.position.y;
         }
 
+        public void ApplyPosition(Vector3 position)
+        {
+            _transform.position = position;
+            _x = _transform.position.x;
+            _y = _transform.position.y;
+        }
+
         public void Update(float deltaTime)
         {
             _x += _velocity2D.VelocityX  * deltaTime;

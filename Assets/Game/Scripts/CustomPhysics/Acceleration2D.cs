@@ -10,10 +10,10 @@ namespace Game.Scripts.CustomPhysics
         public float XAcceleration2D => _xAcceleration2D;
         public float YAcceleration2D => _yAcceleration2D;
 
-        public void ApplyAcceleration(Vector2 direction, float acceleration)
+        public void ApplyAcceleration(float acceleration, Rotation2D rotation)
         {
-            _xAcceleration2D = direction.x * acceleration;
-            _yAcceleration2D = direction.y * acceleration;
+            _xAcceleration2D = rotation.Direction.x * acceleration;
+            _yAcceleration2D = rotation.Direction.y * acceleration;
         }
 
         public void Reset()
