@@ -15,13 +15,5 @@ namespace Game.Scripts.CustomPhysics
             _xAcceleration2D = rotation.Direction.x * acceleration;
             _yAcceleration2D = rotation.Direction.y * acceleration;
         }
-
-        public void Reset()
-        {
-            _xAcceleration2D = 0;
-            _yAcceleration2D = 0;
-        }
-        
-        
     }
 }

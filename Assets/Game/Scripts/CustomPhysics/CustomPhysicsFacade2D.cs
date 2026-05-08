@@ -33,7 +33,6 @@ namespace Game.Scripts.CustomPhysics
         {
             _velocity2D.UpdateVelocity(Time.deltaTime);
             _position2D.Update(Time.deltaTime);
-            _acceleration2D.Reset();
         }
         
         public void ApplyAcceleration(float acceleration)

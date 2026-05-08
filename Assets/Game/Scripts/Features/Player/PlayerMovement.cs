@@ -14,6 +14,8 @@ namespace Game.Scripts.Features.Player
         
         private CustomInputSystem _customInputSystem;
         
+        [SerializeField] private ParticleSystem _accelerationParticles;
+        
         public Vector2 Direction => _customPhysicsFacade.Direction;
         
         [Inject]
@@ -26,14 +28,23 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.SetTargetTransform(transform);
         }
 
+        private void Awake()
+        {
+            _accelerationParticles.Stop();
+        }
+
         private void OnEnable()
         {
+            _customInputSystem.OnAccelerationKeyPressedDown += OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
+            _customInputSystem.OnAccelerationKeyPressedUp += OnAccelerationKeyPressedUp;
         }
 
         private void OnDisable()
         {
+            _customInputSystem.OnAccelerationKeyPressedDown -= OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
+            _customInputSystem.OnAccelerationKeyPressedUp -= OnAccelerationKeyPressedUp;
         }
 
         void Update()
@@ -45,9 +56,20 @@ namespace Game.Scripts.Features.Player
             _customPhysicsFacade.Update();
         }
 
+        private void OnAccelerationKeyPressedDown()
+        {
+            _accelerationParticles.Play();
+        }
+
         private void OnAccelerationKeyPressed()
         {
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
+        }
+
+        private void OnAccelerationKeyPressedUp()
+        {
+            _customPhysicsFacade.ApplyAcceleration(0);
+            _accelerationParticles.Stop();
         }
     }
 }

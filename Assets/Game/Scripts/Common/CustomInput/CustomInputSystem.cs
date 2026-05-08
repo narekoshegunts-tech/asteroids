@@ -10,10 +10,20 @@ namespace Game.Scripts.Common.CustomInput
 
         private Transform _targetTransform;
 
+        public event Action OnAccelerationKeyPressedDown
+        {
+            add => _mouseKeyboardInputSystem.OnAccelerationKeyPressedDown += value;
+            remove => _mouseKeyboardInputSystem.OnAccelerationKeyPressedDown -= value;
+        }
         public event Action OnAccelerationKeyPressed
         {
             add => _mouseKeyboardInputSystem.OnAccelerationKeyPressed += value;
             remove => _mouseKeyboardInputSystem.OnAccelerationKeyPressed -= value;
+        }
+        public event Action OnAccelerationKeyPressedUp
+        {
+            add => _mouseKeyboardInputSystem.OnAccelerationKeyPressedUp += value;
+            remove => _mouseKeyboardInputSystem.OnAccelerationKeyPressedUp -= value;
         }
         
         public event Action OnBulletAttackKeyPressed
