@@ -4,13 +4,25 @@ using Zenject;
 
 namespace Game.Scripts.Common.CustomInput
 {
-    public class CustomInputSystem: IInitializable, IDisposable
+    public class CustomInputSystem
     {
         [Inject] MouseKeyboardInputSystem _mouseKeyboardInputSystem;
 
         private Transform _targetTransform;
 
-        public event Action OnAccelerationKeyPressed;
+        public event Action OnAccelerationKeyPressed
+        {
+            add => _mouseKeyboardInputSystem.OnAccelerationKeyPressed += value;
+            remove => _mouseKeyboardInputSystem.OnAccelerationKeyPressed -= value;
+        }
+        
+        public event Action OnBulletAttackKeyPressed
+        {
+            add => _mouseKeyboardInputSystem.OnBulletAttackKeyPressed += value;
+            remove => _mouseKeyboardInputSystem.OnBulletAttackKeyPressed -= value;
+        }
+        
+        // не верю что из за этой хуйни надо будет делать фабрику... Я другого решения не нашел
         public void SetTargetTransform(Transform targetTransform)
         {
             _targetTransform = targetTransform;
@@ -19,21 +31,6 @@ namespace Game.Scripts.Common.CustomInput
         public Vector2 GetDirection()
         {
             return _mouseKeyboardInputSystem.GetDirection();
-        }
-
-        private void OnInputAccelerationKeyPressed()
-        {
-            OnAccelerationKeyPressed?.Invoke();
-        }
-
-        public void Dispose()
-        {
-            _mouseKeyboardInputSystem.OnAccelerationKeyPressed -= OnInputAccelerationKeyPressed;
-        }
-
-        public void Initialize()
-        {
-            _mouseKeyboardInputSystem.OnAccelerationKeyPressed += OnInputAccelerationKeyPressed;
         }
     }
 }

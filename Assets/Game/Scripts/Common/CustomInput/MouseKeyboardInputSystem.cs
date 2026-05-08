@@ -10,10 +10,12 @@ namespace Game.Scripts.Common.CustomInput
         private Transform _targetTransform;
 
         private KeyCode _accelerationKey = KeyCode.W;
+        private KeyCode _bulletAttack = KeyCode.Mouse0;
 
         public bool IsAccelerationKeyPressed => Input.GetKey(_accelerationKey);
 
         public event Action OnAccelerationKeyPressed;
+        public event Action OnBulletAttackKeyPressed;
 
         public void SetTargetTransform(Transform targetTransform)
         {
@@ -34,6 +36,11 @@ namespace Game.Scripts.Common.CustomInput
             if (Input.GetKey(_accelerationKey))
             {
                 OnAccelerationKeyPressed?.Invoke();
+            }
+
+            if (Input.GetKeyDown(_bulletAttack))
+            {
+                OnBulletAttackKeyPressed?.Invoke();
             }
         }
     }

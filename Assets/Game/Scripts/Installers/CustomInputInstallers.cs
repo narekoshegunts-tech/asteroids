@@ -22,7 +22,7 @@ namespace Game.Scripts.Installers
         private void BindCustomInputSystem()
         {
             Container
-                .BindInterfacesAndSelfTo<CustomInputSystem>()
+                .Bind<CustomInputSystem>()
                 .AsSingle()
                 .NonLazy();
         }

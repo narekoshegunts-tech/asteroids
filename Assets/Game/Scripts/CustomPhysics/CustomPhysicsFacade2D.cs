@@ -12,6 +12,8 @@ namespace Game.Scripts.CustomPhysics
         private Rotation2D _rotation2D;
 
         private Transform _transform;
+        
+        public Vector2 Direction => _rotation2D.Direction;
 
         [Inject]
         private void Construct(Acceleration2D acceleration2D, Velocity2DFactory velocity2DFactory, 
@@ -36,12 +38,22 @@ namespace Game.Scripts.CustomPhysics
         
         public void ApplyAcceleration(float acceleration)
         {
-            _acceleration2D.ApplyAcceleration(_rotation2D.Direction, acceleration);
+            _acceleration2D.ApplyAcceleration(acceleration, _rotation2D);
+        }
+
+        public void ApplyVelocity(float velocity)
+        {
+            _velocity2D.ApplyVelocity(velocity, _rotation2D);
         }
 
         public void ApplyRotation(Vector2 direction)
         {
             _rotation2D.ApplyRotation(direction);
+        }
+
+        public void ApplyPosition(Vector3 position)
+        {
+            _position2D.ApplyPosition(position);
         }
 
         

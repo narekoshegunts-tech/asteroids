@@ -8,11 +8,13 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour
     {
-        CustomPhysicsFacade2D _customPhysicsFacade;
+        private CustomPhysicsFacade2D _customPhysicsFacade;
 
         [SerializeField] private float _acceleration;
         
-        CustomInputSystem _customInputSystem;
+        private CustomInputSystem _customInputSystem;
+        
+        public Vector2 Direction => _customPhysicsFacade.Direction;
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
