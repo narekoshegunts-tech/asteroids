@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Common;
 using Game.Scripts.Common.ObjectPool;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
 using UnityEngine;
@@ -8,11 +9,14 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 {
     public class AsteroidSpawner: MonoBehaviour
     {
-        private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
-        ObjectPool<Asteroid> _asteroidsPool;
+        [Inject] private CameraService _cameraService;
         
-        [SerializeField] Asteroid _asteroidPrefab;
-        [SerializeField] private int _poolSize;
+        private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
+        private ObjectPool<Asteroid> _asteroidsPool;
+        
+        [SerializeField] private Asteroid _asteroidPrefab;
+        
+        
 
         [Inject]
         private void Construct(ObjectPoolFactory objectPoolFactory, AsteroidDataService asteroidDataService)
@@ -25,17 +29,16 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 
         private void Start()
         {
-            for (int i = 0; i < _poolSize; i++)
-            {
-                SpawnLarge();
-            }
+            SpawnLarge();
         }
 
         private void SpawnLarge()
         {
             if (_asteroidsPool.TryGet(out Asteroid asteroid))
             {
-                asteroid.Initialize(new Vector3(Random.Range(0, 100), Random.Range(0, 100), 0), _asteroidsData[AsteroidType.Large]);
+                Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
+                Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
+                asteroid.Initialize(spawnPosition, targetPosition, _asteroidsData[AsteroidType.Large]);
             }
         }
     }

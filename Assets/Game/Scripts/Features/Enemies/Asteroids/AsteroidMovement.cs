@@ -19,8 +19,10 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             _customPhysicsFacade2D = customPhysicsFacade2DFactory.Create(transform);
         }
 
-        public void Init(Vector3 targetPosition)
+        public void Init(Vector3 startPosition,Vector3 targetPosition)
         {
+            _customPhysicsFacade2D.ApplyPosition(startPosition);
+            
             _speed = Random.Range(_minSpeed, _maxSpeed);
             MoveTo(targetPosition);
         }
