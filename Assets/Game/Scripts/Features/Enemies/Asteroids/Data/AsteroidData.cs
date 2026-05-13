@@ -6,5 +6,7 @@
         public AsteroidType Type;
         public float MinScale;
         public float MaxScale;
+        public float MinSpeed;
+        public float MaxSpeed;
     }
 }

@@ -3,13 +3,17 @@
   "Asteroids": [
     {
       "Type": "Small",
-      "MinScale": 0.8,
-      "MaxScale": 1.2
+      "MinScale": 0.2,
+      "MaxScale": 0.3,
+      "MinSpeed": 3,
+      "MaxSpeed": 4
     },
     {
       "Type": "Large",
-      "MinScale": 2.5,
-      "MaxScale": 3.5
+      "MinScale": 0.8,
+      "MaxScale": 1.2,
+      "MinSpeed": 1,
+      "MaxSpeed": 1.5
     }
   ]
 }

@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asteroidPrefab: {fileID: 8361055702527731807, guid: 1710f4fb9947dda43b2abd551dbc1f15, type: 3}
-  _poolSize: 10
 --- !u!4 &13720016
 Transform:
   m_ObjectHideFlags: 0

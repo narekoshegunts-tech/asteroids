@@ -23,7 +23,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             var scale = Random.Range(data.MinScale, data.MaxScale);
             transform.localScale = scale * Vector3.one;
             
-            _asteroidMovement.Init(startPosition,targetPosition);
+            _asteroidMovement.Init(startPosition, targetPosition, data);
         }
     }
 }

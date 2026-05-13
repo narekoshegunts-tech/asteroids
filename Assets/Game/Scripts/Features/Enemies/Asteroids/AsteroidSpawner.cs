@@ -29,7 +29,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 
         private void Start()
         {
-            SpawnLarge();
+            for (int i = 0; i < 5; i++) 
+                SpawnLarge();
         }
 
         private void SpawnLarge()

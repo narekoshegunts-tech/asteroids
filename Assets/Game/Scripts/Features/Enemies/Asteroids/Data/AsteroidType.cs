@@ -2,7 +2,7 @@
 {
     public enum AsteroidType
     {
-        Large,
-        Small
+        Large = 0,
+        Small = 1
     }
 }
