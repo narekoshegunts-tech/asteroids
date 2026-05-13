@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13720014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13720016}
+  - component: {fileID: 13720015}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &13720015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13720014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e812784d974d02b464e271f3903ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _asteroidPrefab: {fileID: 8361055702527731807, guid: 1710f4fb9947dda43b2abd551dbc1f15, type: 3}
+  _poolSize: 10
+--- !u!4 &13720016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13720014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +401,7 @@ GameObject:
   - component: {fileID: 1739938135}
   - component: {fileID: 1739938136}
   - component: {fileID: 1739938137}
+  - component: {fileID: 1739938138}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -393,6 +440,7 @@ MonoBehaviour:
   - {fileID: 1739938135}
   - {fileID: 1739938136}
   - {fileID: 1739938137}
+  - {fileID: 1739938138}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -476,6 +524,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2466c46b3e814d8b931ebfafbb76388e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1739938138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739938130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df82f37200cd490e90eecab2855f6281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -484,3 +544,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1739938133}
   - {fileID: 771669701}
+  - {fileID: 13720016}

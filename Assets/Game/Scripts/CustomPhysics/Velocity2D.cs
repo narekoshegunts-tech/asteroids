@@ -32,6 +32,12 @@ namespace Game.Scripts.CustomPhysics
             _velocityX = velocity * rotation.Direction.x;
             _velocityY = velocity * rotation.Direction.y;
         }
+
+        public void ApplyVelocity(Vector2 velocity)
+        {
+            _velocityX = velocity.x;
+            _velocityY = velocity.y;
+        }
         
     }
 }

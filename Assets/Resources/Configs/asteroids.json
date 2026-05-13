@@ -1,0 +1,15 @@
+﻿{
+  "PoolSize": 15,
+  "Asteroids": [
+    {
+      "Type": "Small",
+      "MinScale": 0.8,
+      "MaxScale": 1.2
+    },
+    {
+      "Type": "Large",
+      "MinScale": 2.5,
+      "MaxScale": 3.5
+    }
+  ]
+}

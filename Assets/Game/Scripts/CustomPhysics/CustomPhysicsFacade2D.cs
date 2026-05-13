@@ -55,6 +55,10 @@ namespace Game.Scripts.CustomPhysics
             _position2D.ApplyPosition(position);
         }
 
-        
+        public void MoveTo(Vector3 position, float speed)
+        {
+            var direction = (position - _transform.position).normalized;
+            _velocity2D.ApplyVelocity(direction * speed);
+        }
     }
 }

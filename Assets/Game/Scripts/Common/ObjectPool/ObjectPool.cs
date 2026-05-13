@@ -23,15 +23,14 @@ namespace Game.Scripts.Common.ObjectPool
             for (int i = 0; i < _size; i++)
             {
                 var obj = Create(diContainer);
-                obj.gameObject.SetActive(false);
                 _pool.Push(obj);
             }
         }
 
         private T Create(DiContainer diContainer)
         {
-            var obj = Object.Instantiate(_prefab, _container.transform);
-            diContainer.Inject(obj);
+            var obj = diContainer.InstantiatePrefabForComponent<T>(_prefab, _container.transform);
+            obj.gameObject.SetActive(false);
             return obj;
         }
 
