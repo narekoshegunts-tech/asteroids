@@ -51,9 +51,14 @@ namespace Game.Scripts.CustomPhysics
             _rotation2D.ApplyRotation(direction);
         }
 
-        public void ApplyPosition(Vector3 position)
+        public void ApplyPosition(Vector2 position)
         {
             _position2D.ApplyPosition(position);
+        }
+
+        public Vector2 GetPosition()
+        {
+            return new Vector2(_position2D.X, _position2D.Y);
         }
 
         public void MoveTo(Vector3 position, float speed)

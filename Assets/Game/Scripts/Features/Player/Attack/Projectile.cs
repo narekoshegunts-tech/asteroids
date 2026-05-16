@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Game.Scripts.Features.Player.Attack
 {
-    public abstract class Projectile: MonoBehaviour
+    public abstract class Projectile: MonoBehaviour, ITeleportable
     {
         public event Action<Projectile> OnDestroy;
         
@@ -50,6 +50,10 @@ namespace Game.Scripts.Features.Player.Attack
         {
             OnDestroy?.Invoke(this);
         }
-        
+
+        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
+        {
+            return _customPhysicsFacade2D;
+        }
     }
 }

@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
-    public class AsteroidMovement: MonoBehaviour
+    public class AsteroidMovement: MonoBehaviour, ITeleportable
     {
         private CustomPhysicsFacade2D _customPhysicsFacade2D;
         
@@ -44,6 +44,11 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         public void MoveTo(Vector3 position)
         {
             _customPhysicsFacade2D.MoveTo(position, _speed);
+        }
+
+        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
+        {
+            return _customPhysicsFacade2D;
         }
     }
 }

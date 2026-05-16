@@ -7,7 +7,6 @@ namespace Game.Scripts.Features.Player
     {
         private void GetDamage()
         {
-            Debug.Log("GetDamage");
         }
         
         private void OnTriggerEnter2D(Collider2D collision)

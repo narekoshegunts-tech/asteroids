@@ -9,15 +9,15 @@ namespace Game.Scripts.Features.Player.Attack
 
         private void Awake()
         {
-            _lifeTime = 3.5f;
+            _lifeTime = 1.5f;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Enemy enemy))
+            if (collision.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 enemy.Destroy();
+                Destroy();
             }
-            Destroy();
         }
     }
 }

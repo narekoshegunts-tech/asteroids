@@ -12,8 +12,7 @@ namespace Game.Scripts.Common.CameraServices
         {
             Vector2 cameraPosition = _camera.gameObject.transform.position; 
             
-            float halfHeight = _camera.orthographicSize;
-            float halfWidth = _camera.aspect * halfHeight;
+            GetScreenSize(out float halfHeight, out float halfWidth);
             
             float visibleRadius = Mathf.Sqrt(halfHeight * halfHeight + halfWidth * halfWidth);
             
@@ -26,13 +25,18 @@ namespace Game.Scripts.Common.CameraServices
 
         public Vector2 GetScreenRandomPosition()
         {
-            float halfHeight = _camera.orthographicSize;
-            float halfWidth = _camera.aspect * halfHeight;
+            GetScreenSize(out float halfHeight, out float halfWidth);
             
             float xPosition = Random.Range(-halfWidth, halfWidth);
             float yPosition = Random.Range(-halfHeight, halfHeight);
             
             return new Vector2(xPosition, yPosition);
+        }
+
+        public void GetScreenSize(out float halfHeight, out float halfWidth)
+        {
+            halfHeight = _camera.orthographicSize;
+            halfWidth = _camera.aspect * halfHeight;
         }
     }
 }

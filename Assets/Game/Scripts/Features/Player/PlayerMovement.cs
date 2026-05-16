@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Game.Scripts.Features.Player
 {
-    public class PlayerMovement: MonoBehaviour
+    public class PlayerMovement: MonoBehaviour, ITeleportable
     {
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
@@ -70,6 +70,11 @@ namespace Game.Scripts.Features.Player
         {
             _customPhysicsFacade.ApplyAcceleration(0);
             _accelerationParticles.Stop();
+        }
+
+        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
+        {
+            return _customPhysicsFacade;
         }
     }
 }
