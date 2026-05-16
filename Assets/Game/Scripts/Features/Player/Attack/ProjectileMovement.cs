@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
+using Game.Scripts.Features.Interfaces;
 using UnityEngine;
 using Zenject;
 

@@ -1,12 +1,13 @@
 ﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
+using Game.Scripts.Features.Interfaces;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
-    public class AsteroidMovement: MonoBehaviour, ITeleportable
+    public class AsteroidMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
         private CustomPhysicsFacade2D _customPhysicsFacade2D;
         

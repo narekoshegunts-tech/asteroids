@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Common.CameraServices;
 using Game.Scripts.CustomPhysics;
+using Game.Scripts.Features.Interfaces;
 using UnityEngine;
 using Zenject;
 

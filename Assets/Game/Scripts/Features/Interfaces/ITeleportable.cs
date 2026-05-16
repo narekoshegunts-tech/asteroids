@@ -1,6 +1,6 @@
 ﻿using Game.Scripts.CustomPhysics;
 
-namespace Game.Scripts.Features
+namespace Game.Scripts.Features.Interfaces
 {
     public interface ITeleportable
     {

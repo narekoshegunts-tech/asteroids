@@ -1,12 +1,13 @@
 ﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Common.CustomInput;
+using Game.Scripts.Features.Interfaces;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Features.Player
 {
-    public class PlayerMovement: MonoBehaviour, ITeleportable
+    public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
         private CustomPhysicsFacade2D _customPhysicsFacade;
 

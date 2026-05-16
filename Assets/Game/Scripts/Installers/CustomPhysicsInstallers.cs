@@ -13,6 +13,15 @@ namespace Game.Scripts.Installers
             BindPosition2DFactory();
             BindRotation2DFactory();
             BindCustomPhysicsFacade2DFactory();
+            BindSimulateCollisionService();
+
+        }
+
+        private void BindSimulateCollisionService()
+        {
+            Container
+                .Bind<SimulateCollisionService>()
+                .AsSingle();
         }
 
         private void BindRotation2DFactory()
