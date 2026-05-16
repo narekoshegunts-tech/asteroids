@@ -22,6 +22,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         public void Init(Vector3 startPosition, AsteroidData data, Vector3 targetPosition)
         {
             _customPhysicsFacade2D.ApplyPosition(startPosition);
+            _customPhysicsFacade2D.Mass = data.Mass;
             
             _speed = Random.Range(data.MinSpeed, data.MaxSpeed);
             

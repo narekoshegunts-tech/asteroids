@@ -6,14 +6,16 @@
       "MinScale": 0.2,
       "MaxScale": 0.3,
       "MinSpeed": 0.5,
-      "MaxSpeed": 2
+      "MaxSpeed": 2,
+      "Mass": 1
     },
     {
       "Type": "Large",
       "MinScale": 0.8,
       "MaxScale": 1.2,
       "MinSpeed": 1,
-      "MaxSpeed": 1.5
+      "MaxSpeed": 1.5,
+      "Mass": 3
     }
   ]
 }

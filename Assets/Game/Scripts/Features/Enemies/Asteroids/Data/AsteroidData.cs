@@ -8,5 +8,6 @@
         public float MaxScale;
         public float MinSpeed;
         public float MaxSpeed;
+        public float Mass;
     }
 }

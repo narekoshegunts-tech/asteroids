@@ -16,8 +16,8 @@ namespace Game.Scripts.CustomPhysics
         private Transform _transform;
         
         public Vector2 Direction => _rotation2D.Direction;
-        
-        public float Mass { get; private set; }
+
+        public float Mass;
 
         [Inject]
         private void Construct(Acceleration2D acceleration2D, Velocity2DFactory velocity2DFactory, 
