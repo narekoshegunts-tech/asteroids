@@ -7,7 +7,7 @@ namespace Game.Scripts.Features.Player.Attack
     public class Bullet: Projectile
     {
 
-        protected void Awake()
+        protected new void Awake()
         {
             base.Awake();
             _lifeTime = 1.5f;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
 using UnityEngine;
@@ -14,7 +16,8 @@ namespace Game.Scripts.Features.Player.Attack
         private ProjectileMovement _movement;
 
         protected float _lifeTime;
-        protected float _currentLifeTime;
+        
+        private CancellationTokenSource _cts;
         
         
         protected void Awake()
@@ -24,22 +27,25 @@ namespace Game.Scripts.Features.Player.Attack
 
         public virtual void Init(Vector3 startPosition, Vector2 direction)
         {
-            _currentLifeTime = 0;
+            _cts = new CancellationTokenSource();
             _movement.Init(startPosition, direction);
+
+            DestroyAfterLifeTime().Forget();
         }
-        
-        protected void Update()
+
+        private async UniTask DestroyAfterLifeTime()
         {
-            _currentLifeTime += Time.deltaTime;
-            if (_currentLifeTime >= _lifeTime)
-            {
-                Destroy();
-            }
-        }
+            await UniTask.Delay(TimeSpan.FromSeconds(_lifeTime),
+                cancellationToken: _cts.Token);
+            
+            Destroy();
+        } 
 
         protected void Destroy()
         {
             OnDestroy?.Invoke(this);
+            _cts.Cancel();
+            _cts.Dispose();
         }
     }
 }
