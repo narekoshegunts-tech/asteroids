@@ -7,8 +7,9 @@ namespace Game.Scripts.Features.Player.Attack
     public class Bullet: Projectile
     {
 
-        private void Awake()
+        protected void Awake()
         {
+            base.Awake();
             _lifeTime = 1.5f;
         }
         private void OnTriggerEnter2D(Collider2D collision)
