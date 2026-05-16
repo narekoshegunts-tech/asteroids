@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Common
+namespace Game.Scripts.Common.CameraServices
 {
-    public class CameraService
+    public class CameraUtils
     {
         [Inject] private Camera _camera;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Common.CameraServices;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Installers
@@ -10,6 +11,8 @@ namespace Game.Scripts.Installers
         public override void InstallBindings()
         {
             BindCamera();
+            BindCameraDataService();
+            BindCameraService();
         }
 
         private void BindCamera()
@@ -20,5 +23,21 @@ namespace Game.Scripts.Installers
                 .AsSingle()
                 .NonLazy();
         }
+
+        private void BindCameraDataService()
+        {
+            Container
+                .Bind<CameraDataService>()
+                .AsSingle()
+                .NonLazy();
+        }
+        
+        private void BindCameraService()
+        {
+            Container
+                .Bind<CameraUtils>()
+                .AsSingle();
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Scripts.Common;
+using Game.Scripts.Common.CameraServices;
 using Game.Scripts.Common.ObjectPool;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 {
     public class AsteroidSpawner: MonoBehaviour
     {
-        [Inject] private CameraService _cameraService;
+        [Inject] private CameraUtils _cameraService;
         
         private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
         private ObjectPool<Asteroid> _asteroidsPool;
