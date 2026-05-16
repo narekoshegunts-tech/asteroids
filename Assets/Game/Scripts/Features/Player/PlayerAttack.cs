@@ -50,19 +50,20 @@ namespace Game.Scripts.Features.Player
 
         private void BulletAttack()
         {
-            StartCoroutine(BulletAttackCoroutine());
-        }
-
-        private IEnumerator BulletAttackCoroutine()
-        {
             if (_bulletPool.TryGet(out var bullet))
             {
                 bullet.Init(_bulletAttackStartPosition.position, _playerMovement.Direction);
                 bullet.gameObject.SetActive(true);
-                yield return new WaitForSeconds(3);
-                
-                _bulletPool.Return(bullet);
+                bullet.OnDestroy += ReturnBulletToPool;
             }
+
         }
+
+        private void ReturnBulletToPool(Projectile projectile)
+        {
+            _bulletPool.Return(projectile as Bullet);
+            projectile.OnDestroy -= ReturnBulletToPool;
+        }
+        
     }
 }

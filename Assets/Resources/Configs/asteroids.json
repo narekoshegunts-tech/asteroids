@@ -5,8 +5,8 @@
       "Type": "Small",
       "MinScale": 0.2,
       "MaxScale": 0.3,
-      "MinSpeed": 3,
-      "MaxSpeed": 4
+      "MinSpeed": 0.5,
+      "MaxSpeed": 2
     },
     {
       "Type": "Large",

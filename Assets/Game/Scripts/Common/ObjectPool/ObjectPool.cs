@@ -4,6 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Common.ObjectPool
 {
+    [System.Serializable]
     public class ObjectPool<T> where T : Component
     {
         private GameObject _container;

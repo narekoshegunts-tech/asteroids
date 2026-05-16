@@ -18,7 +18,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             _customPhysicsFacade2D = customPhysicsFacade2DFactory.Create(transform);
         }
 
-        public void Init(Vector3 startPosition, Vector3 targetPosition, AsteroidData data)
+        public void Init(Vector3 startPosition, AsteroidData data, Vector3 targetPosition)
         {
             _customPhysicsFacade2D.ApplyPosition(startPosition);
             
@@ -27,9 +27,18 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             MoveTo(targetPosition);
         }
 
-        private void Update()
+        public void Init(Vector3 startPosition, AsteroidData data)
         {
-            _customPhysicsFacade2D.Update();
+            _customPhysicsFacade2D.ApplyPosition(startPosition);
+            
+            _speed = Random.Range(data.MinSpeed, data.MaxSpeed);
+            
+            _customPhysicsFacade2D.SetRandomDirectionToMove(_speed);
+        }
+
+        private void FixedUpdate()
+        {
+            _customPhysicsFacade2D.FixedUpdate();
         }
 
         public void MoveTo(Vector3 position)

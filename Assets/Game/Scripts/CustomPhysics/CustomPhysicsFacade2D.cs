@@ -29,10 +29,11 @@ namespace Game.Scripts.CustomPhysics
         {
             _transform = transform;
         }
-        public void Update()
+
+        public void FixedUpdate()
         {
-            _velocity2D.UpdateVelocity(Time.deltaTime);
-            _position2D.Update(Time.deltaTime);
+            _velocity2D.UpdateVelocity(Time.fixedDeltaTime);
+            _position2D.Update(Time.fixedDeltaTime);
         }
         
         public void ApplyAcceleration(float acceleration)
@@ -58,6 +59,12 @@ namespace Game.Scripts.CustomPhysics
         public void MoveTo(Vector3 position, float speed)
         {
             var direction = (position - _transform.position).normalized;
+            _velocity2D.ApplyVelocity(direction * speed);
+        }
+
+        public void SetRandomDirectionToMove(float speed)
+        {
+            Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
             _velocity2D.ApplyVelocity(direction * speed);
         }
     }

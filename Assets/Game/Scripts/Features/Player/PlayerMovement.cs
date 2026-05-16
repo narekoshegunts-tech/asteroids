@@ -47,13 +47,13 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.OnAccelerationKeyPressedUp -= OnAccelerationKeyPressedUp;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             Vector2 direction = _customInputSystem.GetDirection();
-            
+
             _customPhysicsFacade.ApplyRotation(direction);
 
-            _customPhysicsFacade.Update();
+            _customPhysicsFacade.FixedUpdate();
         }
 
         private void OnAccelerationKeyPressedDown()

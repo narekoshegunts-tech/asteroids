@@ -11,7 +11,7 @@ namespace Game.Scripts.Common.ObjectPool
         {
             _container = container;
         }
-        // бля я хуй знает. Похуй потом переделаю на ревью
+        // бля я хуй знает. Похуй потом переделаю 
         public ObjectPool<T> Create<T>(T prefab, GameObject poolContainer, int size) where T : Component
         {
             return _container.Instantiate<ObjectPool<T>>(new object[] {prefab, poolContainer, size, _container});

@@ -1,6 +1,8 @@
-﻿using Game.Scripts.Common;
+﻿using System;
+using Game.Scripts.Common;
 using UnityEngine;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
@@ -10,6 +12,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         public AsteroidType Type { get; private set; }
         
         private AsteroidMovement _asteroidMovement;
+
 
         private void Awake()
         {
@@ -23,7 +26,19 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             var scale = Random.Range(data.MinScale, data.MaxScale);
             transform.localScale = scale * Vector3.one;
             
-            _asteroidMovement.Init(startPosition, targetPosition, data);
+            _asteroidMovement.Init(startPosition, data, targetPosition);
         }
+
+        public void Initialize(Vector3 startPosition, AsteroidData data)
+        {
+            Type = data.Type;
+            
+            var scale = Random.Range(data.MinScale, data.MaxScale);
+            transform.localScale = scale * Vector3.one;
+            
+            _asteroidMovement.Init(startPosition, data);
+        }
+        
+        
     }
 }
