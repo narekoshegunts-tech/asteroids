@@ -1,5 +1,7 @@
 ﻿using Game.Scripts.Features.Enemies.Asteroids;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
+using Game.Scripts.Features.Enemies.UFO;
+using Game.Scripts.Features.Enemies.UFO.Data;
 using Zenject;
 
 namespace Game.Scripts.Installers
@@ -10,8 +12,25 @@ namespace Game.Scripts.Installers
         {
             BindAsteroidDataService();
             BindAsteroidSpawnerService();
+
+            BindUfoDataService();
+            BindUfoSpawnerService();
         }
 
+        private void BindUfoSpawnerService()
+        {
+            Container
+                .Bind<UfoSpawnerService>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindUfoDataService()
+        {
+            Container
+                .Bind<UfoDataService>()
+                .AsSingle();
+        }
         private void BindAsteroidSpawnerService()
         {
             Container

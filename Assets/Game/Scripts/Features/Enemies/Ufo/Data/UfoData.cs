@@ -1,9 +1,7 @@
-﻿namespace Game.Scripts.Features.Enemies.Asteroids.Data
+﻿namespace Game.Scripts.Features.Enemies.UFO.Data
 {
-    [System.Serializable]
-    public struct AsteroidData
+    public struct UfoData
     {
-        public AsteroidType Type;
         public float MinScale;
         public float MaxScale;
         public float MinSpeed;

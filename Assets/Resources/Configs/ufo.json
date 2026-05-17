@@ -1,0 +1,13 @@
+﻿{
+  "PoolSize": 2,
+  "SpawnCooldown": 10,
+  "UfoData": 
+  {
+    "Type": "Small",
+    "MinScale": 0.5,
+    "MaxScale": 1.5,
+    "MinSpeed": 1,
+    "MaxSpeed": 3,
+    "Mass": 2
+  }
+}

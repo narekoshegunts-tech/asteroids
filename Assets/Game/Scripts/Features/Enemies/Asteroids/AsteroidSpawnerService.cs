@@ -47,11 +47,11 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         public void StartSpawning()
         {
             _cts = new CancellationTokenSource();
-            SpawnAsteroids().Forget();
+            SpawnLoop().Forget();
         }
         
         
-        private async UniTaskVoid SpawnAsteroids()
+        private async UniTaskVoid SpawnLoop()
         {
             while (_cts.IsCancellationRequested == false)
             {
