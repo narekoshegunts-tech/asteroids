@@ -45,8 +45,9 @@ namespace Game.Scripts.Features.Player.Projectiles
         protected void Destroy()
         {
             OnDestroy?.Invoke(this);
-            _cts.Cancel();
-            _cts.Dispose();
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = null;
         }
     }
 }

@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7994080956434615611}
   - component: {fileID: 1351912166003270171}
+  - component: {fileID: 1306143391240880821}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -206,3 +207,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1306143391240880821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281353690447940885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7546594e0bd64111ade3c2e40b11f231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: -1067599729, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1070810793, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1274963628, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 441366360, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -223211622, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 1093434726, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 1399495118, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 310650737, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1315932169, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1058151589, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1750492720, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 783457836, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 786514294, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 241694907, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: -1473595557, guid: 444368fc714863042b526eeeb319829c, type: 3}
+  - {fileID: 1005847604, guid: 444368fc714863042b526eeeb319829c, type: 3}
