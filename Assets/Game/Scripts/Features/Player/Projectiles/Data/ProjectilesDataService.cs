@@ -13,6 +13,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
         private Dictionary<ProjectileType, ProjectileData> _dataDict = new();
         
         public int BulletPoolSize { get; private set; }
+        public int LaserPoolSize { get; private set; }
 
         public ProjectilesDataService()
         {
@@ -27,6 +28,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
             
             _data = root.Projectiles;
             BulletPoolSize = root.BulletPoolSize;
+            LaserPoolSize = root.LaserPoolSize;
             
             BuildDictionary();
         }

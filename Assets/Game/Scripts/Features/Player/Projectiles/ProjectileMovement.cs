@@ -12,14 +12,13 @@ namespace Game.Scripts.Features.Player.Projectiles
         
         protected float _speed;
         
-        
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacade2DFactory)
         {
             _customPhysicsFacade2D = customPhysicsFacade2DFactory.Create(transform);
         }
         
-        public virtual void Init(Vector3 startPosition, Vector2 direction)
+        public void Init(Vector3 startPosition, Vector2 direction)
         {
             _customPhysicsFacade2D.ApplyPosition(startPosition);
             _customPhysicsFacade2D.ApplyRotation(direction);

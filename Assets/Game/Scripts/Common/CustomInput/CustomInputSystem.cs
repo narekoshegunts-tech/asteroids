@@ -28,8 +28,14 @@ namespace Game.Scripts.Common.CustomInput
         
         public event Action OnBulletAttackKeyPressed
         {
-            add => _mouseKeyboardInputSystem.OnBulletAttackKeyPressed += value;
-            remove => _mouseKeyboardInputSystem.OnBulletAttackKeyPressed -= value;
+            add => _mouseKeyboardInputSystem.OnBulletAttackKeyPressedDown += value;
+            remove => _mouseKeyboardInputSystem.OnBulletAttackKeyPressedDown -= value;
+        }
+        
+        public event Action OnLaserAttackKeyPressed
+        {
+            add => _mouseKeyboardInputSystem.OnLaserAttackKeyPressedDown += value;
+            remove => _mouseKeyboardInputSystem.OnLaserAttackKeyPressedDown -= value;
         }
         
         // не верю что из за этой хуйни надо будет делать фабрику... Я другого решения не нашел

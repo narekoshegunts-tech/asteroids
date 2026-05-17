@@ -28,17 +28,6 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             
             _asteroidMovement.Init(startPosition, data, targetPosition);
         }
-
-        public void Initialize(Vector3 startPosition, AsteroidData data)
-        {
-            Type = data.Type;
-            
-            var scale = Random.Range(data.MinScale, data.MaxScale);
-            transform.localScale = scale * Vector3.one;
-            
-            _asteroidMovement.Init(startPosition, data);
-        }
-        
         
     }
 }

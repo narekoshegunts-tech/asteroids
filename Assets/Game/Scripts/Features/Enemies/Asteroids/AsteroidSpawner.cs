@@ -81,7 +81,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             if (_asteroidsPool.TryGet(out Asteroid asteroid))
             {
                 Vector2 vectorOffset = new Vector2(Random.Range(-offset, offset), Random.Range(-offset, offset));
-                asteroid.Initialize(spawnPosition + vectorOffset, _asteroidsData[AsteroidType.Small]);
+                Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
+                asteroid.Initialize(spawnPosition + vectorOffset, targetPosition, _asteroidsData[AsteroidType.Small]);
 
                 asteroid.OnDestroy += OnSmallAsteroidDestroyed;
             }

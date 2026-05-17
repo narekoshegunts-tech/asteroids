@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Game.Scripts.Features.Player;
+﻿using Game.Scripts.Features.Player;
 using Game.Scripts.Features.Player.Projectiles.Data;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
@@ -17,6 +16,14 @@ namespace Game.Scripts.Installers
             BindPlayer();
             BindProjectilesDataService();
             BindBulletAttackService();
+            BindLaserAttackService();
+        }
+
+        private void BindLaserAttackService()
+        {
+            Container
+                .Bind<LaserAttackService>()
+                .AsSingle();
         }
 
         private void BindBulletAttackService()

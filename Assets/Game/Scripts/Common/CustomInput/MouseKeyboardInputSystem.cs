@@ -11,11 +11,13 @@ namespace Game.Scripts.Common.CustomInput
 
         private KeyCode _accelerationKey = KeyCode.W;
         private KeyCode _bulletAttack = KeyCode.Mouse0;
+        private KeyCode _laserAttack  = KeyCode.Mouse1;
         
         public event Action OnAccelerationKeyPressed;
         public event Action OnAccelerationKeyPressedDown;
         public event Action OnAccelerationKeyPressedUp;
-        public event Action OnBulletAttackKeyPressed;
+        public event Action OnBulletAttackKeyPressedDown;
+        public event Action OnLaserAttackKeyPressedDown;
 
         public void SetTargetTransform(Transform targetTransform)
         {
@@ -49,7 +51,12 @@ namespace Game.Scripts.Common.CustomInput
 
             if (Input.GetKeyDown(_bulletAttack))
             {
-                OnBulletAttackKeyPressed?.Invoke();
+                OnBulletAttackKeyPressedDown?.Invoke();
+            }
+
+            if (Input.GetKeyDown(_laserAttack))
+            {
+                OnLaserAttackKeyPressedDown?.Invoke();
             }
         }
     }
