@@ -9,15 +9,10 @@ namespace Game.Scripts.Features.Player.Projectiles.Bullets
     {
 
         [Inject]
-        private void Construct(ProjectilesDataService data)
+        protected override void Construct(ProjectilesDataService dataService)
         {
-            var config = data.GetData()[ProjectileType.Bullet];
+            var config = dataService.GetData()[ProjectileType.Bullet];
             _lifeTime = config.LifeTime;
-        }
-
-        protected new void Awake()
-        {
-            base.Awake();
         }
         
         private void OnTriggerEnter2D(Collider2D collision)

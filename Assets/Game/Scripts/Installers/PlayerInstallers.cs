@@ -1,5 +1,7 @@
-﻿using Game.Scripts.Features.Player;
+﻿using System.ComponentModel;
+using Game.Scripts.Features.Player;
 using Game.Scripts.Features.Player.Projectiles.Data;
+using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +16,14 @@ namespace Game.Scripts.Installers
         {
             BindPlayer();
             BindProjectilesDataService();
+            BindBulletAttackService();
+        }
+
+        private void BindBulletAttackService()
+        {
+            Container
+                .Bind<BulletAttackService>()
+                .AsSingle();
         }
 
         private void BindPlayer()

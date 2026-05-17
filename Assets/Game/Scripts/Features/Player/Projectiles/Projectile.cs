@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Features.Player.Projectiles.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Features.Player.Projectiles
 {
@@ -16,6 +18,7 @@ namespace Game.Scripts.Features.Player.Projectiles
         
         private CancellationTokenSource _cts;
         
+        protected abstract void Construct(ProjectilesDataService dataService);
         
         protected void Awake()
         {
