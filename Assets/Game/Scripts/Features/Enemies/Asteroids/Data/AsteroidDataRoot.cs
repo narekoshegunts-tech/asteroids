@@ -8,6 +8,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
         public int PoolSize;
         public float LargeAsteroidSpawnCooldown;
         public int MaxLargeAsteroidsCount;
+        public int SmallAsteroidsPerLarge;
         
         public List<AsteroidData> Asteroids;
     }

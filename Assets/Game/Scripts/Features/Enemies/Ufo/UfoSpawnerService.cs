@@ -9,62 +9,35 @@ using Zenject;
 
 namespace Game.Scripts.Features.Enemies.UFO
 {
-    public class UfoSpawnerService
+    public class UfoSpawnerService: EnemySpawnerService<Ufo>
     {
-        [Inject] private CameraUtils _cameraService;
+        [Inject] private UfoDataService _ufoDataService;
         
         private UfoData _ufoData;
-        private ObjectPool<Ufo> _ufoPool;
-        
-        private const string PrefabPath = "Prefabs/Enemies/Ufo";
-        
-        private Ufo _ufoPrefab;
-
-        private float _ufoSpawnCooldown;
 
         private CancellationTokenSource _cts;
         
-        private int _currentUfoCount;
+        protected override string PrefabPath => "Prefabs/Enemies/Ufo";
+        protected override float SpawnCooldown => _ufoDataService.SpawnCooldown;
+        protected override int PoolSize => _ufoDataService.PoolSize;
         
-
-        [Inject]
-        private void Construct(ObjectPoolFactory objectPoolFactory, UfoDataService ufoDataService)
+        
+        protected override void Construct(ObjectPoolFactory objectPoolFactory)
         {
-            _ufoPrefab = Resources.Load<Ufo>(PrefabPath);
-            
-            _ufoSpawnCooldown = ufoDataService.SpawnCooldown;
-            
-            _ufoData = ufoDataService.UfoData;
-            
-            GameObject container = new GameObject("UfoPool");
-            _ufoPool = objectPoolFactory.Create(_ufoPrefab, container, ufoDataService.PoolSize);
-        }
-        
-        public void StartSpawning()
-        {
-            _cts = new CancellationTokenSource();
-            SpawnLoop().Forget();
-        }
-        
-        
-        private async UniTaskVoid SpawnLoop()
-        {
-            while (_cts.IsCancellationRequested == false)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(_ufoSpawnCooldown),
-                    ignoreTimeScale: false,
-                    cancellationToken: _cts.Token);
-                
-                SpawnUfo();
-            }
+            base.Construct(objectPoolFactory);
+            _ufoData = _ufoDataService.UfoData;
         }
 
-        private void SpawnUfo()
+
+        protected override bool CanSpawn() => true;
+        
+
+        protected override void Spawn()
         {
-            if (_ufoPool.TryGet(out Ufo ufo))
+            if (_pool.TryGet(out Ufo ufo))
             {
                 Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
-                Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
+                
                 ufo.Initialize(spawnPosition, _ufoData);
                 ufo.OnDestroy += OnUfoDestroyed;
             }
@@ -72,14 +45,9 @@ namespace Game.Scripts.Features.Enemies.UFO
 
         private void OnUfoDestroyed(Enemy ufo)
         {
-            _ufoPool.Return(ufo as Ufo);
+            ReturnToPool(ufo);
             ufo.OnDestroy -= OnUfoDestroyed;
         }
 
-        public void Destroy()
-        {
-            _cts.Cancel();
-            _cts.Dispose();
-        }
     }
 }

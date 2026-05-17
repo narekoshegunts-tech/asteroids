@@ -18,6 +18,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
         public int PoolSize { get; private set; }
         public int MaxLargeAsteroidsCount { get; private set; }
         public float LargeAsteroidSpawnCooldown { get; private set; }
+        
+        public int SmallAsteroidsPerLarge { get; private set; }
 
         public AsteroidDataService()
         {
@@ -35,6 +37,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
             PoolSize = root.PoolSize;
             MaxLargeAsteroidsCount = root.MaxLargeAsteroidsCount;
             LargeAsteroidSpawnCooldown = root.LargeAsteroidSpawnCooldown;
+            SmallAsteroidsPerLarge = root.SmallAsteroidsPerLarge;
             
             BuildDictionary();
         }

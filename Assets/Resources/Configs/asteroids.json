@@ -2,6 +2,7 @@
   "PoolSize": 15,
   "MaxLargeAsteroidsCount": 10,
   "LargeAsteroidSpawnCooldown": 3,
+  "SmallAsteroidsPerLarge": 2,
   "Asteroids": [
     {
       "Type": "Small",

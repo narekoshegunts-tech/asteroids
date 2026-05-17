@@ -11,64 +11,41 @@ using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
-    public class AsteroidSpawnerService
+    public class AsteroidSpawnerService: EnemySpawnerService<Asteroid>
     {
-        [Inject] private CameraUtils _cameraService;
+        [Inject] private AsteroidDataService _asteroidsDataService;
         
         private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
-        private ObjectPool<Asteroid> _asteroidsPool;
-        
-        private const string PrefabPath = "Prefabs/Enemies/Asteroid";
-        
-        private Asteroid _asteroidPrefab;
-
-        private float _largeAsteroidSpawnCooldown;
 
         private CancellationTokenSource _cts;
 
         private int _maxLargeAsteroidsCount;
         private int _currentLargeAsteroidsCount;
+        private int _smallAsteroidsPerLarge;
         
-
-        [Inject]
-        private void Construct(ObjectPoolFactory objectPoolFactory, AsteroidDataService asteroidDataService)
+        protected override string PrefabPath => "Prefabs/Enemies/Asteroid";
+        protected override float SpawnCooldown => _asteroidsDataService.LargeAsteroidSpawnCooldown;
+        protected override int PoolSize => _asteroidsDataService.PoolSize;
+        
+        
+        protected override void Construct(ObjectPoolFactory objectPoolFactory)
         {
-            _asteroidPrefab = Resources.Load<Asteroid>(PrefabPath);
+            base.Construct(objectPoolFactory);
             
-            _largeAsteroidSpawnCooldown = asteroidDataService.LargeAsteroidSpawnCooldown;
-            _maxLargeAsteroidsCount = asteroidDataService.MaxLargeAsteroidsCount;
+            _maxLargeAsteroidsCount = _asteroidsDataService.MaxLargeAsteroidsCount;
+            _smallAsteroidsPerLarge = _asteroidsDataService.SmallAsteroidsPerLarge;
             
-            _asteroidsData = asteroidDataService.GetData();
-            
-            GameObject asteroidsContainer = new GameObject("AsteroidsPool");
-            _asteroidsPool = objectPoolFactory.Create(_asteroidPrefab, asteroidsContainer, asteroidDataService.PoolSize);
-        }
-        
-        public void StartSpawning()
-        {
-            _cts = new CancellationTokenSource();
-            SpawnLoop().Forget();
-        }
-        
-        
-        private async UniTaskVoid SpawnLoop()
-        {
-            while (_cts.IsCancellationRequested == false)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(_largeAsteroidSpawnCooldown),
-                    ignoreTimeScale: false,
-                    cancellationToken: _cts.Token);
-                
-                if (_currentLargeAsteroidsCount < _maxLargeAsteroidsCount)
-                {
-                    SpawnLarge();    
-                }
-            }
+            _asteroidsData = _asteroidsDataService.GetData();
         }
 
-        private void SpawnLarge()
+        protected override bool CanSpawn()
         {
-            if (_asteroidsPool.TryGet(out Asteroid asteroid))
+            return _currentLargeAsteroidsCount < _maxLargeAsteroidsCount;
+        }
+
+        protected override void Spawn()
+        {
+            if (_pool.TryGet(out Asteroid asteroid))
             {
                 Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
                 Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
@@ -81,7 +58,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 
         private void SpawnSmall(Vector2 spawnPosition, float offset = 1)
         {
-            if (_asteroidsPool.TryGet(out Asteroid asteroid))
+            if (_pool.TryGet(out Asteroid asteroid))
             {
                 Vector2 vectorOffset = new Vector2(Random.Range(-offset, offset), Random.Range(-offset, offset));
                 Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
@@ -93,7 +70,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 
         private void OnSmallAsteroidDestroyed(Enemy asteroid)
         {
-            _asteroidsPool.Return(asteroid as Asteroid);
+            ReturnToPool(asteroid);
             
             asteroid.OnDestroy -= OnSmallAsteroidDestroyed;
         }
@@ -101,20 +78,14 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         private void OnLargeAsteroidDestroyed(Enemy asteroid)
         {
             _currentLargeAsteroidsCount--;
-            
-            _asteroidsPool.Return(asteroid as Asteroid);
+
+            ReturnToPool(asteroid);
             asteroid.OnDestroy -= OnLargeAsteroidDestroyed;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < _smallAsteroidsPerLarge; i++)
             {
                 SpawnSmall(asteroid.transform.position);
             }
-        }
-
-        public void Destroy()
-        {
-            _cts.Cancel();
-            _cts.Dispose();
         }
     }
 }
