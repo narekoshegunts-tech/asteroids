@@ -27,8 +27,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
             TextAsset textAsset = Resources.Load<TextAsset>(ResourcePath);
             
             var root = JsonConvert.DeserializeObject<AsteroidDataRoot>(textAsset.text);
-            
-            _data = root?.Asteroids ?? new List<AsteroidData>();
+
+            _data = root.Asteroids;
             PoolSize = root.PoolSize;
             
             BuildDictionary();

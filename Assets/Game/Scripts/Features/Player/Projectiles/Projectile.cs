@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.CustomPhysics;
-using Game.Scripts.CustomPhysics.Factories;
 using UnityEngine;
-using Zenject;
 
-namespace Game.Scripts.Features.Player.Attack
+namespace Game.Scripts.Features.Player.Projectiles
 {
     [RequireComponent(typeof(ProjectileMovement))]
     public abstract class Projectile: MonoBehaviour
     {
         public event Action<Projectile> OnDestroy;
 
-        private ProjectileMovement _movement;
+        protected ProjectileMovement _movement;
 
         protected float _lifeTime;
         
@@ -25,9 +22,10 @@ namespace Game.Scripts.Features.Player.Attack
             _movement = GetComponent<ProjectileMovement>();
         }
 
-        public virtual void Init(Vector3 startPosition, Vector2 direction)
+        public void Init(Vector3 startPosition, Vector2 direction)
         {
             _cts = new CancellationTokenSource();
+            
             _movement.Init(startPosition, direction);
 
             DestroyAfterLifeTime().Forget();

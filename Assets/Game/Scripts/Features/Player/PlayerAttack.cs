@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Common.ObjectPool;
-using Game.Scripts.Features.Player.Attack;
+using Game.Scripts.Features.Player.Projectiles;
+using Game.Scripts.Features.Player.Projectiles.Bullets;
+using Game.Scripts.Features.Player.Projectiles.Data;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Features.Player
 {
-    // Класс еще и хранит в себе обжект пулы. Надеюсь это не нарушает SRP. Он же по сути занимается только атакой
     public class PlayerAttack: MonoBehaviour
     {
         [Inject] private CustomInputSystem _customInputSystem;
@@ -16,7 +17,6 @@ namespace Game.Scripts.Features.Player
         
         private GameObject _bulletPoolContainer;
         [SerializeField] private Bullet _bulletPrefab;
-        [SerializeField] private int _bulletPoolSize;
 
         [SerializeField] private Transform _bulletAttackStartPosition;
 
@@ -24,12 +24,15 @@ namespace Game.Scripts.Features.Player
         private PlayerMovement _playerMovement;
 
         [Inject]
-        private void Construct(ObjectPoolFactory objectPoolFactory, CustomInputSystem customInputSystem)
+        private void Construct(ObjectPoolFactory objectPoolFactory, CustomInputSystem customInputSystem,
+            ProjectilesDataService projectilesDataService)
         {
             // хз можно ли использовать new для создания контейнеров. Думаю нет смысла инжектить GameObject 
             _bulletPoolContainer = new GameObject("BulletPool");
             
-            _bulletPool = objectPoolFactory.Create<Bullet>(_bulletPrefab, _bulletPoolContainer, _bulletPoolSize);
+            int bulletPoolSize = projectilesDataService.BulletPoolSize;
+            
+            _bulletPool = objectPoolFactory.Create<Bullet>(_bulletPrefab, _bulletPoolContainer, bulletPoolSize);
         }
 
         private void Awake()

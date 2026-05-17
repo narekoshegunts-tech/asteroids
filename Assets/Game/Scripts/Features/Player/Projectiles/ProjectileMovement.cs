@@ -4,13 +4,14 @@ using Game.Scripts.Features.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Features.Player.Attack
+namespace Game.Scripts.Features.Player.Projectiles
 {
-    public class ProjectileMovement: MonoBehaviour, ITeleportable
+    public abstract class ProjectileMovement: MonoBehaviour, ITeleportable
     {
         protected CustomPhysicsFacade2D _customPhysicsFacade2D;
         
-        [SerializeField] private float _speed;
+        protected float _speed;
+        
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacade2DFactory)

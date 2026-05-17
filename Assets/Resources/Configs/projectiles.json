@@ -1,0 +1,16 @@
+﻿{
+  "BulletPoolSize": 5,
+  "Projectiles": [
+    {
+      "Type": "Bullet",
+      "LifeTime": 1.5,
+      "MoveSpeed": 10
+    },
+    {
+      "Type": "Laser",
+      "LifeTime": 1,
+      "MoveSpeed": 20
+    }
+  ]
+  
+}

@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Features.Player;
+using Game.Scripts.Features.Player.Projectiles.Data;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace Game.Scripts.Installers
         public override void InstallBindings()
         {
             BindPlayer();
+            BindProjectilesDataService();
         }
 
         private void BindPlayer()
@@ -20,6 +22,14 @@ namespace Game.Scripts.Installers
                 .Bind<Player>()
                 .FromComponentInNewPrefab(_player)
                 .UnderTransform(_startPoint)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindProjectilesDataService()
+        {
+            Container
+                .Bind<ProjectilesDataService>()
                 .AsSingle()
                 .NonLazy();
         }
