@@ -29,15 +29,6 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             MoveTo(targetPosition);
         }
 
-        public void Init(Vector3 startPosition, AsteroidData data)
-        {
-            _customPhysicsFacade2D.ApplyPosition(startPosition);
-            
-            _speed = Random.Range(data.MinSpeed, data.MaxSpeed);
-            
-            _customPhysicsFacade2D.SetRandomDirectionToMove(_speed);
-        }
-
         private void FixedUpdate()
         {
             _customPhysicsFacade2D.FixedUpdate();

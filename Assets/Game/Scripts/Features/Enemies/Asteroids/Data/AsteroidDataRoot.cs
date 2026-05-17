@@ -6,6 +6,9 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
     public class AsteroidDataRoot
     {
         public int PoolSize;
+        public float LargeAsteroidSpawnCooldown;
+        public int MaxLargeAsteroidsCount;
+        
         public List<AsteroidData> Asteroids;
     }
 }

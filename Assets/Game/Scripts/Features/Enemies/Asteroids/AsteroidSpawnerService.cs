@@ -11,39 +11,42 @@ using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
-    public class AsteroidSpawner: MonoBehaviour
+    public class AsteroidSpawnerService
     {
         [Inject] private CameraUtils _cameraService;
         
         private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
         private ObjectPool<Asteroid> _asteroidsPool;
         
-        [SerializeField] private Asteroid _asteroidPrefab;
+        private const string PrefabPath = "Prefabs/Enemies/Asteroid";
+        
+        private Asteroid _asteroidPrefab;
 
-        [SerializeField] private float _largeAsteroidSpawnCooldown;
+        private float _largeAsteroidSpawnCooldown;
 
         private CancellationTokenSource _cts;
 
-        [SerializeField] private int _maxLargeAsteroidsCount;
+        private int _maxLargeAsteroidsCount;
         private int _currentLargeAsteroidsCount;
         
 
         [Inject]
         private void Construct(ObjectPoolFactory objectPoolFactory, AsteroidDataService asteroidDataService)
         {
+            _asteroidPrefab = Resources.Load<Asteroid>(PrefabPath);
+            
+            _largeAsteroidSpawnCooldown = asteroidDataService.LargeAsteroidSpawnCooldown;
+            _maxLargeAsteroidsCount = asteroidDataService.MaxLargeAsteroidsCount;
+            
             _asteroidsData = asteroidDataService.GetData();
             
             GameObject asteroidsContainer = new GameObject("AsteroidsPool");
             _asteroidsPool = objectPoolFactory.Create(_asteroidPrefab, asteroidsContainer, asteroidDataService.PoolSize);
         }
-
-        private void Awake()
+        
+        public void StartSpawning()
         {
             _cts = new CancellationTokenSource();
-        }
-
-        private void Start()
-        {
             SpawnAsteroids().Forget();
         }
         
@@ -108,7 +111,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             }
         }
 
-        private void OnDestroy()
+        public void Destroy()
         {
             _cts.Cancel();
             _cts.Dispose();

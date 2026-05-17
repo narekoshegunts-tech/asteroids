@@ -16,6 +16,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
         private Dictionary<AsteroidType, AsteroidData> _dataDict = new();
         
         public int PoolSize { get; private set; }
+        public int MaxLargeAsteroidsCount { get; private set; }
+        public float LargeAsteroidSpawnCooldown { get; private set; }
 
         public AsteroidDataService()
         {
@@ -29,7 +31,10 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
             var root = JsonConvert.DeserializeObject<AsteroidDataRoot>(textAsset.text);
 
             _data = root.Asteroids;
+            
             PoolSize = root.PoolSize;
+            MaxLargeAsteroidsCount = root.MaxLargeAsteroidsCount;
+            LargeAsteroidSpawnCooldown = root.LargeAsteroidSpawnCooldown;
             
             BuildDictionary();
         }
