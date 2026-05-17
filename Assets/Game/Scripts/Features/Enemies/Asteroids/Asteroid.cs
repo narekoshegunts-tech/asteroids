@@ -1,6 +1,4 @@
-﻿using System;
-using Game.Scripts.Common;
-using UnityEngine;
+﻿using UnityEngine;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
 using Random = UnityEngine.Random;
 

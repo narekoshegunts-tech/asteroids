@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Scripts.Common.CameraServices;
 using Game.Scripts.Common.ObjectPool;
-using Game.Scripts.Features.Enemies.Asteroids;
-using Game.Scripts.Features.Enemies.Asteroids.Data;
 using Game.Scripts.Features.Enemies.UFO.Data;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Enemies.UFO
 {
@@ -35,7 +31,6 @@ namespace Game.Scripts.Features.Enemies.UFO
         private void Construct(ObjectPoolFactory objectPoolFactory, UfoDataService ufoDataService)
         {
             _ufoPrefab = Resources.Load<Ufo>(PrefabPath);
-            Debug.Log(_ufoPrefab);
             
             _ufoSpawnCooldown = ufoDataService.SpawnCooldown;
             

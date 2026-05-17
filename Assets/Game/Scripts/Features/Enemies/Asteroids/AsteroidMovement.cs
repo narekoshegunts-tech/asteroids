@@ -7,18 +7,8 @@ using Zenject;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {
-    public class AsteroidMovement: MonoBehaviour, ITeleportable, ICollisionable
+    public class AsteroidMovement: EnemyMovement
     {
-        private CustomPhysicsFacade2D _customPhysicsFacade2D;
-        
-        private float _speed;
-
-        [Inject]
-        private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacade2DFactory)
-        {
-            _customPhysicsFacade2D = customPhysicsFacade2DFactory.Create(transform);
-        }
-
         public void Init(Vector3 startPosition, AsteroidData data, Vector3 targetPosition)
         {
             _customPhysicsFacade2D.ApplyPosition(startPosition);
@@ -27,21 +17,6 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             _speed = Random.Range(data.MinSpeed, data.MaxSpeed);
             
             MoveTo(targetPosition);
-        }
-
-        private void FixedUpdate()
-        {
-            _customPhysicsFacade2D.FixedUpdate();
-        }
-
-        public void MoveTo(Vector3 position)
-        {
-            _customPhysicsFacade2D.MoveTo(position, _speed);
-        }
-
-        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
-        {
-            return _customPhysicsFacade2D;
         }
     }
 }
