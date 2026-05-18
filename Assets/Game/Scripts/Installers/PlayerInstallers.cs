@@ -39,8 +39,7 @@ namespace Game.Scripts.Installers
                 .Bind<Player>()
                 .FromComponentInNewPrefab(_player)
                 .UnderTransform(_startPoint)
-                .AsSingle()
-                .NonLazy();
+                .AsSingle();
         }
 
         private void BindProjectilesDataService()

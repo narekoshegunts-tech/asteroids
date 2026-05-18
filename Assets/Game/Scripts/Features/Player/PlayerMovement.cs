@@ -36,19 +36,29 @@ namespace Game.Scripts.Features.Player
 
         private void OnEnable()
         {
+            SubcribeToInputSystem();
+        }
+
+        private void OnDisable()
+        {
+            UnSubcribeFromInputSystem();
+        }
+
+        private void SubcribeToInputSystem()
+        {
             _customInputSystem.OnAccelerationKeyPressedDown += OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
             _customInputSystem.OnAccelerationKeyPressedUp += OnAccelerationKeyPressedUp;
         }
 
-        private void OnDisable()
+        private void UnSubcribeFromInputSystem()
         {
             _customInputSystem.OnAccelerationKeyPressedDown -= OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
             _customInputSystem.OnAccelerationKeyPressedUp -= OnAccelerationKeyPressedUp;
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             Vector2 direction = _customInputSystem.GetDirection();
 

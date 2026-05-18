@@ -2,9 +2,9 @@
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Common.CustomInput
+namespace Game.Scripts.Common.CustomInput.MouseKeyboard
 {
-    public class MouseKeyboardInputSystem: ITickable
+    public class MouseKeyboardInputSystem: IInputSystem, ITickable
     {
         [Inject] private Camera _camera;
         private Transform _targetTransform;
