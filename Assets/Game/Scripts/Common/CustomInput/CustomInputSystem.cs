@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Scripts.Common.CustomInput.Mobile;
 using Game.Scripts.Common.CustomInput.MouseKeyboard;
+using Game.Scripts.Common.CustomInput.Strategy;
 using UnityEngine;
 using Zenject;
 
@@ -8,20 +9,16 @@ namespace Game.Scripts.Common.CustomInput
 {
     public class CustomInputSystem
     {
-        private MouseKeyboardInputSystem _mouseKeyboardInputSystem;
-        private MobileInput _mobileInput;
-        
         private IInputSystem _currentInput;
 
         private Transform _targetTransform;
 
         [Inject]
-        private void Construct(MouseKeyboardInputSystem mouseKeyboardInputSystem, MobileInput mobileInput)
+        private void Construct(IInputStrategy inputStrategy)
         {
-            _mouseKeyboardInputSystem = mouseKeyboardInputSystem;
-            _mobileInput = mobileInput;
-            _currentInput = _mobileInput;
+            _currentInput = inputStrategy.GetInputSystem();
         }
+        
         public event Action OnAccelerationKeyPressedDown
         {
             add => _currentInput.OnAccelerationKeyPressedDown += value;
@@ -54,7 +51,7 @@ namespace Game.Scripts.Common.CustomInput
         public void SetTargetTransform(Transform targetTransform)
         {
             _targetTransform = targetTransform;
-            _mouseKeyboardInputSystem.SetTargetTransform(_targetTransform);
+            _currentInput.SetTargetTransform(targetTransform);
         }
         public Vector2 GetDirection()
         {

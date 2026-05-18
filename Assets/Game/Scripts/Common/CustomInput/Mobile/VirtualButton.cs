@@ -14,7 +14,6 @@ namespace Game.Scripts.Common.CustomInput.Mobile
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("OnPointerDown");
             IsPressed = true;
             OnPressedDown?.Invoke();
         }

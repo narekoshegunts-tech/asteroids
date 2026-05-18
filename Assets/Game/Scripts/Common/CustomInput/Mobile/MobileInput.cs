@@ -42,5 +42,10 @@ namespace Game.Scripts.Common.CustomInput.Mobile
         }
         
         public Vector2 GetDirection() => _joystick.Direction;
+        
+        public void SetTargetTransform(Transform targetTransform)
+        {
+            return;
+        }
     }
 }
