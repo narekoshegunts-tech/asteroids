@@ -59,7 +59,6 @@ namespace Game.Scripts.Installers
 
         private bool IsMobilePlatform()
         {
-            return true;
             return Application.isMobilePlatform 
                    || Application.platform == RuntimePlatform.Android 
                    || Application.platform == RuntimePlatform.IPhonePlayer;
