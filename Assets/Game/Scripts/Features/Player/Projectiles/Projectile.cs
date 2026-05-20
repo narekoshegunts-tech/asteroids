@@ -28,6 +28,7 @@ namespace Game.Scripts.Features.Player.Projectiles
 
         public void Init(Vector3 startPosition, Vector2 direction)
         {
+            CleanupCts();
             _cts = new CancellationTokenSource();
             
             _movement.Init(startPosition, direction);
@@ -41,14 +42,22 @@ namespace Game.Scripts.Features.Player.Projectiles
                 cancellationToken: _cts.Token);
             
             Destroy();
-        } 
+        }
+
+        private void CleanupCts()
+        {
+            if (_cts != null)
+            {
+                _cts.Cancel();
+                _cts.Dispose();
+                _cts = null;
+            }
+        }
 
         protected void Destroy()
         {
+            CleanupCts();
             OnDestroy?.Invoke(this);
-            _cts?.Cancel();
-            _cts?.Dispose();
-            _cts = null;
         }
     }
 }

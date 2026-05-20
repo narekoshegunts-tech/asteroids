@@ -15,8 +15,6 @@ namespace Game.Scripts.Features.Player.Services
         protected GameObject _poolContainer;
         protected T _prefab;
         
-        
-        
         protected ProjectileAttackService()
         {
             _prefabPath = GetPrefabPath();
