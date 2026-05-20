@@ -1,11 +1,9 @@
 ﻿using System;
 using Game.Scripts.Features.Player;
-using Game.Scripts.UI.Views;
 using MVVM;
-using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Features.UI.ViewModels
+namespace Game.Scripts.UI.ViewModels
 {
     public class HealthViewModel: IInitializable, IDisposable
     {

@@ -9,6 +9,7 @@ namespace Game.Scripts.UI.Binders
         public override void InstallBindings()
         {
             BinderFactory.RegisterBinder<HealthBinder>();
+            BinderFactory.RegisterBinder<LaserChargeIndicatorBinder>();
         }
     }
 }

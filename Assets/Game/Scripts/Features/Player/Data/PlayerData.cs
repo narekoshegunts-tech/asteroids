@@ -5,6 +5,6 @@
         public int MaxHealth;
         public float Acceleration;
         public int LaserAttackMaxCount;
-        public float LaserAttackCooldown;
+        public float LaserAttackChargeTime;
     }
 }

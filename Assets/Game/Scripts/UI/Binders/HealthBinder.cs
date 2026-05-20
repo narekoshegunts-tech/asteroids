@@ -1,8 +1,6 @@
-﻿using System;
-using Game.Scripts.Features.UI.ViewModels;
+﻿using Game.Scripts.UI.ViewModels;
 using Game.Scripts.UI.Views;
 using MVVM;
-using UnityEngine;
 
 namespace Game.Scripts.UI.Binders
 {

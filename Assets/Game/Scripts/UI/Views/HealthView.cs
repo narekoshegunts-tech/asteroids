@@ -19,7 +19,6 @@ namespace Game.Scripts.UI.Views
 
         public void Initialize(int maxHealth)
         {
-            Debug.Log(maxHealth);
             _maxHealth = maxHealth;
 
             for (int i = 0; i < _maxHealth; i++)

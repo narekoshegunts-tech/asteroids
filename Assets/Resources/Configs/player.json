@@ -2,5 +2,5 @@
   "MaxHealth": 3,
   "Acceleration": 4,
   "LaserAttackMaxCount": 3,
-  "LaserAttackCooldown": 10
+  "LaserAttackChargeTime": 2
 }
