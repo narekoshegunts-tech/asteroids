@@ -21,6 +21,11 @@ namespace Game.Scripts.UI.ViewModels
                 .BindInterfacesAndSelfTo<PlayerMovementViewModel>()
                 .AsSingle()
                 .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<ScoreViewModel>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

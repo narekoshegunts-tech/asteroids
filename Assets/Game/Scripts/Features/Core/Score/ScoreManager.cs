@@ -32,7 +32,7 @@ namespace Game.Scripts.Features.Core.Score
         public void AddScore(Enemy enemy)
         {
             TotalScore += _enemyRewards[enemy.EnemyType];
-            Debug.Log(TotalScore);
+            _playerModel.ChangeScore(TotalScore);
         }
     }
 }
