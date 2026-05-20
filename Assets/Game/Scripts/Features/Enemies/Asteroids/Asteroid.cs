@@ -20,6 +20,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         public void Initialize(Vector3 startPosition, Vector3 targetPosition, AsteroidData data)
         {
             Type = data.Type;
+            EnemyType = data.EnemyType;
 
             var scale = Random.Range(data.MinScale, data.MaxScale);
             transform.localScale = scale * Vector3.one;

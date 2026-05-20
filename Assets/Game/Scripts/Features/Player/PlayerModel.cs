@@ -13,6 +13,7 @@ namespace Game.Scripts.Features.Player
         public event Action<Vector2> OnPositionChanged;
         public event Action<float> OnRotationChanged;
         public event Action <float> OnVelocityChanged;
+        public event Action<int> OnScoreChanged;
         
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
@@ -23,8 +24,9 @@ namespace Game.Scripts.Features.Player
         
         public int CurrentLaserAttacks { get; private set; }
         public int MaxLaserAttacks { get; private set; }
-        
         public float LaserChargeTime { get; private set; }
+        
+        public int TotalScore { get; private set; }
 
         [Inject]
         public PlayerModel(PlayerDataService playerDataService)
@@ -77,6 +79,12 @@ namespace Game.Scripts.Features.Player
         {
             Velocity = velocity;
             OnVelocityChanged?.Invoke(velocity);
+        }
+
+        public void ChangeScore(int score)
+        {
+            TotalScore = score;
+            OnScoreChanged?.Invoke(TotalScore);
         }
     }
 }

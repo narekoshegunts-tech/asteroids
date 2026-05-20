@@ -17,6 +17,8 @@ namespace Game.Scripts.Features.Enemies.UFO
 
         public void Initialize(Vector3 startPosition, UfoData data)
         {
+            EnemyType = EnemyType.Ufo;
+            
             var scale = Random.Range(data.MinScale, data.MaxScale);
             transform.localScale = scale * Vector3.one;
             

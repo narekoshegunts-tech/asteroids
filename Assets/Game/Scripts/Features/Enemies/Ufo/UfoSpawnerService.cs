@@ -40,6 +40,8 @@ namespace Game.Scripts.Features.Enemies.UFO
                 
                 ufo.Initialize(spawnPosition, _ufoData);
                 ufo.OnDestroy += OnUfoDestroyed;
+
+                RaiseOnAnyEnemySpawned(ufo);
             }
         }
 

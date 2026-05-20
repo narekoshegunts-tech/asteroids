@@ -1,0 +1,16 @@
+﻿{
+  "Scores": [
+    {
+      "Type": "LargeAsteroid",
+      "Score": 100
+    },
+    {
+      "Type": "SmallAsteroid",
+      "Score": 50
+    },
+    {
+      "Type": "Ufo",
+      "Score": 500
+    }
+  ]
+}
