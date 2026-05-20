@@ -50,6 +50,8 @@ namespace Game.Scripts.Features.Enemies.Asteroids
                 Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
                 Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
                 asteroid.Initialize(spawnPosition, targetPosition, _asteroidsData[AsteroidType.Large]);
+                
+                RaiseOnAnyEnemySpawned(asteroid);
                 asteroid.OnDestroy += OnLargeAsteroidDestroyed;
                 
                 _currentLargeAsteroidsCount++;
@@ -65,6 +67,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
                 asteroid.Initialize(spawnPosition + vectorOffset, targetPosition, _asteroidsData[AsteroidType.Small]);
 
                 asteroid.OnDestroy += OnSmallAsteroidDestroyed;
+                RaiseOnAnyEnemySpawned(asteroid);
             }
         }
 

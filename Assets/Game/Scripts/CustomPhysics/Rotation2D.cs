@@ -9,7 +9,10 @@ namespace Game.Scripts.CustomPhysics
 
         private const float AngleOffset = -90; // у нас спрайты смотрят вверх изначально
         
+        private float _rotation;
+
         public Vector2 Direction { get; private set; }
+        public float Rotation => _rotation;
 
         public Rotation2D(Transform transform)
         {
@@ -20,10 +23,10 @@ namespace Game.Scripts.CustomPhysics
         {
             Direction = direction;
             
-            float rotationZ = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-            rotationZ += AngleOffset;
+            _rotation = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            _rotation += AngleOffset;
             
-            _transform.eulerAngles = new Vector3(0, 0, rotationZ);
+            _transform.eulerAngles = new Vector3(0, 0, _rotation);
         }
     }
 }

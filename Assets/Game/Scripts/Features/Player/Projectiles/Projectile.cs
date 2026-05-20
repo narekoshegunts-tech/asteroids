@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Features.Enemies;
 using Game.Scripts.Features.Player.Projectiles.Data;
 using UnityEngine;
 using Zenject;

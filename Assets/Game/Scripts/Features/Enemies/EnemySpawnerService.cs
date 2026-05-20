@@ -18,6 +18,8 @@ namespace Game.Scripts.Features.Enemies
         protected TEnemy _enemyPrefab;
         
         private CancellationTokenSource _cts;
+
+        public event Action<Enemy> OnAnyEnemySpawned;
         
         protected abstract string PrefabPath { get; }
         protected abstract float SpawnCooldown { get; }
@@ -62,6 +64,11 @@ namespace Game.Scripts.Features.Enemies
         protected abstract bool CanSpawn();
 
         protected abstract void Spawn();
+
+        protected void RaiseOnAnyEnemySpawned(Enemy enemy)
+        {
+            OnAnyEnemySpawned?.Invoke(enemy);
+        }
 
         public void Destroy()
         {

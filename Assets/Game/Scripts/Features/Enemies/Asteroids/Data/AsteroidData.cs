@@ -3,6 +3,7 @@
     [System.Serializable]
     public struct AsteroidData
     {
+        public EnemyType EnemyType;
         public AsteroidType Type;
         public float MinScale;
         public float MaxScale;

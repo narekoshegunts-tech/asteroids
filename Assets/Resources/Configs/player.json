@@ -1,0 +1,6 @@
+﻿{
+  "MaxHealth": 3,
+  "Acceleration": 4,
+  "LaserAttackMaxCount": 3,
+  "LaserAttackChargeTime": 2
+}

@@ -7,6 +7,8 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerAttack: MonoBehaviour
     {
+        private PlayerModel _playerModel;
+        
         [Inject] private CustomInputSystem _customInputSystem;
         
         [SerializeField] private Transform _attackStartTransform;
@@ -17,6 +19,12 @@ namespace Game.Scripts.Features.Player
         [Inject] private BulletAttackService _bulletAttackService;
         [Inject] private LaserAttackService _laserAttackService;
 
+        [Inject]
+        private void Construct(PlayerModel playerModel)
+        {
+            _playerModel = playerModel;
+        }
+        
         private void Awake()
         {
             _playerMovement = GetComponent<PlayerMovement>();
@@ -42,7 +50,8 @@ namespace Game.Scripts.Features.Player
 
         private void LaserAttack()
         {
-            _laserAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
+            if (_playerModel.TryLaserAttack())
+                _laserAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
         }
         
     }

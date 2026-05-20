@@ -61,6 +61,11 @@ namespace Game.Scripts.CustomPhysics
             _rotation2D.ApplyRotation(direction);
         }
 
+        public float GetRotation()
+        {
+            return _rotation2D.Rotation;
+        }
+
         public void ApplyPosition(Vector2 position)
         {
             _position2D.ApplyPosition(position);
@@ -77,15 +82,14 @@ namespace Game.Scripts.CustomPhysics
             _velocity2D.ApplyVelocity(direction * speed);
         }
 
-        public void SetRandomDirectionToMove(float speed)
-        {
-            Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            _velocity2D.ApplyVelocity(direction * speed);
-        }
-
         public Vector2 GetVelocity()
         {
             return new Vector2(_velocity2D.VelocityX, _velocity2D.VelocityY);
+        }
+
+        public float GetInstantVelocity()
+        {
+            return GetVelocity().magnitude;
         }
 
         public void Collision(CustomPhysicsFacade2D other)

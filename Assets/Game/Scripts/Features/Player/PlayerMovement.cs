@@ -2,6 +2,7 @@
 using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Features.Interfaces;
+using Game.Scripts.Features.Player.Data;
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +10,11 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
+        [Inject] private PlayerModel _playerModel;
+        
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
-        [SerializeField] private float _acceleration;
+        private float _acceleration;
         
         private CustomInputSystem _customInputSystem;
         
@@ -21,12 +24,14 @@ namespace Game.Scripts.Features.Player
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
-            CustomInputSystem customInputSystem)
+            CustomInputSystem customInputSystem, PlayerDataService playerDataService)
         {
             _customPhysicsFacade = customPhysicsFacadeFactory.Create(transform);
             _customInputSystem = customInputSystem;
             
             _customInputSystem.SetTargetTransform(transform);
+            
+            _acceleration = playerDataService.Acceleration;
         }
 
         private void Awake()
@@ -63,6 +68,9 @@ namespace Game.Scripts.Features.Player
             Vector2 direction = _customInputSystem.GetDirection();
 
             _customPhysicsFacade.ApplyRotation(direction);
+            
+            _playerModel.ChangeRotation(_customPhysicsFacade.GetRotation());
+            _playerModel.ChangePosition(_customPhysicsFacade.GetPosition());
 
             _customPhysicsFacade.FixedUpdate();
         }
@@ -75,6 +83,7 @@ namespace Game.Scripts.Features.Player
         private void OnAccelerationKeyPressed()
         {
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
+            _playerModel.ChangeVelocity(_customPhysicsFacade.GetInstantVelocity());
         }
 
         private void OnAccelerationKeyPressedUp()
