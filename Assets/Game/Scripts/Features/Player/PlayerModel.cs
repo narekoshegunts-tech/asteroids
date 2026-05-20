@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Game.Scripts.Features.Player.Data;
+using Game.Scripts.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,8 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerModel
     {
+        [Inject] private SignalBus _signalBus;
+        
         public event Action<int> OnGetDamage;
         public event Action<int> OnLaserAttack;
         public event Action<Vector2> OnPositionChanged;
@@ -46,6 +49,16 @@ namespace Game.Scripts.Features.Player
         {
             CurrentHealth--;
             OnGetDamage?.Invoke(CurrentHealth);
+
+            if (CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            _signalBus.Fire<PlayerDiedSignal>();
         }
 
         public bool TryLaserAttack()
