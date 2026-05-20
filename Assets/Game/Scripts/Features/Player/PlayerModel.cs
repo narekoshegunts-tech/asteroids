@@ -10,6 +10,10 @@ namespace Game.Scripts.Features.Player
     {
         public event Action<int> OnGetDamage;
         public event Action<int> OnLaserAttack;
+        public event Action<Vector2> OnPositionChanged;
+        public event Action<float> OnRotationChanged;
+        public event Action <float> OnVelocityChanged;
+        
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
         
@@ -55,6 +59,24 @@ namespace Game.Scripts.Features.Player
         public void LaserAttackCharge(int currentLaserAttacks)
         {
             CurrentLaserAttacks = currentLaserAttacks;
+        }
+
+        public void ChangePosition(Vector2 position)
+        {
+            Position = position;
+            OnPositionChanged?.Invoke(position);
+        }
+
+        public void ChangeRotation(float rotation)
+        {
+            Rotation = rotation;
+            OnRotationChanged?.Invoke(rotation);
+        }
+
+        public void ChangeVelocity(float velocity)
+        {
+            Velocity = velocity;
+            OnVelocityChanged?.Invoke(velocity);
         }
     }
 }

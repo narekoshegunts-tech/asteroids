@@ -10,6 +10,8 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
+        [Inject] private PlayerModel _playerModel;
+        
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
         private float _acceleration;
@@ -56,6 +58,9 @@ namespace Game.Scripts.Features.Player
             Vector2 direction = _customInputSystem.GetDirection();
 
             _customPhysicsFacade.ApplyRotation(direction);
+            
+            _playerModel.ChangeRotation(_customPhysicsFacade.GetRotation());
+            _playerModel.ChangePosition(_customPhysicsFacade.GetPosition());
 
             _customPhysicsFacade.FixedUpdate();
         }
@@ -68,6 +73,7 @@ namespace Game.Scripts.Features.Player
         private void OnAccelerationKeyPressed()
         {
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
+            _playerModel.ChangeVelocity(_customPhysicsFacade.GetInstantVelocity());
         }
 
         private void OnAccelerationKeyPressedUp()

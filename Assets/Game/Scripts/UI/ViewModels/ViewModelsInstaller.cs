@@ -16,6 +16,11 @@ namespace Game.Scripts.UI.ViewModels
                 .BindInterfacesAndSelfTo<LaserChargeIndicatorViewModel>()
                 .AsSingle()
                 .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<PlayerMovementViewModel>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

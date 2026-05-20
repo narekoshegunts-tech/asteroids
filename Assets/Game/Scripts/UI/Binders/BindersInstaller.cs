@@ -10,6 +10,7 @@ namespace Game.Scripts.UI.Binders
         {
             BinderFactory.RegisterBinder<HealthBinder>();
             BinderFactory.RegisterBinder<LaserChargeIndicatorBinder>();
+            BinderFactory.RegisterBinder<PlayerMovementBinder>();
         }
     }
 }
