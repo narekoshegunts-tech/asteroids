@@ -20,6 +20,14 @@ namespace Game.Scripts.Installers
             BindLaserAttackService();
             BindPlayerDataService();
             BindPlayerModel();
+            BindPlayerStateService();
+        }
+
+        private void BindPlayerStateService()
+        {
+            Container
+                .Bind<PlayerStateService>()
+                .AsSingle();
         }
 
         private void BindPlayerModel()

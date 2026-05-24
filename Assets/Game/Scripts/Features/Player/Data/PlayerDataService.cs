@@ -11,6 +11,7 @@ namespace Game.Scripts.Features.Player.Data
         public float Acceleration { get; private set; }
         public int LaserAttackMaxCount { get; private set; }
         public float LaserAttackChargeTime { get; private set; }
+        public float InvulnerabilityDuration { get; private set; }
 
         public PlayerDataService()
         {
@@ -26,6 +27,7 @@ namespace Game.Scripts.Features.Player.Data
             Acceleration = data.Acceleration;
             LaserAttackMaxCount = data.LaserAttackMaxCount;
             LaserAttackChargeTime = data.LaserAttackChargeTime;
+            InvulnerabilityDuration = data.InvulnerabilityDuration;
         }
     }
 }

@@ -6,5 +6,6 @@
         public float Acceleration;
         public int LaserAttackMaxCount;
         public float LaserAttackChargeTime;
+        public float InvulnerabilityDuration;
     }
 }

@@ -3,6 +3,7 @@ using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Features.Interfaces;
 using Game.Scripts.Features.Player.Data;
+using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,7 @@ namespace Game.Scripts.Features.Player
     public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
         [Inject] private PlayerModel _playerModel;
+        [Inject] private PlayerStateService _playerStateService;
         
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
@@ -65,9 +67,11 @@ namespace Game.Scripts.Features.Player
 
         private void FixedUpdate()
         {
+            
             Vector2 direction = _customInputSystem.GetDirection();
 
-            _customPhysicsFacade.ApplyRotation(direction);
+            if (_playerStateService.CanMove)
+                _customPhysicsFacade.ApplyRotation(direction);
             
             _playerModel.ChangeRotation(_customPhysicsFacade.GetRotation());
             _playerModel.ChangePosition(_customPhysicsFacade.GetPosition());
@@ -77,11 +81,21 @@ namespace Game.Scripts.Features.Player
 
         private void OnAccelerationKeyPressedDown()
         {
+            if (!_playerStateService.CanMove)
+                return;
             _accelerationParticles.Play();
         }
 
         private void OnAccelerationKeyPressed()
         {
+            if (!_playerStateService.CanMove)
+            {
+                _customPhysicsFacade.ApplyAcceleration(0);
+                _accelerationParticles.Stop();
+
+                return;
+            }
+            
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
             _playerModel.ChangeVelocity(_customPhysicsFacade.GetInstantVelocity());
         }

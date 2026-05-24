@@ -18,6 +18,8 @@ namespace Game.Scripts.Features.Player
         
         [Inject] private BulletAttackService _bulletAttackService;
         [Inject] private LaserAttackService _laserAttackService;
+        
+        [Inject] private PlayerStateService _playerStateService;
 
         [Inject]
         private void Construct(PlayerModel playerModel)
@@ -45,11 +47,17 @@ namespace Game.Scripts.Features.Player
 
         private void BulletAttack()
         {
+            if (!_playerStateService.CanAttack)
+                return;
+            
             _bulletAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
         }
 
         private void LaserAttack()
         {
+            if (!_playerStateService.CanAttack)
+                return;
+            
             if (_playerModel.TryLaserAttack())
                 _laserAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
         }

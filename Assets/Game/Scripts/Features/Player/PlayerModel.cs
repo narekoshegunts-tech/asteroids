@@ -29,6 +29,8 @@ namespace Game.Scripts.Features.Player
         public int MaxLaserAttacks { get; private set; }
         public float LaserChargeTime { get; private set; }
         
+        public float InvulnerabilityDuration { get; private set; }
+        
         public int TotalScore { get; private set; }
 
         [Inject]
@@ -43,6 +45,7 @@ namespace Game.Scripts.Features.Player
             MaxLaserAttacks = playerDataService.LaserAttackMaxCount;
             CurrentLaserAttacks = MaxLaserAttacks;
             LaserChargeTime = playerDataService.LaserAttackChargeTime;
+            InvulnerabilityDuration = playerDataService.InvulnerabilityDuration;
         }
 
         public void GetDamage()
