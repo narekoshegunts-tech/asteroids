@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Signals;
+﻿using Game.Scripts.SDK;
+using Game.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -11,6 +12,7 @@ namespace Game.Scripts.UI.Game
         [SerializeField] private Button _restartButton;
         
         [Inject] private SignalBus _signalBus;
+        [Inject] private YandexBannerService _yandexBannerService;
         
 
         private void Awake()
@@ -38,12 +40,14 @@ namespace Game.Scripts.UI.Game
         {
             _canvasGroup.alpha = 1;
             _restartButton.interactable = true;
+            _yandexBannerService.Show();
         }
 
         public void Hide()
         {
             _canvasGroup.alpha = 0f;
             _restartButton.interactable = false;
+            _yandexBannerService.Hide();
         }
 
         private void OnRestartClick()

@@ -1,0 +1,17 @@
+{
+    "name": "YandexMobileAds",
+    "rootNamespace": "",
+    "references": [
+        "GUID:edcdee59610f1299aad3771f31598cbd",
+        "GUID:a0b3b3a99954d2df6970814f12f31559"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

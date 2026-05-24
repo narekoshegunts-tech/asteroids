@@ -224,10 +224,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 54165984}
-  viewType: {fileID: 0}
+  viewTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  viewType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
+  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
   viewModelId: 
 --- !u!114 &54165984
@@ -393,7 +397,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.7
+  m_fontSize: 51.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1156,10 +1160,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 657847401}
+  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
+  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.HealthViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: ab087be3d9884161b0cb53e9148a3c86, type: 3}
   viewModelId: 
 --- !u!1 &705507993
@@ -1714,10 +1721,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 1407204748}
+  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
+  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.ScoreViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: 8341f9fcda9c4eb8ad2b39d793321731, type: 3}
   viewModelId: 
 --- !u!114 &1407204750
@@ -2267,10 +2277,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 1726964195}
+  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
+  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.LaserChargeIndicatorViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: 092d5e5b6f4849a18fc18b2efc781a21, type: 3}
   viewModelId: 
 --- !u!114 &1726964195

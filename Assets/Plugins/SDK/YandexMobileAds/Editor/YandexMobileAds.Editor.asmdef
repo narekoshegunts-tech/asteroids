@@ -1,0 +1,18 @@
+{
+    "name": "YandexMobileAds.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5af2cce5de1aff145835bbd4fcd49951"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

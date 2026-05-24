@@ -1,0 +1,16 @@
+{
+    "name": "Game.Scripts.SDK",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5af2cce5de1aff145835bbd4fcd49951"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
