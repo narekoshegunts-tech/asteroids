@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Game.Scripts.Features.Player;
 using Game.Scripts.UI.Game.PlayerCanvas;
 using UnityEngine;
-using Zenject;
 
 using MVVM;
 
@@ -32,7 +30,7 @@ namespace Game.Scripts.UI.Views
         public void UpdateHearts(int currentHealth)
         {
             _currentHealth = currentHealth;
-            _hearts[_currentHealth].Disapear();
+            _hearts[_currentHealth].Disappear();
         }
     }
 }

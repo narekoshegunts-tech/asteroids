@@ -1,9 +1,5 @@
-﻿using Game.Scripts.CustomPhysics;
-using Game.Scripts.CustomPhysics.Factories;
-using Game.Scripts.Features.Enemies.Asteroids.Data;
-using Game.Scripts.Features.Interfaces;
+﻿using Game.Scripts.Features.Enemies.Asteroids.Data;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
 {

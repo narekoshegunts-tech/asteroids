@@ -1,10 +1,6 @@
-﻿// AsteroidDataService.cs
-
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Features.Enemies.Asteroids.Data
 {

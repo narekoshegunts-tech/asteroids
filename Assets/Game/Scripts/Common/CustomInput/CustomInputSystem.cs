@@ -1,6 +1,4 @@
 ﻿using System;
-using Game.Scripts.Common.CustomInput.Mobile;
-using Game.Scripts.Common.CustomInput.MouseKeyboard;
 using Game.Scripts.Common.CustomInput.Strategy;
 using UnityEngine;
 using Zenject;

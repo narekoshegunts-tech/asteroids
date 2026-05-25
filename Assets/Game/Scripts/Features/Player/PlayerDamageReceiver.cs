@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.Scripts.Features.Player
 {
-    public class PlayerDamageReciever: MonoBehaviour
+    public class PlayerDamageReceiver: MonoBehaviour
     {
         private PlayerMovement _playerMovement;
         

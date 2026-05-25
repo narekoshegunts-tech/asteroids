@@ -43,22 +43,22 @@ namespace Game.Scripts.Features.Player
 
         private void OnEnable()
         {
-            SubcribeToInputSystem();
+            SubscribeToInputSystem();
         }
 
         private void OnDisable()
         {
-            UnSubcribeFromInputSystem();
+            UnSubscribeFromInputSystem();
         }
 
-        private void SubcribeToInputSystem()
+        private void SubscribeToInputSystem()
         {
             _customInputSystem.OnAccelerationKeyPressedDown += OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
             _customInputSystem.OnAccelerationKeyPressedUp += OnAccelerationKeyPressedUp;
         }
 
-        private void UnSubcribeFromInputSystem()
+        private void UnSubscribeFromInputSystem()
         {
             _customInputSystem.OnAccelerationKeyPressedDown -= OnAccelerationKeyPressedDown;
             _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
