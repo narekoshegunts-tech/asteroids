@@ -11,17 +11,16 @@ namespace Game.Scripts.Features.Player
         
         private PlayerModel _playerModel;
         
-        [Inject]private PlayerStateService _playerStateService;
+        private PlayerStateService _playerStateService;
 
 
         [Inject]
-        private void Construct(PlayerModel playerModel)
+        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement,
+            PlayerStateService playerStateService)
         {
             _playerModel = playerModel;
-        }
-        private void Awake()
-        {
-            _playerMovement = GetComponent<PlayerMovement>();
+            _playerMovement = playerMovement;
+            _playerStateService = playerStateService;
         }
         
         private void GetDamage()

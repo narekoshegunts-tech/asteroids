@@ -54,7 +54,8 @@ namespace Game.Scripts.Installers
         private void BindPlayer()
         {
             Container
-                .Bind<Player>()
+                .Bind(typeof(Player),
+                        typeof(PlayerMovement))
                 .FromComponentInNewPrefab(_player)
                 .UnderTransform(_startPoint)
                 .AsSingle();

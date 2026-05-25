@@ -22,15 +22,12 @@ namespace Game.Scripts.Features.Player
         [Inject] private PlayerStateService _playerStateService;
 
         [Inject]
-        private void Construct(PlayerModel playerModel)
+        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement)
         {
             _playerModel = playerModel;
+            _playerMovement = playerMovement;
         }
         
-        private void Awake()
-        {
-            _playerMovement = GetComponent<PlayerMovement>();
-        }
 
         private void OnEnable()
         {
