@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class CameraInstallers: MonoInstaller
+    public class CameraInstaller: MonoInstaller
     {
         [SerializeField] private Camera _camera;
 

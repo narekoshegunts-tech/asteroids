@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class CustomInputInstallers: MonoInstaller
+    public class CustomInputInstaller: MonoInstaller
     {
         [SerializeField] private MobileInput _mobileInputPrefab;
         public override void InstallBindings()

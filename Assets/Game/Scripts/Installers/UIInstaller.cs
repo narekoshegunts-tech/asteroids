@@ -1,8 +1,7 @@
-﻿
-using Game.Scripts.UI.Game;
+﻿using Game.Scripts.UI.Game;
 using Zenject;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Installers
 {
     public class UIInstallers: MonoInstaller
     {

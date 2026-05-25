@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class CustomPhysicsInstallers: MonoInstaller
+    public class CustomPhysicsInstaller: MonoInstaller
     {
         public override void InstallBindings()
         {

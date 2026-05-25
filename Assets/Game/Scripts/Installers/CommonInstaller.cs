@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class CommonInstallers: MonoInstaller
+    public class CommonInstaller: MonoInstaller
     {
         public override void InstallBindings()
         {

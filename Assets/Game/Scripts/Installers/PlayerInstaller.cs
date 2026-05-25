@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class PlayerInstallers: MonoInstaller
+    public class PlayerInstaller: MonoInstaller
     {
         [SerializeField] private Player _player;
         [SerializeField] private Transform _startPoint;
