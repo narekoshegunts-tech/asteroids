@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Features.Core.Score.Data;
+﻿using Game.Scripts.Features.Core.Score;
+using Game.Scripts.Features.Core.Score.Data;
 using Zenject;
 
 namespace Game.Scripts.Installers
@@ -9,6 +10,10 @@ namespace Game.Scripts.Installers
         {
             Container
                 .Bind<ScoreDataService>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<ScoreService>()
                 .AsSingle();
         }
     }

@@ -224,14 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 54165984}
-  viewTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel,
-    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
-  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel,
-    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
   viewModelId: 
 --- !u!114 &54165984
@@ -397,7 +393,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.4
+  m_fontSize: 51.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1160,13 +1156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 657847401}
-  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
-  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.HealthViewModel,
-    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: ab087be3d9884161b0cb53e9148a3c86, type: 3}
   viewModelId: 
 --- !u!1 &705507993
@@ -1476,50 +1469,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1211482192
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1211482194}
-  - component: {fileID: 1211482193}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1211482193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211482192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2769f6856b214df59a821cc7a886d329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1211482194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211482192}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326904403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,13 +1670,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 1407204748}
-  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
-  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.ScoreViewModel,
-    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: 8341f9fcda9c4eb8ad2b39d793321731, type: 3}
   viewModelId: 
 --- !u!114 &1407204750
@@ -2277,13 +2223,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewBinding: 0
   view: {fileID: 1726964195}
-  viewTypeAssemblyQualifiedName: 
   viewType: {fileID: 0}
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
-  viewModelTypeAssemblyQualifiedName: Game.Scripts.UI.ViewModels.LaserChargeIndicatorViewModel,
-    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelType: {fileID: 11500000, guid: 092d5e5b6f4849a18fc18b2efc781a21, type: 3}
   viewModelId: 
 --- !u!114 &1726964195
@@ -2843,5 +2786,4 @@ SceneRoots:
   - {fileID: 1115271953}
   - {fileID: 330440874}
   - {fileID: 1968069594}
-  - {fileID: 1211482194}
   - {fileID: 1547315699}
