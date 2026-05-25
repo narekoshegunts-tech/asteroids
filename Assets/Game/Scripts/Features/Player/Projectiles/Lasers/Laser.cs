@@ -18,7 +18,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Lasers
         {
             if (collision.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.Destroy();
+                enemy.Die();
             }
         }
     }

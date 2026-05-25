@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class EnemiesInstalle: MonoInstaller
+    public class EnemiesInstaller: MonoInstaller
     {
         [SerializeField] private EnemySpawner _enemySpawner;
         public override void InstallBindings()
@@ -31,7 +31,7 @@ namespace Game.Scripts.Installers
         private void BindUfoSpawnerService()
         {
             Container
-                .Bind<UfoSpawnerService>()
+                .BindInterfacesAndSelfTo<UfoSpawnerService>()
                 .AsSingle();
         }
 
@@ -44,14 +44,14 @@ namespace Game.Scripts.Installers
         private void BindAsteroidSpawnerService()
         {
             Container
-                .Bind<AsteroidSpawnerService>()
+                .BindInterfacesAndSelfTo<AsteroidSpawnerService>()
                 .AsSingle();
         }
 
         private void BindAsteroidDataService()
         {
             Container
-                .Bind<AsteroidDataService>()
+                .BindInterfacesAndSelfTo<AsteroidDataService>()
                 .AsSingle();
         }
     }

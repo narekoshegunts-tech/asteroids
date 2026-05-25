@@ -2349,7 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9035eb8f4014c3891e32ec4c3e163b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 3527695885163307294, guid: f75ee14143b041b489a0801dbbeee3a0, type: 3}
+  _playerPrefab: {fileID: 3527695885163307294, guid: f75ee14143b041b489a0801dbbeee3a0, type: 3}
   _startPoint: {fileID: 771669701}
 --- !u!114 &1739938135
 MonoBehaviour:

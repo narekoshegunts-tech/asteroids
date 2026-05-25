@@ -9,7 +9,7 @@ namespace Game.Scripts.Installers
 {
     public class PlayerInstaller: MonoInstaller
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private Player _playerPrefab;
         [SerializeField] private Transform _startPoint;
 
         public override void InstallBindings()
@@ -56,7 +56,7 @@ namespace Game.Scripts.Installers
             Container
                 .Bind(typeof(Player),
                         typeof(PlayerMovement))
-                .FromComponentInNewPrefab(_player)
+                .FromComponentInNewPrefab(_playerPrefab)
                 .UnderTransform(_startPoint)
                 .AsSingle();
         }

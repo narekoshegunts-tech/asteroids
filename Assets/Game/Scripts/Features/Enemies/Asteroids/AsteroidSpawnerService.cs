@@ -13,7 +13,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
 {
     public class AsteroidSpawnerService: EnemySpawnerService<Asteroid>
     {
-        [Inject] private AsteroidDataService _asteroidsDataService;
+        private AsteroidDataService _asteroidsDataService;
         
         private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
 
@@ -27,10 +27,10 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         protected override float SpawnCooldown => _asteroidsDataService.LargeAsteroidSpawnCooldown;
         protected override int PoolSize => _asteroidsDataService.PoolSize;
         
-        
-        protected override void Construct(ObjectPoolFactory objectPoolFactory)
+        [Inject]
+        private void Construct(AsteroidDataService asteroidsDataService)
         {
-            base.Construct(objectPoolFactory);
+            _asteroidsDataService = asteroidsDataService;
             
             _maxLargeAsteroidsCount = _asteroidsDataService.MaxLargeAsteroidsCount;
             _smallAsteroidsPerLarge = _asteroidsDataService.SmallAsteroidsPerLarge;
@@ -47,12 +47,12 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         {
             if (_pool.TryGet(out Asteroid asteroid))
             {
-                Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
-                Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
+                Vector2 spawnPosition = _cameraUtils.GetOffscreenPosition();
+                Vector2 targetPosition = _cameraUtils.GetScreenRandomPosition();
                 asteroid.Initialize(spawnPosition, targetPosition, _asteroidsData[AsteroidType.Large]);
                 
                 RaiseOnAnyEnemySpawned(asteroid);
-                asteroid.OnDestroy += OnLargeAsteroidDestroyed;
+                asteroid.OnDead += OnLargeAsteroidDestroyed;
                 
                 _currentLargeAsteroidsCount++;
             }
@@ -63,10 +63,10 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             if (_pool.TryGet(out Asteroid asteroid))
             {
                 Vector2 vectorOffset = new Vector2(Random.Range(-offset, offset), Random.Range(-offset, offset));
-                Vector2 targetPosition = _cameraService.GetScreenRandomPosition();
+                Vector2 targetPosition = _cameraUtils.GetScreenRandomPosition();
                 asteroid.Initialize(spawnPosition + vectorOffset, targetPosition, _asteroidsData[AsteroidType.Small]);
 
-                asteroid.OnDestroy += OnSmallAsteroidDestroyed;
+                asteroid.OnDead += OnSmallAsteroidDestroyed;
                 RaiseOnAnyEnemySpawned(asteroid);
             }
         }
@@ -75,7 +75,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         {
             ReturnToPool(asteroid);
             
-            asteroid.OnDestroy -= OnSmallAsteroidDestroyed;
+            asteroid.OnDead -= OnSmallAsteroidDestroyed;
         }
 
         private void OnLargeAsteroidDestroyed(Enemy asteroid)
@@ -83,7 +83,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             _currentLargeAsteroidsCount--;
 
             ReturnToPool(asteroid);
-            asteroid.OnDestroy -= OnLargeAsteroidDestroyed;
+            asteroid.OnDead -= OnLargeAsteroidDestroyed;
 
             for (int i = 0; i < _smallAsteroidsPerLarge; i++)
             {

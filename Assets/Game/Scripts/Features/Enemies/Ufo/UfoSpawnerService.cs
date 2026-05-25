@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using Game.Scripts.Common.CameraServices;
+﻿using System.Threading;
 using Game.Scripts.Common.ObjectPool;
 using Game.Scripts.Features.Enemies.UFO.Data;
 using UnityEngine;
@@ -11,7 +8,7 @@ namespace Game.Scripts.Features.Enemies.UFO
 {
     public class UfoSpawnerService: EnemySpawnerService<Ufo>
     {
-        [Inject] private UfoDataService _ufoDataService;
+        private UfoDataService _ufoDataService;
         
         private UfoData _ufoData;
 
@@ -21,10 +18,11 @@ namespace Game.Scripts.Features.Enemies.UFO
         protected override float SpawnCooldown => _ufoDataService.SpawnCooldown;
         protected override int PoolSize => _ufoDataService.PoolSize;
         
-        
-        protected override void Construct(ObjectPoolFactory objectPoolFactory)
+        [Inject]
+        private void Construct(UfoDataService ufoDataService)
         {
-            base.Construct(objectPoolFactory);
+            _ufoDataService = ufoDataService;
+            
             _ufoData = _ufoDataService.UfoData;
         }
 
@@ -36,10 +34,10 @@ namespace Game.Scripts.Features.Enemies.UFO
         {
             if (_pool.TryGet(out Ufo ufo))
             {
-                Vector2 spawnPosition = _cameraService.GetOffscreenPosition();
+                Vector2 spawnPosition = _cameraUtils.GetOffscreenPosition();
                 
                 ufo.Initialize(spawnPosition, _ufoData);
-                ufo.OnDestroy += OnUfoDestroyed;
+                ufo.OnDead += OnUfoDestroyed;
 
                 RaiseOnAnyEnemySpawned(ufo);
             }
@@ -48,7 +46,7 @@ namespace Game.Scripts.Features.Enemies.UFO
         private void OnUfoDestroyed(Enemy ufo)
         {
             ReturnToPool(ufo);
-            ufo.OnDestroy -= OnUfoDestroyed;
+            ufo.OnDead -= OnUfoDestroyed;
         }
 
     }

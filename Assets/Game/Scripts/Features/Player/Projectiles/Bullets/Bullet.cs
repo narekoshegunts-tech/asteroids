@@ -19,7 +19,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Bullets
         {
             if (collision.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.Destroy();
+                enemy.Die();
                 Destroy();
             }
         }

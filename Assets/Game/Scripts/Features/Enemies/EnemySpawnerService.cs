@@ -8,10 +8,12 @@ using Zenject;
 
 namespace Game.Scripts.Features.Enemies
 {
-    public abstract class EnemySpawnerService<TEnemy> 
+    public abstract class EnemySpawnerService<TEnemy> : IInitializable
         where TEnemy: Enemy
     {
-        [Inject] protected CameraUtils _cameraService;
+        private ObjectPoolFactory _objectPoolFactory;
+        
+        protected CameraUtils _cameraUtils;
         
         protected ObjectPool<TEnemy> _pool;
         
@@ -26,13 +28,21 @@ namespace Game.Scripts.Features.Enemies
         protected abstract int PoolSize { get; }
         
         [Inject]
-        protected virtual void Construct(ObjectPoolFactory objectPoolFactory)
+        private void Construct(ObjectPoolFactory objectPoolFactory, CameraUtils cameraUtils)
+        {
+            _objectPoolFactory = objectPoolFactory;
+            _cameraUtils = cameraUtils;
+        }
+        
+        public void Initialize()
         {
             _enemyPrefab = Resources.Load<TEnemy>(PrefabPath);
             
             GameObject container = new GameObject($"{typeof(TEnemy).Name}Pool");
-            _pool = objectPoolFactory.Create(_enemyPrefab, container, PoolSize);
+            _pool = _objectPoolFactory.Create(_enemyPrefab, container, PoolSize);
         }
+        
+        
         
         public void StartSpawning()
         {

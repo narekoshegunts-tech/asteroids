@@ -36,13 +36,13 @@ namespace Game.Scripts.Features.Core.Score
 
         private void OnAnyEnemySpawned(Enemy enemy)
         {
-            enemy.OnDestroy += OnEnemyDead;
+            enemy.OnDead += OnEnemyDead;
         }
 
         private void OnEnemyDead(Enemy enemy)
         {
             AddScore(enemy);
-            enemy.OnDestroy -= OnEnemyDead;
+            enemy.OnDead -= OnEnemyDead;
         }
 
         public void Initialize()
