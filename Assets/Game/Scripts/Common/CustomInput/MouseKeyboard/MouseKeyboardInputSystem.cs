@@ -6,7 +6,7 @@ namespace Game.Scripts.Common.CustomInput.MouseKeyboard
 {
     public class MouseKeyboardInputSystem: IInputSystem, ITickable
     {
-        [Inject] private Camera _camera;
+        private Camera _camera;
         private Transform _targetTransform;
 
         private KeyCode _accelerationKey = KeyCode.W;
@@ -18,6 +18,12 @@ namespace Game.Scripts.Common.CustomInput.MouseKeyboard
         public event Action OnAccelerationKeyPressedUp;
         public event Action OnBulletAttackKeyPressedDown;
         public event Action OnLaserAttackKeyPressedDown;
+
+        [Inject]
+        private void Construct(Camera camera)
+        {
+            _camera = camera;
+        }
 
         public void SetTargetTransform(Transform targetTransform)
         {

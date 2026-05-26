@@ -5,8 +5,13 @@ namespace Game.Scripts.Common.CameraServices
 {
     public class CameraUtils
     {
-        [Inject] private Camera _camera;
+        private Camera _camera;
 
+        [Inject]
+        private void Construct(Camera camera)
+        {
+            _camera = camera;
+        }
 
         public Vector2 GetOffscreenPosition(float offset = 10f)
         {

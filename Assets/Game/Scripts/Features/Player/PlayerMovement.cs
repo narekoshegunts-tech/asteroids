@@ -11,8 +11,8 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
-        [Inject] private PlayerModel _playerModel;
-        [Inject] private PlayerStateService _playerStateService;
+        private PlayerModel _playerModel;
+        private PlayerStateService _playerStateService;
         
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
@@ -26,7 +26,8 @@ namespace Game.Scripts.Features.Player
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
-            CustomInputSystem customInputSystem, PlayerDataService playerDataService)
+            CustomInputSystem customInputSystem, PlayerDataService playerDataService,
+            PlayerModel playerModel, PlayerStateService playerStateService)
         {
             _customPhysicsFacade = customPhysicsFacadeFactory.Create(transform);
             _customInputSystem = customInputSystem;
@@ -34,6 +35,8 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.SetTargetTransform(transform);
             
             _acceleration = playerDataService.Acceleration;
+            _playerModel = playerModel;
+            _playerStateService = playerStateService;
         }
 
         private void Awake()

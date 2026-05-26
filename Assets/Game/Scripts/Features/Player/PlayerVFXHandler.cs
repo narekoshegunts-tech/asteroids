@@ -6,10 +6,16 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerVFXHandler: MonoBehaviour
     {
-        [Inject] private PlayerStateService _playerStateService;
+        private PlayerStateService _playerStateService;
         
         [SerializeField] private ParticleSystem _invulnerabilityParticles;
 
+        [Inject]
+        private void Construct(PlayerStateService playerStateService)
+        {
+            _playerStateService = playerStateService;
+        }
+        
         private void OnEnable()
         {
             _playerStateService.OnInvulnerabilityStart += StartInvulnerabilityEffect;

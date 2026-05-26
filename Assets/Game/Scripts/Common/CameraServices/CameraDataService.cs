@@ -12,7 +12,7 @@ namespace Game.Scripts.Common.CameraServices
         private Camera _camera;
 
         [Inject]
-        public CameraDataService(Camera camera)
+        private void Construct(Camera camera)
         {
             _camera = camera;
             LoadConfig();

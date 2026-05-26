@@ -9,23 +9,29 @@ namespace Game.Scripts.Features.Player
     {
         private PlayerModel _playerModel;
         
-        [Inject] private CustomInputSystem _customInputSystem;
+        private CustomInputSystem _customInputSystem;
         
         [SerializeField] private Transform _attackStartTransform;
 
         // Нужно чтобы получить доступ к вращению игрока, для передачи вращения снаряду. Хз как по другому
         private PlayerMovement _playerMovement;
         
-        [Inject] private BulletAttackService _bulletAttackService;
-        [Inject] private LaserAttackService _laserAttackService;
+        private BulletAttackService _bulletAttackService;
+        private LaserAttackService _laserAttackService;
         
-        [Inject] private PlayerStateService _playerStateService;
+        private PlayerStateService _playerStateService;
 
         [Inject]
-        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement)
+        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement,
+            CustomInputSystem customInputSystem, BulletAttackService bulletAttackService, LaserAttackService laserAttackService,
+            PlayerStateService playerStateService)
         {
             _playerModel = playerModel;
             _playerMovement = playerMovement;
+            _customInputSystem = customInputSystem;
+            _bulletAttackService = bulletAttackService;
+            _laserAttackService = laserAttackService;
+            _playerStateService = playerStateService;
         }
         
 

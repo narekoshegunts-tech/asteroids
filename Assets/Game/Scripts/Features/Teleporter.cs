@@ -9,12 +9,18 @@ namespace Game.Scripts.Features
     [RequireComponent(typeof(BoxCollider2D))]
     public class Teleporter: MonoBehaviour
     {
-        [Inject] private CameraUtils _cameraUtils;
+        private CameraUtils _cameraUtils;
         
         private BoxCollider2D _collider;
         
         private float _halfHeight;
         private float _halfWidth;
+
+        [Inject]
+        private void Construct(CameraUtils cameraUtils)
+        {
+            _cameraUtils = cameraUtils;
+        }
 
         private void Awake()
         {

@@ -8,10 +8,17 @@ namespace Game.Scripts.Features.Enemies
 {
     public class EnemySpawner: MonoBehaviour
     {
-        [Inject] private AsteroidSpawnerService _asteroidSpawnerService;
-        [Inject] private UfoSpawnerService _ufoSpawnerService;
+        private AsteroidSpawnerService _asteroidSpawnerService;
+        private UfoSpawnerService _ufoSpawnerService;
 
         public event Action<Enemy> OnAnyEnemySpawned;
+
+        [Inject]
+        private void Construct(AsteroidSpawnerService asteroidSpawnerService, UfoSpawnerService ufoSpawnerService)
+        {
+            _asteroidSpawnerService = asteroidSpawnerService;
+            _ufoSpawnerService = ufoSpawnerService;
+        }
         private void Start()
         {
             StartSpawning();

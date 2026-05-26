@@ -5,7 +5,12 @@ namespace Game.Scripts.Common.CustomInput.Strategy
 {
     public class MobileInputStrategy: IInputStrategy
     {
-        [Inject] private readonly MobileInput _mobileInput;
+        private MobileInput _mobileInput;
+
+        private void Construct(MobileInput mobileInput)
+        {
+            _mobileInput = mobileInput;
+        }
         
         public IInputSystem GetInputSystem()
         {

@@ -5,8 +5,13 @@ namespace Game.Scripts.Common.CustomInput.Strategy
 {
     public class MouseKeyboardInputStrategy: IInputStrategy
     {
-        [Inject] private MouseKeyboardInputSystem _mouseKeyboardInput;
-        
+        private MouseKeyboardInputSystem _mouseKeyboardInput;
+
+        [Inject]
+        private void Construct(MouseKeyboardInputSystem mouseKeyboardInputSystem)
+        {
+            _mouseKeyboardInput = mouseKeyboardInputSystem;
+        }
         public IInputSystem GetInputSystem()
         {
             return _mouseKeyboardInput;
