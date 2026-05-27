@@ -1,15 +1,21 @@
 ﻿using Game.Scripts.Common.CameraServices.Data;
+using Game.Scripts.Common.Services;
 using Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Common.CameraServices
 {
-    public class CameraDataService
+    public class CameraDataService: JsonConfigLoader<CameraData>
     {
         private const string ResourcePath = "Configs/camera";
         
         private Camera _camera;
+
+        public CameraDataService(Camera camera) : base(ResourcePath)
+        {
+            _camera = camera;
+        }
 
         [Inject]
         private void Construct(Camera camera)
@@ -20,8 +26,7 @@ namespace Game.Scripts.Common.CameraServices
 
         private void LoadConfig()
         {
-            TextAsset config = Resources.Load<TextAsset>(ResourcePath);
-            CameraData data = JsonConvert.DeserializeObject<CameraData>(config.text);
+            CameraData data = LoadRoot();
             _camera.orthographicSize = data.OrthographicSize;
         }
     }

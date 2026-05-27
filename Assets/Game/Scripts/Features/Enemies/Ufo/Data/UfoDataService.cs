@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Game.Scripts.Common.Services;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Enemies.UFO.Data
 {
-    public class UfoDataService
+    public class UfoDataService: JsonConfigLoader<UfoDataRoot>
     {
         private const string ResourcePath = "Configs/ufo";
         
@@ -13,16 +14,14 @@ namespace Game.Scripts.Features.Enemies.UFO.Data
 
         public UfoData UfoData { get; private set; }
         
-        public UfoDataService()
+        public UfoDataService(): base(ResourcePath)
         {
             LoadConfig();
         }
         
         private void LoadConfig()
         {
-            TextAsset textAsset = Resources.Load<TextAsset>(ResourcePath);
-            
-            var root = JsonConvert.DeserializeObject<UfoDataRoot>(textAsset.text);
+            var root = LoadRoot();
 
             UfoData = root.UfoData;
             

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Common.Services;
 using Game.Scripts.Features.Enemies;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Core.Score.Data
 {
-    public class ScoreDataService
+    public class ScoreDataService: JsonConfigLoader<ScoreDataRoot>
     {
         private const string ResourcePath = "Configs/scores";
 
@@ -14,16 +15,14 @@ namespace Game.Scripts.Features.Core.Score.Data
         private Dictionary<EnemyType, int> _dataDict = new();
         public IReadOnlyDictionary<EnemyType, int> Data => _dataDict;
 
-        public ScoreDataService()
+        public ScoreDataService(): base(ResourcePath)
         {
             LoadConfig();
         }
         
         private void LoadConfig()
         {
-            TextAsset config = Resources.Load<TextAsset>(ResourcePath);
-            
-            ScoreDataRoot root = JsonConvert.DeserializeObject<ScoreDataRoot>(config.text);
+            ScoreDataRoot root = LoadRoot();
             _scores = root.Scores;
             
             BuildDictionary();

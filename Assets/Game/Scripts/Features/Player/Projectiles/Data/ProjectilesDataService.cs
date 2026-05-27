@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Common.Services;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Player.Projectiles.Data
 {
-    public class ProjectilesDataService
+    public class ProjectilesDataService: JsonConfigLoader<ProjectileDataRoot>
     {
         private const string ResourcePath = "Configs/projectiles";
         
@@ -16,16 +17,14 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
         public int BulletPoolSize { get; private set; }
         public int LaserPoolSize { get; private set; }
 
-        public ProjectilesDataService()
+        public ProjectilesDataService():base(ResourcePath)
         {
             LoadConfig();
         }
 
         private void LoadConfig()
         {
-            TextAsset config = Resources.Load<TextAsset>(ResourcePath);
-
-            ProjectileDataRoot root = JsonConvert.DeserializeObject<ProjectileDataRoot>(config.text);
+            var root = LoadRoot();
             
             _data = root.Projectiles;
             BulletPoolSize = root.BulletPoolSize;
