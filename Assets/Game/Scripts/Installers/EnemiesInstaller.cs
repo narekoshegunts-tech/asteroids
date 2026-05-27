@@ -1,8 +1,8 @@
 ﻿using Game.Scripts.Features.Enemies;
 using Game.Scripts.Features.Enemies.Asteroids;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
-using Game.Scripts.Features.Enemies.UFO;
-using Game.Scripts.Features.Enemies.UFO.Data;
+using Game.Scripts.Features.Enemies.Ufo;
+using Game.Scripts.Features.Enemies.Ufo.Data;
 using UnityEngine;
 using Zenject;
 

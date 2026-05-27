@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Features.Enemies.UFO.Data
+﻿namespace Game.Scripts.Features.Enemies.Ufo.Data
 {
     public struct UfoData
     {

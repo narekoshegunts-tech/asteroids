@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Features.Enemies.UFO.Data;
+﻿using Game.Scripts.Features.Enemies.Ufo.Data;
 using UnityEngine;
 
-namespace Game.Scripts.Features.Enemies.UFO
+namespace Game.Scripts.Features.Enemies.Ufo
 {
     [RequireComponent(typeof(UfoMovement))]
     public class Ufo: Enemy

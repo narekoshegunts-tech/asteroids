@@ -1,8 +1,6 @@
 ﻿using Game.Scripts.Common.Services;
-using Newtonsoft.Json;
-using UnityEngine;
 
-namespace Game.Scripts.Features.Enemies.UFO.Data
+namespace Game.Scripts.Features.Enemies.Ufo.Data
 {
     public class UfoDataService: JsonConfigLoader<UfoDataRoot>
     {

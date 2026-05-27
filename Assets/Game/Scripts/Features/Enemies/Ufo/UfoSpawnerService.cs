@@ -1,8 +1,8 @@
-﻿using Game.Scripts.Features.Enemies.UFO.Data;
+﻿using Game.Scripts.Features.Enemies.Ufo.Data;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Features.Enemies.UFO
+namespace Game.Scripts.Features.Enemies.Ufo
 {
     public class UfoSpawnerService: EnemySpawnerService<Ufo>
     {
