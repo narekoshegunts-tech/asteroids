@@ -13,7 +13,7 @@ namespace Game.Scripts.Features.Core.Score
         private PlayerModel _playerModel;
         private EnemySpawner _enemySpawner;
         
-        private Dictionary<EnemyType, int> _enemyRewards;
+        private IReadOnlyDictionary<EnemyType, int> _enemyRewards;
         
         public int TotalScore { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Game.Scripts.Features.Core.Score
         {
             TotalScore = 0;
             
-            _enemyRewards = scoreDataService.GetData();
+            _enemyRewards = scoreDataService.Data;
             _enemySpawner = enemySpawner;
             
             _playerModel = playerModel;

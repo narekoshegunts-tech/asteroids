@@ -11,6 +11,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
         private List<ProjectileData> _data;
 
         private Dictionary<ProjectileType, ProjectileData> _dataDict = new();
+        public IReadOnlyDictionary<ProjectileType, ProjectileData> Data => _dataDict;
         
         public int BulletPoolSize { get; private set; }
         public int LaserPoolSize { get; private set; }
@@ -45,9 +46,9 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
             }
         }
         
-        public Dictionary<ProjectileType, ProjectileData> GetData()
+        public IReadOnlyDictionary<ProjectileType, ProjectileData> GetData()
         {
-            return new Dictionary<ProjectileType, ProjectileData>(_dataDict);
+            return Data;
         }
     }
 }

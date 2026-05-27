@@ -12,6 +12,7 @@ namespace Game.Scripts.Features.Core.Score.Data
         private List<ScoreData> _scores;
         
         private Dictionary<EnemyType, int> _dataDict = new();
+        public IReadOnlyDictionary<EnemyType, int> Data => _dataDict;
 
         public ScoreDataService()
         {

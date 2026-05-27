@@ -10,6 +10,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
         private List<AsteroidData> _data;
 
         private Dictionary<AsteroidType, AsteroidData> _dataDict = new();
+        public IReadOnlyDictionary<AsteroidType, AsteroidData> Data => _dataDict;
         
         public int PoolSize { get; private set; }
         public int MaxLargeAsteroidsCount { get; private set; }
@@ -49,10 +50,6 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
                     _dataDict[item.Type] = item;
             }
         }
-
-        public Dictionary<AsteroidType,AsteroidData> GetData()
-        {
-            return new Dictionary<AsteroidType, AsteroidData>(_dataDict);
-        }
+        
     }
 }

@@ -10,7 +10,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
     {
         private AsteroidDataService _asteroidsDataService;
         
-        private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
+        private IReadOnlyDictionary<AsteroidType, AsteroidData> _asteroidsData;
 
         private int _maxLargeAsteroidsCount;
         private int _currentLargeAsteroidsCount;
@@ -28,7 +28,7 @@ namespace Game.Scripts.Features.Enemies.Asteroids
             _maxLargeAsteroidsCount = _asteroidsDataService.MaxLargeAsteroidsCount;
             _smallAsteroidsPerLarge = _asteroidsDataService.SmallAsteroidsPerLarge;
             
-            _asteroidsData = _asteroidsDataService.GetData();
+            _asteroidsData = _asteroidsDataService.Data;
         }
 
         protected override bool CanSpawn()
