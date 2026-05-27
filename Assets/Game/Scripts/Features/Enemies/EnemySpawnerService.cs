@@ -17,7 +17,9 @@ namespace Game.Scripts.Features.Enemies
         
         protected ObjectPool<TEnemy> _pool;
         
-        protected TEnemy _enemyPrefab;
+        private TEnemy _enemyPrefab;
+
+        private UniTask _spawnTask;
         
         private CancellationTokenSource _cts;
 
@@ -46,24 +48,50 @@ namespace Game.Scripts.Features.Enemies
         
         public void StartSpawning()
         {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            
             _cts = new CancellationTokenSource();
-            SpawnLoop().Forget();
+            _spawnTask = SpawnLoop(_cts.Token);
         }
         
         
-        private async UniTaskVoid SpawnLoop()
+        private async UniTask SpawnLoop(CancellationToken cancellationToken)
         {
-            while (_cts.IsCancellationRequested == false)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(SpawnCooldown),
-                    ignoreTimeScale: false,
-                    cancellationToken: _cts.Token);
-                
-                if (CanSpawn())
+                try
                 {
-                    Spawn();    
+                    await UniTask.Delay(TimeSpan.FromSeconds(SpawnCooldown),
+                        ignoreTimeScale: false,
+                        cancellationToken: _cts.Token);
+
+                    if (CanSpawn())
+                    {
+                        Spawn();
+                    }
                 }
+                catch (OperationCanceledException)
+                {
+                    throw;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+                
             }
+        }
+
+        private void StopSpawning()
+        {
+            if (_cts == null)
+                return;
+
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = null;
+        
         }
 
         protected void ReturnToPool(Enemy enemy)
@@ -82,8 +110,7 @@ namespace Game.Scripts.Features.Enemies
 
         public void Destroy()
         {
-            _cts.Cancel();
-            _cts.Dispose();
+            StopSpawning();
         }
     }
 }
