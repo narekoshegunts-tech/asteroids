@@ -92,7 +92,7 @@ namespace Game.Scripts.UI.ViewModels
 
         private void LaserCharge(int currentLaserAttacks)
         {
-            _playerModel.LaserAttackCharge(currentLaserAttacks);
+            _playerModel.SetLaserCharges(currentLaserAttacks);
             OnCurrentLaserAttackChanged(currentLaserAttacks);
         }
 

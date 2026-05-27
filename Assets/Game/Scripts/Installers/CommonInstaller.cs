@@ -45,7 +45,7 @@ namespace Game.Scripts.Installers
         private void BindGameFlowController()
         {
             Container
-                .BindInterfacesAndSelfTo<GameFlowController>()
+                .BindInterfacesAndSelfTo<GameSessionService>()
                 .AsSingle()
                 .NonLazy();
         }

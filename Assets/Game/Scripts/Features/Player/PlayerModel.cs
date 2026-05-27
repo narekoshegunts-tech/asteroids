@@ -73,7 +73,7 @@ namespace Game.Scripts.Features.Player
             return true;
         }
 
-        public void LaserAttackCharge(int currentLaserAttacks)
+        public void SetLaserCharges(int currentLaserAttacks)
         {
             CurrentLaserAttacks = currentLaserAttacks;
         }

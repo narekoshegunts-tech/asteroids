@@ -45,7 +45,6 @@ namespace Game.Scripts.Common.CustomInput
             remove => _currentInput.OnLaserAttackKeyPressedDown -= value;
         }
         
-        // не верю что из за этой хуйни надо будет делать фабрику... Я другого решения не нашел
         public void SetTargetTransform(Transform targetTransform)
         {
             _targetTransform = targetTransform;

@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.Scripts.UI.Game.Services
 {
-    public class GameFlowController: IInitializable, IDisposable
+    public class GameSessionService: IInitializable, IDisposable
     {
         [Inject] private SignalBus _signalBus;
         [Inject] private GamePauseService _gamePauseService;
