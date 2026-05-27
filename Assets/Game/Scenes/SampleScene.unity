@@ -225,10 +225,14 @@ MonoBehaviour:
   viewBinding: 0
   view: {fileID: 54165984}
   viewType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
+  viewTypeFullName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel, Game.Scripts.UI,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
   viewModelType: {fileID: 11500000, guid: aea8a78f910e46108f309f12a96e710a, type: 3}
+  viewModelTypeFullName: Game.Scripts.UI.ViewModels.PlayerMovementViewModel, Game.Scripts.UI,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelId: 
 --- !u!114 &54165984
 MonoBehaviour:
@@ -1157,10 +1161,13 @@ MonoBehaviour:
   viewBinding: 0
   view: {fileID: 657847401}
   viewType: {fileID: 0}
+  viewTypeFullName: 
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
   viewModelType: {fileID: 11500000, guid: ab087be3d9884161b0cb53e9148a3c86, type: 3}
+  viewModelTypeFullName: Game.Scripts.UI.ViewModels.HealthViewModel, Game.Scripts.UI,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelId: 
 --- !u!1 &705507993
 GameObject:
@@ -1671,10 +1678,13 @@ MonoBehaviour:
   viewBinding: 0
   view: {fileID: 1407204748}
   viewType: {fileID: 0}
+  viewTypeFullName: 
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
   viewModelType: {fileID: 11500000, guid: 8341f9fcda9c4eb8ad2b39d793321731, type: 3}
+  viewModelTypeFullName: Game.Scripts.UI.ViewModels.ScoreViewModel, Game.Scripts.UI,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelId: 
 --- !u!114 &1407204750
 MonoBehaviour:
@@ -2224,10 +2234,13 @@ MonoBehaviour:
   viewBinding: 0
   view: {fileID: 1726964195}
   viewType: {fileID: 0}
+  viewTypeFullName: 
   viewId: 
   viewModelBinding: 1
   viewModel: {fileID: 0}
   viewModelType: {fileID: 11500000, guid: 092d5e5b6f4849a18fc18b2efc781a21, type: 3}
+  viewModelTypeFullName: Game.Scripts.UI.ViewModels.LaserChargeIndicatorViewModel,
+    Game.Scripts.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   viewModelId: 
 --- !u!114 &1726964195
 MonoBehaviour:
@@ -2778,9 +2791,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1739938133}
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 1739938133}
   - {fileID: 771669701}
   - {fileID: 13720016}
   - {fileID: 1115271953}
