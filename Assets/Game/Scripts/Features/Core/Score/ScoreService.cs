@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Game.Scripts.Features.Core.Score.Data;
 using Game.Scripts.Features.Enemies;
-using Game.Scripts.Features.Player;
-using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Features.Core.Score

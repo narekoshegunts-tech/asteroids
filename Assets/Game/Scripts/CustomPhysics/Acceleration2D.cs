@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Game.Scripts.CustomPhysics
+﻿namespace Game.Scripts.CustomPhysics
 {
     public class Acceleration2D
     {

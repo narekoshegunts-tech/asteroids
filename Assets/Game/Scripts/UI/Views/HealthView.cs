@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Scripts.UI.Game.PlayerCanvas;
 using UnityEngine;
-
 using MVVM;
 
 namespace Game.Scripts.UI.Views

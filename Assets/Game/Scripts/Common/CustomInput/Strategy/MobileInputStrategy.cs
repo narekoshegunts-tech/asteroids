@@ -1,5 +1,4 @@
 ﻿using Game.Scripts.Common.CustomInput.Mobile;
-using Zenject;
 
 namespace Game.Scripts.Common.CustomInput.Strategy
 {

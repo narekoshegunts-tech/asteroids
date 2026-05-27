@@ -1,6 +1,5 @@
 ﻿using Game.Scripts.Common.CameraServices.Data;
 using Game.Scripts.Common.Services;
-using Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
 

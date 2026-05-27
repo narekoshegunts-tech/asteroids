@@ -1,6 +1,4 @@
 ﻿using Game.Scripts.Common.Services;
-using Newtonsoft.Json;
-using UnityEngine;
 
 namespace Game.Scripts.Features.Player.Data
 {

@@ -1,7 +1,5 @@
 ﻿using System;
 using Game.Scripts.Features.Core.Score;
-using Game.Scripts.Features.Player;
-using TMPro;
 using Zenject;
 
 namespace Game.Scripts.UI.ViewModels
