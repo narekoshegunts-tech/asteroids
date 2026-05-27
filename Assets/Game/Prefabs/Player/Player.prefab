@@ -116,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e6507e813f4507b5f5e9c7294dec70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accelerationParticles: {fileID: 5974249800438190674}
 --- !u!114 &3527695885163307294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invulnerabilityParticles: {fileID: 8276516507165633283}
+  _accelerationParticles: {fileID: 5974249800438190674}
 --- !u!1 &5429071868891716183
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

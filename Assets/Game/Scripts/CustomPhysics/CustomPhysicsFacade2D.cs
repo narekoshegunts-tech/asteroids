@@ -1,4 +1,5 @@
-﻿using Game.Scripts.CustomPhysics.Factories;
+﻿using System;
+using Game.Scripts.CustomPhysics.Factories;
 using UnityEngine;
 using Zenject;
 
@@ -15,9 +16,13 @@ namespace Game.Scripts.CustomPhysics
 
         private Transform _transform;
         
-        public Vector2 Direction => _rotation2D.Direction;
-
         public float Mass;
+
+        public event Action<Vector2> OnPositionChanged;
+        public event Action<float> OnRotationChanged;
+        public event Action<float> OnVelocityChanged;
+        
+        public Vector2 Direction => _rotation2D.Direction;
 
         [Inject]
         private void Construct(Acceleration2D acceleration2D, Velocity2DFactory velocity2DFactory, 
@@ -39,6 +44,10 @@ namespace Game.Scripts.CustomPhysics
         {
             _velocity2D.UpdateVelocity(Time.fixedDeltaTime);
             _position2D.Update(Time.fixedDeltaTime);
+
+            
+            OnPositionChanged?.Invoke(GetPosition());
+            OnVelocityChanged?.Invoke(GetInstantVelocity());
         }
         
         public void ApplyAcceleration(float acceleration)
@@ -59,11 +68,7 @@ namespace Game.Scripts.CustomPhysics
         public void ApplyRotation(Vector2 direction)
         {
             _rotation2D.ApplyRotation(direction);
-        }
-
-        public float GetRotation()
-        {
-            return _rotation2D.Rotation;
+            OnRotationChanged?.Invoke(_rotation2D.Rotation);
         }
 
         public void ApplyPosition(Vector2 position)

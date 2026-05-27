@@ -1,4 +1,5 @@
-﻿using Game.Scripts.CustomPhysics;
+﻿using System;
+using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Features.Interfaces;
@@ -11,23 +12,24 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
     {
-        private PlayerModel _playerModel;
         private PlayerStateService _playerStateService;
+        private PlayerMovementService _playerMovementService;
         
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
         private float _acceleration;
         
         private CustomInputSystem _customInputSystem;
-        
-        [SerializeField] private ParticleSystem _accelerationParticles;
+
+        public event Action OnAccelerationStart;
+        public event Action OnAccelerationEnd;
         
         public Vector2 Direction => _customPhysicsFacade.Direction;
         
         [Inject]
         private void Construct(CustomPhysicsFacade2DFactory customPhysicsFacadeFactory,
             CustomInputSystem customInputSystem, PlayerDataService playerDataService,
-            PlayerModel playerModel, PlayerStateService playerStateService)
+            PlayerStateService playerStateService, PlayerMovementService playerMovementService)
         {
             _customPhysicsFacade = customPhysicsFacadeFactory.Create(transform);
             _customInputSystem = customInputSystem;
@@ -35,13 +37,11 @@ namespace Game.Scripts.Features.Player
             _customInputSystem.SetTargetTransform(transform);
             
             _acceleration = playerDataService.Acceleration;
-            _playerModel = playerModel;
+            
             _playerStateService = playerStateService;
-        }
-
-        private void Awake()
-        {
-            _accelerationParticles.Stop();
+            _playerMovementService = playerMovementService;
+            
+            _playerMovementService.Initialize(_customPhysicsFacade);
         }
 
         private void OnEnable()
@@ -75,9 +75,6 @@ namespace Game.Scripts.Features.Player
 
             if (_playerStateService.CanMove)
                 _customPhysicsFacade.ApplyRotation(direction);
-            
-            _playerModel.ChangeRotation(_customPhysicsFacade.GetRotation());
-            _playerModel.ChangePosition(_customPhysicsFacade.GetPosition());
 
             _customPhysicsFacade.FixedUpdate();
         }
@@ -86,7 +83,7 @@ namespace Game.Scripts.Features.Player
         {
             if (!_playerStateService.CanMove)
                 return;
-            _accelerationParticles.Play();
+            OnAccelerationStart?.Invoke();
         }
 
         private void OnAccelerationKeyPressed()
@@ -94,19 +91,18 @@ namespace Game.Scripts.Features.Player
             if (!_playerStateService.CanMove)
             {
                 _customPhysicsFacade.ApplyAcceleration(0);
-                _accelerationParticles.Stop();
+                OnAccelerationEnd?.Invoke();
 
                 return;
             }
             
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
-            _playerModel.ChangeVelocity(_customPhysicsFacade.GetInstantVelocity());
         }
 
         private void OnAccelerationKeyPressedUp()
         {
             _customPhysicsFacade.ApplyAcceleration(0);
-            _accelerationParticles.Stop();
+            OnAccelerationEnd?.Invoke();
         }
 
         public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
