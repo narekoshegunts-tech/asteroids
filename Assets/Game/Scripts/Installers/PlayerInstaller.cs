@@ -21,6 +21,15 @@ namespace Game.Scripts.Installers
             BindPlayerDataService();
             BindPlayerModel();
             BindPlayerStateService();
+            BindPlayerLifeService();
+        }
+
+        private void BindPlayerLifeService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerLifeService>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindPlayerStateService()

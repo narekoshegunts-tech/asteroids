@@ -1,7 +1,5 @@
-﻿
-using System;
+﻿using System;
 using Game.Scripts.Features.Player.Data;
-using Game.Scripts.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +15,7 @@ namespace Game.Scripts.Features.Player
         public event Action<float> OnRotationChanged;
         public event Action <float> OnVelocityChanged;
         public event Action<int> OnScoreChanged;
+        public event Action OnDie;
         
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
@@ -61,7 +60,7 @@ namespace Game.Scripts.Features.Player
 
         private void Die()
         {
-            _signalBus.Fire<PlayerDiedSignal>();
+            OnDie?.Invoke();
         }
 
         public bool TryLaserAttack()
