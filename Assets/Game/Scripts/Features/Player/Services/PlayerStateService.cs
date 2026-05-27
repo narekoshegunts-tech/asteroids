@@ -8,6 +8,7 @@ namespace Game.Scripts.Features.Player.Services
     public class PlayerStateService
     {
         private CancellationTokenSource _cts;
+        private UniTask _currentInvulnerabilityTask;
         
         private float _invulnerabilityDuration;
         
@@ -26,23 +27,40 @@ namespace Game.Scripts.Features.Player.Services
             IsInvulnerable = false;
             
             _invulnerabilityDuration = playerModel.InvulnerabilityDuration;
-            
-            _cts = new CancellationTokenSource();
         }
 
         public void ApplyInvulnerability()
         {
-            ApplyInvulnerabilityTask(_invulnerabilityDuration).Forget();
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = new CancellationTokenSource();
+            
+            _currentInvulnerabilityTask = ApplyInvulnerabilityTask(_invulnerabilityDuration);
         }
 
         private async UniTask ApplyInvulnerabilityTask(float duration)
         {
-            EnterInvulnerabilityState();
+            if (_cts.IsCancellationRequested)
+                return;
+
+            try
+            {
+                EnterInvulnerabilityState();
+
+                await UniTask.Delay(TimeSpan.FromSeconds(duration),
+                    cancellationToken: _cts.Token);
+
+                ExitInvulnerabilityState();
+            }
+            catch (OperationCanceledException)
+            {
+                ExitInvulnerabilityState();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
             
-            await UniTask.Delay(TimeSpan.FromSeconds(duration),
-                cancellationToken: _cts.Token);
-            
-            ExitInvulnerabilityState();
         }
 
         private void EnterInvulnerabilityState()
