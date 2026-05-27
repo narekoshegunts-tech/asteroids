@@ -13,63 +13,15 @@ namespace Game.Scripts.UI.Views
         [SerializeField] private Image _fillImage;
         [SerializeField] private TMP_Text _currentLaserAttacks;
         
-        private int _currentCharges;
-        private int _maxCharges;
-        private float _chargeTime;
 
-        private bool _isCharging;
-        
-        private CancellationTokenSource _cts = new();
-
-        public event Action<int> OnChargeComplete;
-        
-        public void Initialize(int maxLaserAttacks, float chargeTime)
+        public void UpdateFillAmount(float fillAmount)
         {
-            _maxCharges = maxLaserAttacks;
-            _currentCharges = maxLaserAttacks;
-            _chargeTime = chargeTime;
-            
-            UpdateVisuals();
+            _fillImage.fillAmount = fillAmount;
         }
 
-        [Method("CurrentLaserAttacks")]
-        public void UpdateLaserAttacks(int currentCharges)
+        public void UpdateCurrentLaserAttacks(string currentLaserAttacks)
         {
-            _currentCharges = currentCharges;
-            UpdateVisuals();
-
-            if (_currentCharges < _maxCharges && !_isCharging)
-            {
-                _isCharging = true;
-                StartCharging(_chargeTime).Forget();
-            }
-        }
-        
-        private async UniTaskVoid StartCharging(float chargeTime)
-        {
-            _fillImage.fillAmount = 0f;
-            
-            float elapsed = 0f;
-
-            while (elapsed < chargeTime)
-            {
-                elapsed += Time.deltaTime;
-                float progress = elapsed / chargeTime;
-                _fillImage.fillAmount = progress;
-                await UniTask.Yield(cancellationToken: _cts.Token);
-            }
-            _isCharging = false;
-            _currentCharges++;
-            
-            OnChargeComplete?.Invoke(_currentCharges);
-            
-            UpdateLaserAttacks(_currentCharges);
-        }
-
-        private void UpdateVisuals()
-        {
-            _currentLaserAttacks.text = $"{_currentCharges}";
-            _fillImage.fillAmount = _currentCharges >= _maxCharges ? 1f : 0f;
+            _currentLaserAttacks.text = currentLaserAttacks;
         }
     }
 }

@@ -17,15 +17,14 @@ namespace Game.Scripts.UI.Binders
 
         public void Bind()
         {
-            _view.Initialize(_viewModel.MaxLaserAttacks, _viewModel.ChargeTime);
-            _viewModel.OnLaserAttack += _view.UpdateLaserAttacks;
-            _view.OnChargeComplete += _viewModel.OnLaserCharge;
+            _viewModel.OnFillAmountChanged += _view.UpdateFillAmount;
+            _viewModel.OnLaserAttacksChanged += _view.UpdateCurrentLaserAttacks;
         }
 
         public void Unbind()
         {
-            _viewModel.OnLaserAttack -= _view.UpdateLaserAttacks;
-            _view.OnChargeComplete -= _viewModel.OnLaserCharge;
+            _viewModel.OnFillAmountChanged -= _view.UpdateFillAmount;
+            _viewModel.OnLaserAttacksChanged -= _view.UpdateCurrentLaserAttacks;
         }
     }
 }
