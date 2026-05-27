@@ -10,28 +10,26 @@ namespace Game.Scripts.Features.Core.Score
 {
     public class ScoreService: IInitializable, IDisposable
     {
-        private PlayerModel _playerModel;
         private EnemySpawner _enemySpawner;
         
         private IReadOnlyDictionary<EnemyType, int> _enemyRewards;
-        
+
+        public event Action<int> OnScoreChanged;
         public int TotalScore { get; private set; }
 
         [Inject]
-        private void Construct(ScoreDataService scoreDataService, EnemySpawner enemySpawner, PlayerModel playerModel)
+        private void Construct(ScoreDataService scoreDataService, EnemySpawner enemySpawner)
         {
             TotalScore = 0;
             
             _enemyRewards = scoreDataService.Data;
             _enemySpawner = enemySpawner;
-            
-            _playerModel = playerModel;
         }
 
         public void AddScore(Enemy enemy)
         {
             TotalScore += _enemyRewards[enemy.EnemyType];
-            _playerModel.ChangeScore(TotalScore);
+            OnScoreChanged?.Invoke(TotalScore);
         }
 
         private void OnAnyEnemySpawned(Enemy enemy)
