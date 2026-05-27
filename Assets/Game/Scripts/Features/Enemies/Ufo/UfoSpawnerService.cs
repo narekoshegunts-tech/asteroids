@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using Game.Scripts.Common.ObjectPool;
-using Game.Scripts.Features.Enemies.UFO.Data;
+﻿using Game.Scripts.Features.Enemies.UFO.Data;
 using UnityEngine;
 using Zenject;
 
@@ -11,8 +9,6 @@ namespace Game.Scripts.Features.Enemies.UFO
         private UfoDataService _ufoDataService;
         
         private UfoData _ufoData;
-
-        private CancellationTokenSource _cts;
         
         protected override string PrefabPath => "Prefabs/Enemies/Ufo";
         protected override float SpawnCooldown => _ufoDataService.SpawnCooldown;

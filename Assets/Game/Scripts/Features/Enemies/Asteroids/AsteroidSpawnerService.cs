@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using Game.Scripts.Common.CameraServices;
-using Game.Scripts.Common.ObjectPool;
+﻿using System.Collections.Generic;
 using Game.Scripts.Features.Enemies.Asteroids.Data;
 using UnityEngine;
 using Zenject;
-using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Enemies.Asteroids
@@ -16,8 +11,6 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         private AsteroidDataService _asteroidsDataService;
         
         private Dictionary<AsteroidType, AsteroidData> _asteroidsData;
-
-        private CancellationTokenSource _cts;
 
         private int _maxLargeAsteroidsCount;
         private int _currentLargeAsteroidsCount;
