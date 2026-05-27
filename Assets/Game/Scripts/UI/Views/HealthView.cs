@@ -21,7 +21,7 @@ namespace Game.Scripts.UI.Views
 
             for (int i = 0; i < _maxHealth; i++)
             {
-                _hearts.Add(Instantiate(_heartPrefab, transform).GetComponent<Heart>());
+                _hearts.Add(Instantiate(_heartPrefab, transform));
             }
         }
 

@@ -45,9 +45,10 @@ namespace Game.Scripts.CustomPhysics
             _velocity2D.UpdateVelocity(Time.fixedDeltaTime);
             _position2D.Update(Time.fixedDeltaTime);
 
-            
             OnPositionChanged?.Invoke(GetPosition());
-            OnVelocityChanged?.Invoke(GetInstantVelocity());
+            
+            if (_acceleration2D.XAcceleration2D != 0 || _acceleration2D.YAcceleration2D != 0)
+                OnVelocityChanged?.Invoke(GetInstantVelocity());
         }
         
         public void ApplyAcceleration(float acceleration)

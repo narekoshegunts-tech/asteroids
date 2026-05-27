@@ -49,11 +49,6 @@ namespace Game.Scripts.Features.Player
             SubscribeToInputSystem();
         }
 
-        private void OnDisable()
-        {
-            UnSubscribeFromInputSystem();
-        }
-
         private void SubscribeToInputSystem()
         {
             _customInputSystem.OnAccelerationKeyPressedDown += OnAccelerationKeyPressedDown;
@@ -108,6 +103,11 @@ namespace Game.Scripts.Features.Player
         public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
         {
             return _customPhysicsFacade;
+        }
+        
+        private void OnDisable()
+        {
+            UnSubscribeFromInputSystem();
         }
     }
 }
