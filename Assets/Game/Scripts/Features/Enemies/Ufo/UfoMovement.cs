@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.CustomPhysics;
 using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Features.Enemies.UFO.Data;
+using Game.Scripts.Features.Player;
 using UnityEngine;
 using Zenject;
 
@@ -11,9 +12,9 @@ namespace Game.Scripts.Features.Enemies.UFO
         private Transform _targetTransform;
 
         [Inject]
-        private void Construct(Player.Player player)
+        private void Construct(IPlayerTransform player)
         {
-            _targetTransform = player.transform;
+            _targetTransform = player.Transform;
         }
 
         public void Init(Vector3 startPosition, UfoData data)

@@ -71,10 +71,13 @@ namespace Game.Scripts.Installers
         {
             Container
                 .Bind(typeof(Player),
-                        typeof(PlayerMovement))
+                        typeof(PlayerMovement),
+                        typeof(IPlayerTransform))
                 .FromComponentInNewPrefab(_playerPrefab)
                 .UnderTransform(_startPoint)
                 .AsSingle();
+            
+
         }
 
         private void BindProjectilesDataService()
