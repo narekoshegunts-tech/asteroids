@@ -44,15 +44,12 @@ namespace Game.Scripts.Features.Enemies
             _pool = _objectPoolFactory.Create(_enemyPrefab, container, PoolSize);
         }
         
-        
-        
         public void StartSpawning()
         {
-            _cts?.Cancel();
-            _cts?.Dispose();
+            StopSpawning();
             
             _cts = new CancellationTokenSource();
-            _spawnTask = SpawnLoop(_cts.Token);
+            _spawnTask = SpawnLoop(_cts.Token).SuppressCancellationThrow();
         }
         
         
@@ -73,7 +70,7 @@ namespace Game.Scripts.Features.Enemies
                 }
                 catch (OperationCanceledException)
                 {
-                    throw;
+                    return;
                 }
                 catch (Exception e)
                 {

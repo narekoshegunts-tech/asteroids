@@ -1,5 +1,5 @@
 ﻿using System;
-using Game.Scripts.Features.Player;
+using Game.Scripts.Features.Player.Model;
 using MVVM;
 using Zenject;
 
@@ -7,7 +7,7 @@ namespace Game.Scripts.UI.ViewModels
 {
     public class HealthViewModel: IInitializable, IDisposable
     {
-        private PlayerModel _playerModel;
+        private PlayerHealthModel _playerHealthModel;
         
         public int MaxHealth { get; private set; }
 
@@ -16,21 +16,21 @@ namespace Game.Scripts.UI.ViewModels
         
         public event Action<int> OnCurrentHealthChanged;
 
-        public HealthViewModel(PlayerModel playerModel)
+        public HealthViewModel(PlayerHealthModel playerHealthModel)
         {
-            _playerModel = playerModel;
-            MaxHealth = _playerModel.MaxHealth;
-            CurrentHealth = _playerModel.CurrentHealth;
+            _playerHealthModel = playerHealthModel;
+            MaxHealth = _playerHealthModel.MaxHealth;
+            CurrentHealth = _playerHealthModel.CurrentHealth;
         }
         
         public void Initialize()
         {
-            _playerModel.OnGetDamage += OnHealthChanged;
+            _playerHealthModel.OnHealthChanged += OnHealthChanged;
         }
 
         public void Dispose()
         {
-            _playerModel.OnGetDamage -= OnHealthChanged;
+            _playerHealthModel.OnHealthChanged -= OnHealthChanged;
         }
 
         private void OnHealthChanged(int currentHealth)

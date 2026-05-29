@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Features.Player.Interfaces;
+using Game.Scripts.Features.Player.Model;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;

@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Features.Interfaces;
+using Game.Scripts.Features.Player.Model;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
@@ -9,23 +10,23 @@ namespace Game.Scripts.Features.Player
     {
         private PlayerMovement _playerMovement;
         
-        private PlayerModel _playerModel;
+        private PlayerHealthModel _playerHealthModel;
         
         private PlayerStateService _playerStateService;
 
 
         [Inject]
-        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement,
-            PlayerStateService playerStateService)
+        private void Construct(PlayerMovement playerMovement,
+            PlayerStateService playerStateService, PlayerHealthModel playerHealthModel)
         {
-            _playerModel = playerModel;
             _playerMovement = playerMovement;
             _playerStateService = playerStateService;
+            _playerHealthModel = playerHealthModel;
         }
         
         private void GetDamage()
         {
-            _playerModel.GetDamage();
+            _playerHealthModel.TakeDamage();
         }
         
         private void OnTriggerEnter2D(Collider2D collision)

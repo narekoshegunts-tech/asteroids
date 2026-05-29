@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Scripts.CustomPhysics;
+using Game.Scripts.Features.Player.Model;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Player.Services

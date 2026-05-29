@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Scripts.Features.Player;
+using Game.Scripts.Features.Player.Model;
 using MVVM;
 using UnityEngine;
 using Zenject;

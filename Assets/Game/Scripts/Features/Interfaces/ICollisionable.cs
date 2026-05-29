@@ -1,9 +1,7 @@
-﻿using Game.Scripts.CustomPhysics;
-
-namespace Game.Scripts.Features.Interfaces
+﻿namespace Game.Scripts.Features.Interfaces
 {
-    public interface ICollisionable
+    public interface ICollisionable: ICustomPhysicsObject
     {
-        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D();
+        
     }
 }

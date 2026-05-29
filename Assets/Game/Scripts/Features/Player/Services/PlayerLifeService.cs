@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Features.Player.Model;
 using Game.Scripts.Signals;
 using Zenject;
 
@@ -7,14 +8,15 @@ namespace Game.Scripts.Features.Player.Services
     public class PlayerLifeService: IDisposable
     {
         private SignalBus _signalBus;
-        private PlayerModel _playerModel;
+        private PlayerHealthModel _playerHealthModel;
 
-        public PlayerLifeService(PlayerModel playerModel, SignalBus signalBus)
+        public PlayerLifeService(SignalBus signalBus, PlayerHealthModel playerHealthModel)
         {
-            _playerModel = playerModel;
             _signalBus = signalBus;
+            
+            _playerHealthModel = playerHealthModel;
 
-            _playerModel.OnDie += OnDie;
+            _playerHealthModel.OnDie += OnDie;
         }
 
         private void OnDie()
@@ -24,7 +26,7 @@ namespace Game.Scripts.Features.Player.Services
 
         public void Dispose()
         {
-            _playerModel.OnDie -= OnDie;
+            _playerHealthModel.OnDie -= OnDie;
         }
     }
 }

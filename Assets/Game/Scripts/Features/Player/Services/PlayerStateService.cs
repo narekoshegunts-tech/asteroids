@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Features.Player.Model;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Player.Services
@@ -8,7 +9,6 @@ namespace Game.Scripts.Features.Player.Services
     public class PlayerStateService
     {
         private CancellationTokenSource _cts;
-        private UniTask _currentInvulnerabilityTask;
         
         private float _invulnerabilityDuration;
         
@@ -20,13 +20,13 @@ namespace Game.Scripts.Features.Player.Services
         public bool IsInvulnerable { get; private set; }
         
 
-        public PlayerStateService(PlayerModel playerModel)
+        public PlayerStateService(PlayerHealthModel playerHealthModel)
         {
             CanMove = true;
             CanAttack = true;
             IsInvulnerable = false;
             
-            _invulnerabilityDuration = playerModel.InvulnerabilityDuration;
+            _invulnerabilityDuration = playerHealthModel.InvulnerabilityDuration;
         }
 
         public void ApplyInvulnerability()
@@ -35,7 +35,7 @@ namespace Game.Scripts.Features.Player.Services
             _cts?.Dispose();
             _cts = new CancellationTokenSource();
             
-            _currentInvulnerabilityTask = ApplyInvulnerabilityTask(_invulnerabilityDuration);
+            _ = ApplyInvulnerabilityTask(_invulnerabilityDuration);
         }
 
         private async UniTask ApplyInvulnerabilityTask(float duration)

@@ -3,21 +3,15 @@ using Game.Scripts.Features.Player.Data;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Features.Player
+namespace Game.Scripts.Features.Player.Model
 {
     public class PlayerModel
     {
-        [Inject] private SignalBus _signalBus;
-        
-        public event Action<int> OnGetDamage;
         public event Action<int> OnLaserAttack;
         public event Action<Vector2> OnPositionChanged;
         public event Action<float> OnRotationChanged;
         public event Action <float> OnVelocityChanged;
-        public event Action OnDie;
         
-        public int CurrentHealth { get; private set; }
-        public int MaxHealth { get; private set; }
         
         public Vector2 Position { get; private set; }
         public float Rotation { get; private set; }
@@ -27,13 +21,14 @@ namespace Game.Scripts.Features.Player
         public int MaxLaserAttacks { get; private set; }
         public float LaserChargeTime { get; private set; }
         
-        public float InvulnerabilityDuration { get; private set; }
+        private PlayerHealthModel _playerHealthModel;
 
         [Inject]
-        public PlayerModel(PlayerDataService playerDataService)
+        public PlayerModel(PlayerDataService playerDataService,
+            PlayerHealthModel playerHealthModel)
         {
-            CurrentHealth = playerDataService.MaxHealth;
-            MaxHealth = playerDataService.MaxHealth;
+            _playerHealthModel = playerHealthModel;
+            
             Position = Vector2.zero;
             Rotation = 0;
             Velocity = 0;
@@ -41,24 +36,8 @@ namespace Game.Scripts.Features.Player
             MaxLaserAttacks = playerDataService.LaserAttackMaxCount;
             CurrentLaserAttacks = MaxLaserAttacks;
             LaserChargeTime = playerDataService.LaserAttackChargeTime;
-            InvulnerabilityDuration = playerDataService.InvulnerabilityDuration;
         }
-
-        public void GetDamage()
-        {
-            CurrentHealth--;
-            OnGetDamage?.Invoke(CurrentHealth);
-
-            if (CurrentHealth <= 0)
-            {
-                Die();
-            }
-        }
-
-        private void Die()
-        {
-            OnDie?.Invoke();
-        }
+        
 
         public bool TryLaserAttack()
         {

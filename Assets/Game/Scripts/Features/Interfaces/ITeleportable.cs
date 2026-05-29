@@ -1,9 +1,6 @@
-﻿using Game.Scripts.CustomPhysics;
-
-namespace Game.Scripts.Features.Interfaces
+﻿namespace Game.Scripts.Features.Interfaces
 {
-    public interface ITeleportable
+    public interface ITeleportable: ICustomPhysicsObject
     {
-        public CustomPhysicsFacade2D GetCustomPhysicsFacade2D();
     }
 }

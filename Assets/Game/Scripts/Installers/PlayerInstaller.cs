@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.Features.Player;
 using Game.Scripts.Features.Player.Data;
 using Game.Scripts.Features.Player.Interfaces;
+using Game.Scripts.Features.Player.Model;
 using Game.Scripts.Features.Player.Projectiles.Data;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
@@ -49,6 +50,9 @@ namespace Game.Scripts.Installers
 
         private void BindPlayerModel()
         {
+            Container
+                .Bind<PlayerHealthModel>()
+                .AsSingle();
             Container
                 .Bind<PlayerModel>()
                 .AsSingle();
