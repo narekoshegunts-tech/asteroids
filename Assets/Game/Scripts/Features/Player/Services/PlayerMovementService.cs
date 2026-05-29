@@ -7,12 +7,13 @@ namespace Game.Scripts.Features.Player.Services
 {
     public class PlayerMovementService: IDisposable
     {
-        private PlayerModel _playerModel;
+        private PlayerMovementModel _playerMovementModel;
+        
         private CustomPhysicsFacade2D _playerPhysics;
 
-        public PlayerMovementService(PlayerModel playerModel)
+        public PlayerMovementService(PlayerMovementModel playerMovementModel)
         {
-            _playerModel = playerModel;
+            _playerMovementModel = playerMovementModel;
         }
 
         public void Initialize(CustomPhysicsFacade2D playerPhysics)
@@ -26,24 +27,24 @@ namespace Game.Scripts.Features.Player.Services
 
         private void ChangePosition(Vector2 position)
         {
-            _playerModel.ChangePosition(position);
+            _playerMovementModel.ChangePosition(position);
         }
 
         private void ChangeVelocity(float instantVelocity)
         {
-            _playerModel.ChangeVelocity(instantVelocity);
+            _playerMovementModel.ChangeVelocity(instantVelocity);
         }
 
         private void ChangeRotation(float instantRotation)
         {
-            _playerModel.ChangeRotation(instantRotation);
+            _playerMovementModel.ChangeRotation(instantRotation);
         }
 
         public void Dispose()
         {
             _playerPhysics.OnPositionChanged -= ChangePosition;
             _playerPhysics.OnRotationChanged -= ChangeRotation;
-            _playerModel.OnVelocityChanged -= ChangeVelocity;
+            _playerPhysics.OnVelocityChanged -= ChangeVelocity;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Game.Scripts.UI.ViewModels
 {
     public class PlayerMovementViewModel: IInitializable, IDisposable
     {
-        private PlayerModel _playerModel;
+        private PlayerMovementModel _playerMovementModel;
 
         [Data("Position")]
         private string _position;
@@ -22,23 +22,23 @@ namespace Game.Scripts.UI.ViewModels
         public event Action<string> OnVelocityChanged;
         public event Action<string> OnRotationChanged;
 
-        public PlayerMovementViewModel(PlayerModel playerModel)
+        public PlayerMovementViewModel(PlayerMovementModel playerMovementModel)
         {
-            _playerModel = playerModel;
+            _playerMovementModel = playerMovementModel;
         }
         public void Initialize()
         {
             
-            _playerModel.OnPositionChanged += ChangePosition;
-            _playerModel.OnVelocityChanged += ChangeVelocity;
-            _playerModel.OnRotationChanged += ChangeRotation;
+            _playerMovementModel.OnPositionChanged += ChangePosition;
+            _playerMovementModel.OnVelocityChanged += ChangeVelocity;
+            _playerMovementModel.OnRotationChanged += ChangeRotation;
         }
 
         public void Dispose()
         {
-            _playerModel.OnPositionChanged -= ChangePosition;
-            _playerModel.OnVelocityChanged -= ChangeVelocity;
-            _playerModel.OnRotationChanged -= ChangeRotation;
+            _playerMovementModel.OnPositionChanged -= ChangePosition;
+            _playerMovementModel.OnVelocityChanged -= ChangeVelocity;
+            _playerMovementModel.OnRotationChanged -= ChangeRotation;
         }
         
         private void ChangePosition(Vector2 position)

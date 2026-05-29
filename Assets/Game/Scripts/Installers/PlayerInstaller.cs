@@ -54,6 +54,9 @@ namespace Game.Scripts.Installers
                 .Bind<PlayerHealthModel>()
                 .AsSingle();
             Container
+                .Bind<PlayerMovementModel>()
+                .AsSingle();
+            Container
                 .Bind<PlayerModel>()
                 .AsSingle();
         }

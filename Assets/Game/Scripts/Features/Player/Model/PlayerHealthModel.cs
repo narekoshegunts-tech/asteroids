@@ -12,8 +12,7 @@ namespace Game.Scripts.Features.Player.Model
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
         public float InvulnerabilityDuration { get; private set; }
-
-        [Inject]
+        
         public PlayerHealthModel(PlayerDataService dataService)
         {
             MaxHealth = dataService.MaxHealth;
