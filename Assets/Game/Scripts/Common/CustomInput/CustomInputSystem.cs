@@ -9,8 +9,6 @@ namespace Game.Scripts.Common.CustomInput
     {
         private IInputSystem _currentInput;
 
-        private Transform _targetTransform;
-
         [Inject]
         private void Construct(IInputStrategy inputStrategy)
         {
@@ -47,8 +45,8 @@ namespace Game.Scripts.Common.CustomInput
         
         public void SetTargetTransform(Transform targetTransform)
         {
-            _targetTransform = targetTransform;
-            _currentInput.SetTargetTransform(targetTransform);
+            if (_currentInput is ITargetedInputSystem targetedInputSystem)
+                targetedInputSystem.SetTargetTransform(targetTransform);
         }
         public Vector2 GetDirection()
         {

@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Common.CustomInput.MouseKeyboard
 {
-    public class MouseKeyboardInputSystem: IInputSystem, ITickable
+    public class MouseKeyboardInputSystem: ITargetedInputSystem, ITickable
     {
         private Camera _camera;
         private Transform _targetTransform;

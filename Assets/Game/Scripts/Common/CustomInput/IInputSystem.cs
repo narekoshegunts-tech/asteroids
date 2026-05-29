@@ -12,6 +12,5 @@ namespace Game.Scripts.Common.CustomInput
         public event Action OnLaserAttackKeyPressedDown;
         
         Vector2 GetDirection();
-        void SetTargetTransform(Transform targetTransform);
     }
 }
