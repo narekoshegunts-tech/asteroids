@@ -9,7 +9,7 @@ namespace Game.Scripts.Features.Player
 {
     public class PlayerAttack: MonoBehaviour
     {
-        private PlayerModel _playerModel;
+        private PlayerLaserAttackModel _playerLaserAttackModel;
         
         private CustomInputSystem _customInputSystem;
         
@@ -23,11 +23,11 @@ namespace Game.Scripts.Features.Player
         private PlayerStateService _playerStateService;
 
         [Inject]
-        private void Construct(PlayerModel playerModel, IPlayerDirection playerDirection,
+        private void Construct(PlayerLaserAttackModel playerLaserAttackModel, IPlayerDirection playerDirection,
             CustomInputSystem customInputSystem, BulletAttackService bulletAttackService, LaserAttackService laserAttackService,
             PlayerStateService playerStateService)
         {
-            _playerModel = playerModel;
+            _playerLaserAttackModel = playerLaserAttackModel;
             _playerDirection = playerDirection;
             _customInputSystem = customInputSystem;
             _bulletAttackService = bulletAttackService;
@@ -62,7 +62,7 @@ namespace Game.Scripts.Features.Player
             if (!_playerStateService.CanAttack)
                 return;
             
-            if (_playerModel.TryLaserAttack())
+            if (_playerLaserAttackModel.TryLaserAttack())
                 _laserAttackService.Attack(_attackStartTransform.position, _playerDirection.Direction);
         }
         

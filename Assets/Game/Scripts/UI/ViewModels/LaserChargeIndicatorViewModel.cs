@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Features.Player;
 using Game.Scripts.Features.Player.Model;
 using MVVM;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace Game.Scripts.UI.ViewModels
 {
     public class LaserChargeIndicatorViewModel: IInitializable, IDisposable
     {
-        private PlayerModel _playerModel;
+        private PlayerLaserAttackModel _playerLaserAttackModel;
 
         private CancellationTokenSource _cts;
 
@@ -23,29 +22,23 @@ namespace Game.Scripts.UI.ViewModels
         private int _currentLaserAttacks;
 
         private float _chargeTime;
-
         
         public event Action<float> OnFillAmountChanged;
         public event Action<string> OnLaserAttacksChanged;
         
-        public LaserChargeIndicatorViewModel(PlayerModel playerModel)
+        public LaserChargeIndicatorViewModel(PlayerLaserAttackModel playerLaserAttackModel)
         {
-            _playerModel = playerModel;
-            _maxLaserAttacks = _playerModel.MaxLaserAttacks;
-            _currentLaserAttacks = _playerModel.CurrentLaserAttacks;
-            _chargeTime = _playerModel.LaserChargeTime;
+            _playerLaserAttackModel = playerLaserAttackModel;
+            _maxLaserAttacks = _playerLaserAttackModel.MaxLaserAttacks;
+            _currentLaserAttacks = _playerLaserAttackModel.CurrentLaserAttacks;
+            _chargeTime = _playerLaserAttackModel.LaserChargeTime;
         }
         
         public void Initialize()
         {
-            _playerModel.OnLaserAttack += OnCurrentLaserAttackChanged;
+            _playerLaserAttackModel.OnLaserAttack += OnCurrentLaserAttackChanged;
             
             LaserAttacksChanged(_currentLaserAttacks);
-        }
-
-        public void Dispose()
-        {
-            _playerModel.OnLaserAttack -= OnCurrentLaserAttackChanged;
         }
         
         private async UniTask StartCharging(float chargeTime)
@@ -93,7 +86,7 @@ namespace Game.Scripts.UI.ViewModels
 
         private void LaserCharge(int currentLaserAttacks)
         {
-            _playerModel.SetLaserCharges(currentLaserAttacks);
+            _playerLaserAttackModel.SetLaserCharges(currentLaserAttacks);
             OnCurrentLaserAttackChanged(currentLaserAttacks);
         }
 
@@ -105,6 +98,11 @@ namespace Game.Scripts.UI.ViewModels
         private void LaserAttacksChanged(int laserAttacks)
         {
             OnLaserAttacksChanged?.Invoke(laserAttacks.ToString());
+        }
+        
+        public void Dispose()
+        {
+            _playerLaserAttackModel.OnLaserAttack -= OnCurrentLaserAttackChanged;
         }
     }
 }

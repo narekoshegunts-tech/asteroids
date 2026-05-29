@@ -1,7 +1,6 @@
 ﻿using System;
 using Game.Scripts.Features.Player.Data;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Features.Player.Model
 {

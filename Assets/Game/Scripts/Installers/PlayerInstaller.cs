@@ -57,8 +57,13 @@ namespace Game.Scripts.Installers
                 .Bind<PlayerMovementModel>()
                 .AsSingle();
             Container
+                .Bind<PlayerLaserAttackModel>()
+                .AsSingle();
+            
+            Container
                 .Bind<PlayerModel>()
                 .AsSingle();
+            
         }
 
         private void BindLaserAttackService()
