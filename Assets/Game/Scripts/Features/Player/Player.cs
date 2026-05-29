@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Features.Player.Interfaces;
+using UnityEngine;
 
 namespace Game.Scripts.Features.Player
 {

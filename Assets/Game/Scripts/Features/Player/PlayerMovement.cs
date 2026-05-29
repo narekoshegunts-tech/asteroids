@@ -4,13 +4,14 @@ using Game.Scripts.CustomPhysics.Factories;
 using Game.Scripts.Common.CustomInput;
 using Game.Scripts.Features.Interfaces;
 using Game.Scripts.Features.Player.Data;
+using Game.Scripts.Features.Player.Interfaces;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Features.Player
 {
-    public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable
+    public class PlayerMovement: MonoBehaviour, ITeleportable, ICollisionable, IPlayerDirection
     {
         private PlayerStateService _playerStateService;
         private PlayerMovementService _playerMovementService;

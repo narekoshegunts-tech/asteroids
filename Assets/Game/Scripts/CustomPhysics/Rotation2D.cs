@@ -6,7 +6,7 @@ namespace Game.Scripts.CustomPhysics
     {
         private Transform _transform;
 
-        private const float AngleOffset = -90; // у нас спрайты смотрят вверх изначально
+        private const float AngleOffset = -90;
         
         private float _rotation;
 

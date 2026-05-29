@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Common.Services;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Enemies.Asteroids.Data
 {
-    public class AsteroidDataService
+    public class AsteroidDataService: JsonConfigLoader<AsteroidDataRoot>
     {
         private const string ResourcePath = "Configs/asteroids";
         private List<AsteroidData> _data;
@@ -18,16 +19,14 @@ namespace Game.Scripts.Features.Enemies.Asteroids.Data
         
         public int SmallAsteroidsPerLarge { get; private set; }
 
-        public AsteroidDataService()
+        public AsteroidDataService(): base(ResourcePath)
         {
             LoadConfig();
         }
         
         private void LoadConfig()
         {
-            TextAsset textAsset = Resources.Load<TextAsset>(ResourcePath);
-            
-            var root = JsonConvert.DeserializeObject<AsteroidDataRoot>(textAsset.text);
+            var root = LoadRoot();
 
             _data = root.Asteroids;
             

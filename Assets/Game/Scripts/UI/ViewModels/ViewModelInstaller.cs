@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.UI.ViewModels
 {
-    public class ViewModelsInstaller: MonoInstaller
+    public class ViewModelInstaller: MonoInstaller
     {
 
         public override void InstallBindings()

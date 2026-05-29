@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class EnemiesInstaller: MonoInstaller
+    public class EnemyInstaller: MonoInstaller
     {
         [SerializeField] private EnemySpawner _enemySpawner;
         public override void InstallBindings()

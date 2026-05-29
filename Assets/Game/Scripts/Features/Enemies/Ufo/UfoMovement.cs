@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Features.Enemies.Ufo.Data;
 using Game.Scripts.Features.Player;
+using Game.Scripts.Features.Player.Interfaces;
 using UnityEngine;
 using Zenject;
 

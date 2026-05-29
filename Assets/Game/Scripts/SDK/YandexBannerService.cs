@@ -63,8 +63,7 @@ namespace Game.Scripts.SDK
             BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
 
             _banner = new Banner(bannerSize, AdPosition.BottomCenter);
-
-            // Подписка на события
+            
             _banner.OnAdLoaded += HandleAdLoaded;
             _banner.OnAdFailedToLoad += HandleAdFailedToLoad;
             _banner.OnAdClicked += HandleAdClicked;
@@ -85,8 +84,6 @@ namespace Game.Scripts.SDK
             int screenWidth = (int)Screen.safeArea.width;
             return ScreenUtils.ConvertPixelsToDp(screenWidth);
         }
-
-        // ====================== EVENTS ======================
 
         private void HandleAdLoaded(object sender, EventArgs args)
         {

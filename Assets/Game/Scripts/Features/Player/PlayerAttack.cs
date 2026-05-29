@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Common.CustomInput;
+using Game.Scripts.Features.Player.Interfaces;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
@@ -12,9 +13,8 @@ namespace Game.Scripts.Features.Player
         private CustomInputSystem _customInputSystem;
         
         [SerializeField] private Transform _attackStartTransform;
-
-        // Нужно чтобы получить доступ к вращению игрока, для передачи вращения снаряду. Хз как по другому
-        private PlayerMovement _playerMovement;
+        
+        private IPlayerDirection _playerDirection;
         
         private BulletAttackService _bulletAttackService;
         private LaserAttackService _laserAttackService;
@@ -22,12 +22,12 @@ namespace Game.Scripts.Features.Player
         private PlayerStateService _playerStateService;
 
         [Inject]
-        private void Construct(PlayerModel playerModel, PlayerMovement playerMovement,
+        private void Construct(PlayerModel playerModel, IPlayerDirection playerDirection,
             CustomInputSystem customInputSystem, BulletAttackService bulletAttackService, LaserAttackService laserAttackService,
             PlayerStateService playerStateService)
         {
             _playerModel = playerModel;
-            _playerMovement = playerMovement;
+            _playerDirection = playerDirection;
             _customInputSystem = customInputSystem;
             _bulletAttackService = bulletAttackService;
             _laserAttackService = laserAttackService;
@@ -53,7 +53,7 @@ namespace Game.Scripts.Features.Player
             if (!_playerStateService.CanAttack)
                 return;
             
-            _bulletAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
+            _bulletAttackService.Attack(_attackStartTransform.position, _playerDirection.Direction);
         }
 
         private void LaserAttack()
@@ -62,7 +62,7 @@ namespace Game.Scripts.Features.Player
                 return;
             
             if (_playerModel.TryLaserAttack())
-                _laserAttackService.Attack(_attackStartTransform.position, _playerMovement.Direction);
+                _laserAttackService.Attack(_attackStartTransform.position, _playerDirection.Direction);
         }
         
     }

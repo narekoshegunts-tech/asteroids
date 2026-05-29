@@ -118,8 +118,7 @@ namespace Game.Scripts.UI.Binders
 
             return diContainer.ResolveId(type, id);
         }
-
-        // ==================== Editor Helper ====================
+        
 #if UNITY_EDITOR
         private void OnValidate()
         {

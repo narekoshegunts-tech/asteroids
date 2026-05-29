@@ -12,8 +12,7 @@ namespace Game.Scripts.Common.ObjectPool
         
         private Stack<T> _pool;
         private int _size;
-
-        // хз плохо ли передавать dicontainer. Другого решения не нашел
+        
         public ObjectPool(T prefab,GameObject container,int size, DiContainer diContainer)
         {
             _prefab = prefab;
