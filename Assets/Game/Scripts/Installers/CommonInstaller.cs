@@ -13,7 +13,7 @@ namespace Game.Scripts.Installers
             InstallSignalBus();
             DeclareSignals();
             BindPauseService();
-            BindGameFlowController();
+            BindGameSessionService();
         }
 
         private void BindObjectPoolFactory()
@@ -42,7 +42,7 @@ namespace Game.Scripts.Installers
                 .AsSingle();
         }
 
-        private void BindGameFlowController()
+        private void BindGameSessionService()
         {
             Container
                 .BindInterfacesAndSelfTo<GameSessionService>()

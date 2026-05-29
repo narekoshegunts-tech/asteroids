@@ -11,7 +11,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Bullets
         [Inject]
         protected override void Construct(ProjectilesDataService dataService)
         {
-            var config = dataService.GetData()[ProjectileType.Bullet];
+            var config = dataService.Data[ProjectileType.Bullet];
             _lifeTime = config.LifeTime;
         }
         

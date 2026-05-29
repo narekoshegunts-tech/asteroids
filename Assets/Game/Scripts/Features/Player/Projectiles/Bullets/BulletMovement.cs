@@ -9,7 +9,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Bullets
         [Inject]
         private void Construct(ProjectilesDataService data)
         {
-            var config = data.GetData()[ProjectileType.Bullet];
+            var config = data.Data[ProjectileType.Bullet];
             _speed = config.MoveSpeed;
         }
     }

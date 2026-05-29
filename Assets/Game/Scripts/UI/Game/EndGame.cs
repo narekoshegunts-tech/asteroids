@@ -11,8 +11,15 @@ namespace Game.Scripts.UI.Game
         private CanvasGroup _canvasGroup;
         [SerializeField] private Button _restartButton;
         
-        [Inject] private SignalBus _signalBus;
-        [Inject] private YandexBannerService _yandexBannerService;
+        private SignalBus _signalBus;
+        private YandexBannerService _yandexBannerService;
+
+        [Inject]
+        private void Construct(SignalBus signalBus, YandexBannerService yandexBannerService)
+        {
+            _signalBus = signalBus;
+            _yandexBannerService = yandexBannerService;
+        }
         
 
         private void Awake()

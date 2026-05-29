@@ -55,9 +55,15 @@ namespace Game.Scripts.UI.Binders
         private string viewModelId;
 
         [Inject]
-        private DiContainer diContainer;
+        private DiContainer _diContainer;
 
         private IBinder _binder;
+        
+        [Inject]
+        private void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         private void Awake()
         {
@@ -104,7 +110,7 @@ namespace Game.Scripts.UI.Binders
             if (type == null)
                 throw new Exception($"Cannot resolve type: {fullName}");
 
-            return diContainer.Resolve(type);
+            return _diContainer.Resolve(type);
         }
 
         private object ResolveTypeWithId(string fullName, string id)
@@ -116,7 +122,7 @@ namespace Game.Scripts.UI.Binders
             if (type == null)
                 throw new Exception($"Cannot resolve type: {fullName}");
 
-            return diContainer.ResolveId(type, id);
+            return _diContainer.ResolveId(type, id);
         }
         
 #if UNITY_EDITOR

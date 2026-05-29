@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Scripts.Common.Services;
 using Game.Scripts.Features.Enemies;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Core.Score.Data
@@ -38,11 +37,6 @@ namespace Game.Scripts.Features.Core.Score.Data
                 else
                     _dataDict[item.Type] = item.Score;
             }
-        }
-
-        public Dictionary<EnemyType, int> GetData()
-        {
-            return new Dictionary<EnemyType, int>(_dataDict);
         }
     }
 }

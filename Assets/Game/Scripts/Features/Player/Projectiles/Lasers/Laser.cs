@@ -10,7 +10,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Lasers
         [Inject]
         protected override void Construct(ProjectilesDataService dataService)
         {
-            var config = dataService.GetData()[ProjectileType.Laser];
+            var config = dataService.Data[ProjectileType.Laser];
             _lifeTime = config.LifeTime;
         }
         

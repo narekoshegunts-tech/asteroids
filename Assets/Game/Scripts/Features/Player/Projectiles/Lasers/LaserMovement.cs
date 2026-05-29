@@ -8,7 +8,7 @@ namespace Game.Scripts.Features.Player.Projectiles.Lasers
         [Inject]
         private void Construct(ProjectilesDataService data)
         {
-            var config = data.GetData()[ProjectileType.Laser];
+            var config = data.Data[ProjectileType.Laser];
             _speed = config.MoveSpeed;
         }
     }

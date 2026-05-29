@@ -7,10 +7,17 @@ namespace Game.Scripts.UI.Game.Services
 {
     public class GameSessionService: IInitializable, IDisposable
     {
-        [Inject] private SignalBus _signalBus;
-        [Inject] private GamePauseService _gamePauseService;
-        [Inject] private EndGame _endGame;
-        
+        private SignalBus _signalBus;
+        private GamePauseService _gamePauseService;
+        private EndGame _endGame;
+
+
+        public GameSessionService(SignalBus signalBus, GamePauseService gamePauseService, EndGame endGame)
+        {
+            _signalBus = signalBus;
+            _gamePauseService = gamePauseService;
+            _endGame = endGame;
+        }
         public void Initialize()
         {
             _signalBus.Subscribe<PlayerDiedSignal>(HandlePlayerDeath);

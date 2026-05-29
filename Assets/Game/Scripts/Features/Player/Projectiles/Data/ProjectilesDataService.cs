@@ -44,9 +44,5 @@ namespace Game.Scripts.Features.Player.Projectiles.Data
             }
         }
         
-        public IReadOnlyDictionary<ProjectileType, ProjectileData> GetData()
-        {
-            return Data;
-        }
     }
 }
