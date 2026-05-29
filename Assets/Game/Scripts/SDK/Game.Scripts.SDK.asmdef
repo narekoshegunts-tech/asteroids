@@ -2,7 +2,8 @@
     "name": "Game.Scripts.SDK",
     "rootNamespace": "",
     "references": [
-        "GUID:5af2cce5de1aff145835bbd4fcd49951"
+        "GUID:5af2cce5de1aff145835bbd4fcd49951",
+        "GUID:9b4ce77d2be44f25af03d4cbf9bee9f9"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
