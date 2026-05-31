@@ -8,33 +8,38 @@ namespace Game.Scripts.Features.Player.Services
 {
     public abstract class ProjectileAttackService<T> where T: Projectile
     {
-        private readonly string _prefabPath;
         private readonly string _poolName;
 
+        private ObjectPoolFactory _poolFactory;
+        
         protected ObjectPool<T> _pool;
         protected GameObject _poolContainer;
         protected T _prefab;
         
+        private int _poolSize;
+        
         protected ProjectileAttackService()
         {
-            _prefabPath = GetPrefabPath();
             _poolName = GetPoolName();
         }
         
         protected abstract int GetPoolSize(ProjectilesDataService projectilesDataService);
         protected abstract string GetPoolName();
-        protected abstract string GetPrefabPath();
         
         [Inject]
-        protected void Construct(ObjectPoolFactory objectPoolFactory, 
+        private void Construct(ObjectPoolFactory objectPoolFactory, 
             ProjectilesDataService projectilesDataService)
         {
-            _prefab = Resources.Load<T>(_prefabPath);
             
             _poolContainer = new GameObject(_poolName);
-            int poolSize = GetPoolSize(projectilesDataService);
+            _poolSize = GetPoolSize(projectilesDataService);
             
-            _pool = objectPoolFactory.Create(_prefab, _poolContainer, poolSize);
+            _poolFactory = objectPoolFactory;
+        }
+
+        public void Initialize()
+        {
+            _pool = _poolFactory.Create(_prefab, _poolContainer, _poolSize);
         }
         
         

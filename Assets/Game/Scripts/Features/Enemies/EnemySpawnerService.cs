@@ -17,15 +17,12 @@ namespace Game.Scripts.Features.Enemies
         
         protected ObjectPool<TEnemy> _pool;
         
-        private TEnemy _enemyPrefab;
-
-        private UniTask _spawnTask;
+        protected TEnemy _enemyPrefab;
         
         private CancellationTokenSource _cts;
 
         public event Action<Enemy> OnAnyEnemySpawned;
         
-        protected abstract string PrefabPath { get; }
         protected abstract float SpawnCooldown { get; }
         protected abstract int PoolSize { get; }
         
@@ -38,8 +35,6 @@ namespace Game.Scripts.Features.Enemies
         
         public void Initialize()
         {
-            _enemyPrefab = Resources.Load<TEnemy>(PrefabPath);
-            
             GameObject container = new GameObject($"{typeof(TEnemy).Name}Pool");
             _pool = _objectPoolFactory.Create(_enemyPrefab, container, PoolSize);
         }
@@ -49,7 +44,7 @@ namespace Game.Scripts.Features.Enemies
             StopSpawning();
             
             _cts = new CancellationTokenSource();
-            _spawnTask = SpawnLoop(_cts.Token).SuppressCancellationThrow();
+            _ = SpawnLoop(_cts.Token).SuppressCancellationThrow();
         }
         
         

@@ -16,13 +16,13 @@ namespace Game.Scripts.Features.Enemies.Asteroids
         private int _currentLargeAsteroidsCount;
         private int _smallAsteroidsPerLarge;
         
-        protected override string PrefabPath => "Prefabs/Enemies/Asteroid";
         protected override float SpawnCooldown => _asteroidsDataService.LargeAsteroidSpawnCooldown;
         protected override int PoolSize => _asteroidsDataService.PoolSize;
         
         [Inject]
-        private void Construct(AsteroidDataService asteroidsDataService)
+        private void Construct(AsteroidDataService asteroidsDataService, Asteroid asteroidPrefab)
         {
+            _enemyPrefab = asteroidPrefab;
             _asteroidsDataService = asteroidsDataService;
             
             _maxLargeAsteroidsCount = _asteroidsDataService.MaxLargeAsteroidsCount;

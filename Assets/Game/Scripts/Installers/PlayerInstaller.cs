@@ -2,7 +2,9 @@
 using Game.Scripts.Features.Player.Data;
 using Game.Scripts.Features.Player.Interfaces;
 using Game.Scripts.Features.Player.Model;
+using Game.Scripts.Features.Player.Projectiles.Bullets;
 using Game.Scripts.Features.Player.Projectiles.Data;
+using Game.Scripts.Features.Player.Projectiles.Lasers;
 using Game.Scripts.Features.Player.Services;
 using UnityEngine;
 using Zenject;
@@ -13,9 +15,13 @@ namespace Game.Scripts.Installers
     {
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private Transform _startPoint;
+        
+        [SerializeField] private Bullet _bulletPrefab;
+        [SerializeField] private Laser _laserPrefab; 
 
         public override void InstallBindings()
         {
+            BindProjectilesPrefabs();
             BindPlayer();
             BindProjectilesDataService();
             BindBulletAttackService();
@@ -25,6 +31,17 @@ namespace Game.Scripts.Installers
             BindPlayerStateService();
             BindPlayerLifeService();
             BindPlayerMovementService();
+        }
+
+        private void BindProjectilesPrefabs()
+        {
+            Container
+                .Bind<Bullet>()
+                .FromInstance(_bulletPrefab);
+
+            Container
+                .Bind<Laser>()
+                .FromInstance(_laserPrefab);
         }
 
         private void BindPlayerMovementService()
@@ -59,11 +76,6 @@ namespace Game.Scripts.Installers
             Container
                 .Bind<PlayerLaserAttackModel>()
                 .AsSingle();
-            
-            Container
-                .Bind<PlayerModel>()
-                .AsSingle();
-            
         }
 
         private void BindLaserAttackService()

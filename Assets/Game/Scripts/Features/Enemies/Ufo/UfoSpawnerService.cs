@@ -10,13 +10,13 @@ namespace Game.Scripts.Features.Enemies.Ufo
         
         private UfoData _ufoData;
         
-        protected override string PrefabPath => "Prefabs/Enemies/Ufo";
         protected override float SpawnCooldown => _ufoDataService.SpawnCooldown;
         protected override int PoolSize => _ufoDataService.PoolSize;
         
         [Inject]
-        private void Construct(UfoDataService ufoDataService)
+        private void Construct(UfoDataService ufoDataService, Ufo ufoPrefab)
         {
+            _enemyPrefab = ufoPrefab;
             _ufoDataService = ufoDataService;
             
             _ufoData = _ufoDataService.UfoData;

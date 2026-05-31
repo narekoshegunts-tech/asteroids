@@ -2459,6 +2459,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySpawner: {fileID: 13720017}
+  _asteroidPrefab: {fileID: 8361055702527731807, guid: 1710f4fb9947dda43b2abd551dbc1f15, type: 3}
+  _ufoPrefab: {fileID: 9137074017758514617, guid: c7b6f07660cae604aa0559121490e8c7, type: 3}
 --- !u!114 &1739938139
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,9 +30,12 @@ namespace Game.Scripts.Features.Player
             _playerLaserAttackModel = playerLaserAttackModel;
             _playerDirection = playerDirection;
             _customInputSystem = customInputSystem;
+            _playerStateService = playerStateService;
+            
             _bulletAttackService = bulletAttackService;
             _laserAttackService = laserAttackService;
-            _playerStateService = playerStateService;
+            _bulletAttackService.Initialize();
+            _laserAttackService.Initialize();
         }
         
 

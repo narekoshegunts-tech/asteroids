@@ -53,8 +53,7 @@ namespace Game.Scripts.UI.Binders
 
         [SerializeField]
         private string viewModelId;
-
-        [Inject]
+        
         private DiContainer _diContainer;
 
         private IBinder _binder;

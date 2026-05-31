@@ -19,12 +19,11 @@ namespace Game.Scripts.Features.Player
         private CustomPhysicsFacade2D _customPhysicsFacade;
 
         private float _acceleration;
-        
-        private CustomInputSystem _customInputSystem;
 
         public event Action OnAccelerationStart;
         public event Action OnAccelerationEnd;
-        
+
+        private Vector2 _direction;
         public Vector2 Direction => _customPhysicsFacade.Direction;
         
         [Inject]
@@ -33,9 +32,7 @@ namespace Game.Scripts.Features.Player
             PlayerStateService playerStateService, PlayerMovementService playerMovementService)
         {
             _customPhysicsFacade = customPhysicsFacadeFactory.Create(transform);
-            _customInputSystem = customInputSystem;
-            
-            _customInputSystem.SetTargetTransform(transform);
+
             
             _acceleration = playerDataService.Acceleration;
             
@@ -45,44 +42,28 @@ namespace Game.Scripts.Features.Player
             _playerMovementService.Initialize(_customPhysicsFacade);
         }
 
-        private void OnEnable()
+        public void SetDirection(Vector2 direction)
         {
-            SubscribeToInputSystem();
-        }
-
-        private void SubscribeToInputSystem()
-        {
-            _customInputSystem.OnAccelerationKeyPressedDown += OnAccelerationKeyPressedDown;
-            _customInputSystem.OnAccelerationKeyPressed += OnAccelerationKeyPressed;
-            _customInputSystem.OnAccelerationKeyPressedUp += OnAccelerationKeyPressedUp;
-        }
-
-        private void UnSubscribeFromInputSystem()
-        {
-            _customInputSystem.OnAccelerationKeyPressedDown -= OnAccelerationKeyPressedDown;
-            _customInputSystem.OnAccelerationKeyPressed -= OnAccelerationKeyPressed;
-            _customInputSystem.OnAccelerationKeyPressedUp -= OnAccelerationKeyPressedUp;
+            _direction = direction;
         }
 
         private void FixedUpdate()
         {
-            
-            Vector2 direction = _customInputSystem.GetDirection();
 
             if (_playerStateService.CanMove)
-                _customPhysicsFacade.ApplyRotation(direction);
+                _customPhysicsFacade.ApplyRotation(_direction);
 
             _customPhysicsFacade.FixedUpdate();
         }
 
-        private void OnAccelerationKeyPressedDown()
+        public void OnAccelerationKeyPressedDown()
         {
             if (!_playerStateService.CanMove)
                 return;
             OnAccelerationStart?.Invoke();
         }
 
-        private void OnAccelerationKeyPressed()
+        public void OnAccelerationKeyPressed()
         {
             if (!_playerStateService.CanMove)
             {
@@ -95,7 +76,7 @@ namespace Game.Scripts.Features.Player
             _customPhysicsFacade.ApplyAcceleration(_acceleration);
         }
 
-        private void OnAccelerationKeyPressedUp()
+        public void OnAccelerationKeyPressedUp()
         {
             _customPhysicsFacade.ApplyAcceleration(0);
             OnAccelerationEnd?.Invoke();
@@ -104,11 +85,6 @@ namespace Game.Scripts.Features.Player
         public CustomPhysicsFacade2D GetCustomPhysicsFacade2D()
         {
             return _customPhysicsFacade;
-        }
-        
-        private void OnDisable()
-        {
-            UnSubscribeFromInputSystem();
         }
     }
 }

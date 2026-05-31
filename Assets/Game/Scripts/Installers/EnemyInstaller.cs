@@ -11,13 +11,27 @@ namespace Game.Scripts.Installers
     public class EnemyInstaller: MonoInstaller
     {
         [SerializeField] private EnemySpawner _enemySpawner;
+        [SerializeField] private Asteroid _asteroidPrefab;
+        [SerializeField] private Ufo _ufoPrefab;
         public override void InstallBindings()
         {
+            BindEnemies();
             BindAsteroidDataService();
             BindAsteroidSpawnerService();
             BindUfoDataService();
             BindUfoSpawnerService();
             BindEnemySpawner();
+        }
+
+        private void BindEnemies()
+        {
+            Container
+                .Bind<Asteroid>()
+                .FromInstance(_asteroidPrefab);
+            
+            Container
+                .Bind<Ufo>()
+                .FromInstance(_ufoPrefab);
         }
 
         private void BindEnemySpawner()
