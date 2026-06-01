@@ -2408,6 +2408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 3527695885163307294, guid: f75ee14143b041b489a0801dbbeee3a0, type: 3}
   _startPoint: {fileID: 771669701}
+  _bulletPrefab: {fileID: -7783526530897144188, guid: ce0db17105dd8db44af12050fb17ae64, type: 3}
+  _laserPrefab: {fileID: 3529834820890050109, guid: a3b739cdb6dd9cb42bdef741014bf027, type: 3}
 --- !u!114 &1739938135
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Common.CustomInput.Mobile;
+using Zenject;
 
 namespace Game.Scripts.Common.CustomInput.Strategy
 {
@@ -6,6 +7,7 @@ namespace Game.Scripts.Common.CustomInput.Strategy
     {
         private MobileInput _mobileInput;
 
+        [Inject]
         private void Construct(MobileInput mobileInput)
         {
             _mobileInput = mobileInput;
