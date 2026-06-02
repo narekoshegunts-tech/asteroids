@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Scripts.Common.CustomInput;
+﻿using Game.Scripts.Common.CustomInput;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +13,6 @@ namespace Game.Scripts.Features.Player
         private void Construct(CustomInputSystem customInputSystem, PlayerMovement playerMovement)
         {
             _customInputSystem = customInputSystem;
-            _customInputSystem.SetTargetTransform(transform);
             
             _playerMovement = playerMovement;
         }
@@ -26,7 +24,7 @@ namespace Game.Scripts.Features.Player
 
         private void FixedUpdate()
         {
-            _playerMovement.SetDirection(_customInputSystem.GetDirection());
+            _playerMovement.SetDirection(_customInputSystem.GetDirection(transform));
         }
 
         private void SubscribeToInputSystem()

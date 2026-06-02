@@ -24,16 +24,11 @@ namespace Game.Scripts.Common.CustomInput.MouseKeyboard
         {
             _camera = camera;
         }
-
-        public void SetTargetTransform(Transform targetTransform)
-        {
-            _targetTransform = targetTransform;
-        }
         
-        public Vector2 GetDirection()
+        public Vector2 GetDirection(Transform targetTransform)
         {
             Vector2 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction =  mousePosition - new Vector2(_targetTransform.position.x, _targetTransform.position.y);
+            Vector2 direction =  mousePosition - new Vector2(targetTransform.position.x, targetTransform.position.y);
             
             return direction.normalized;
         }

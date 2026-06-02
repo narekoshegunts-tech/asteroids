@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Common.CustomInput.Mobile
 {
-    public class MobileInput: MonoBehaviour, IInputSystem
+    public class MobileInput: MonoBehaviour, INotTargetedInputSystem
     {
         [SerializeField] private VirtualJoystick _joystick;
         [SerializeField] private VirtualButton _accelerationButton;

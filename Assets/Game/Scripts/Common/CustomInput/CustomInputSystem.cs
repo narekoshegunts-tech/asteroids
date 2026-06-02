@@ -42,15 +42,14 @@ namespace Game.Scripts.Common.CustomInput
             add => _currentInput.OnLaserAttackKeyPressedDown += value;
             remove => _currentInput.OnLaserAttackKeyPressedDown -= value;
         }
-        
-        public void SetTargetTransform(Transform targetTransform)
+        public Vector2 GetDirection(Transform targetTransform)
         {
-            if (_currentInput is ITargetedInputSystem targetedInputSystem)
-                targetedInputSystem.SetTargetTransform(targetTransform);
-        }
-        public Vector2 GetDirection()
-        {
-            return _currentInput.GetDirection();
+            if(_currentInput is ITargetedInputSystem targetedInputSystem)
+                return targetedInputSystem.GetDirection(targetTransform);
+            if (_currentInput is INotTargetedInputSystem notTargetedInputSystem)
+                return notTargetedInputSystem.GetDirection();
+
+            throw new Exception("Current input doesn't realise correct interface");
         }
     }
 }
